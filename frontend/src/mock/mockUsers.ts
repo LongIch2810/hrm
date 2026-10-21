@@ -1,0 +1,48 @@
+import { CurrentUser } from '../shared/types/common';
+
+export const MOCK_USERS: CurrentUser[] = [
+  {
+    id: 'USR001',
+    code: 'EMP0001',
+    name: 'Nguyễn Văn An',
+    email: 'admin@hrm.company.vn',
+    role: 'ADMIN',
+    departmentId: 'DEPT_BOD',
+    departmentName: 'Ban Giám Đốc & CNTT',
+    position: 'Giám Đốc Hệ Thống & Vận Hành',
+    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'USR002',
+    code: 'EMP0002',
+    name: 'Trần Thị Thu Thảo',
+    email: 'thao.tran@hrm.company.vn',
+    role: 'HR',
+    departmentId: 'DEPT_HR',
+    departmentName: 'Phòng Quản Trị Nhân Sự',
+    position: 'Chuyên Viên Nhân Sự Cấp Cao (HR Lead)',
+    avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'USR003',
+    code: 'EMP0003',
+    name: 'Lê Hoàng Nam',
+    email: 'nam.le@hrm.company.vn',
+    role: 'MANAGER',
+    departmentId: 'DEPT_ENG',
+    departmentName: 'Khối Công Nghệ & Kỹ Thuật',
+    position: 'Trưởng Khối Công Nghệ (Engineering Lead)',
+    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'USR004',
+    code: 'EMP0004',
+    name: 'Phạm Văn A',
+    email: 'a.pham@hrm.company.vn',
+    role: 'EMPLOYEE',
+    departmentId: 'DEPT_ENG',
+    departmentName: 'Khối Công Nghệ & Kỹ Thuật',
+    position: 'Kỹ Sư Phần Mềm Cao Cấp (Senior Developer)',
+    avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+  },
+];

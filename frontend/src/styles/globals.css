@@ -1,0 +1,225 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/* ==========================================================================
+   HRM DESIGN TOKENS — Quietly Editorial B2B Theme
+   Derived from docs/design/design-tokens.css & docs/rules/ui.md
+   ========================================================================== */
+
+:root {
+  /* Brand & Action Colors */
+  --color-primary: #292524;
+  --color-primary-active: #0c0a09;
+  --color-on-primary: #ffffff;
+
+  /* Ink & Typography */
+  --color-ink: #0c0a09;
+  --color-body-strong: #292524;
+  --color-body: #4e4e4e;
+  --color-muted: #777169;
+  --color-muted-soft: #a8a29e;
+
+  /* Canvas & Surfaces */
+  --color-canvas: #f5f5f5;
+  --color-canvas-soft: #fafafa;
+  --color-canvas-deep: #0c0a09;
+  --color-surface-card: #ffffff;
+  --color-surface-strong: #f0efed;
+  --color-surface-dark: #0c0a09;
+  --color-surface-dark-elevated: #1c1917;
+
+  /* Hairlines (1px Dividers) */
+  --color-hairline: #e7e5e4;
+  --color-hairline-soft: #f0efed;
+  --color-hairline-strong: #d6d3d1;
+
+  /* Atmospheric Gradient Stops */
+  --gradient-mint: #a7e5d3;
+  --gradient-peach: #f4c5a8;
+  --gradient-lavender: #c8b8e0;
+  --gradient-sky: #a8c8e8;
+  --gradient-rose: #e8b8c4;
+
+  /* Semantics */
+  --color-semantic-success: #16a34a;
+  --color-semantic-success-bg: #dcfce7;
+  --color-semantic-error: #dc2626;
+  --color-semantic-error-bg: #fee2e2;
+  --color-semantic-warning: #d97706;
+  --color-semantic-warning-bg: #fef3c7;
+  --color-semantic-info: #2563eb;
+  --color-semantic-info-bg: #eff6ff;
+  --color-semantic-neutral: #71717a;
+  --color-semantic-neutral-bg: #f4f4f5;
+
+  /* Typography Scales */
+  --font-display: 'EB Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing Scale (4px base) */
+  --touch-target-min: 44px;
+}
+
+.dark {
+  --color-canvas: #0c0a09;
+  --color-canvas-soft: #141210;
+  --color-canvas-deep: #000000;
+  --color-surface-card: #1c1917;
+  --color-surface-strong: #292524;
+  --color-ink: #f5f5f5;
+  --color-body-strong: #e7e5e4;
+  --color-body: #d6d3d1;
+  --color-muted: #a8a29e;
+  --color-muted-soft: #777169;
+  --color-hairline: #292524;
+  --color-hairline-soft: #1c1917;
+  --color-hairline-strong: #44403c;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  --color-primary: var(--color-primary);
+  --color-primary-active: var(--color-primary-active);
+  --color-on-primary: var(--color-on-primary);
+
+  --color-ink: var(--color-ink);
+  --color-body-strong: var(--color-body-strong);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-muted-soft: var(--color-muted-soft);
+
+  --color-canvas: var(--color-canvas);
+  --color-canvas-soft: var(--color-canvas-soft);
+  --color-canvas-deep: var(--color-canvas-deep);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-surface-dark: var(--color-surface-dark);
+
+  --color-hairline: var(--color-hairline);
+  --color-hairline-soft: var(--color-hairline-soft);
+  --color-hairline-strong: var(--color-hairline-strong);
+
+  --color-success: var(--color-semantic-success);
+  --color-success-bg: var(--color-semantic-success-bg);
+  --color-error: var(--color-semantic-error);
+  --color-error-bg: var(--color-semantic-error-bg);
+  --color-warning: var(--color-semantic-warning);
+  --color-warning-bg: var(--color-semantic-warning-bg);
+  --color-info: var(--color-semantic-info);
+  --color-info-bg: var(--color-semantic-info-bg);
+  --color-neutral: var(--color-semantic-neutral);
+  --color-neutral-bg: var(--color-semantic-neutral-bg);
+}
+
+/* Base Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-canvas);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings with Editorial 300 Weight */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+
+/* Editorial display typography utilities */
+.display-mega {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.display-sm {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+/* Atmospheric Gradient Backgrounds */
+.bg-orb-mint-peach {
+  background: radial-gradient(circle at 10% 20%, rgba(167, 229, 211, 0.45) 0%, transparent 50%),
+              radial-gradient(circle at 90% 80%, rgba(244, 197, 168, 0.45) 0%, transparent 50%),
+              var(--color-canvas-soft);
+}
+
+.bg-orb-sky-lavender {
+  background: radial-gradient(circle at 20% 10%, rgba(168, 200, 232, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 80% 90%, rgba(200, 184, 224, 0.4) 0%, transparent 50%),
+              var(--color-surface-card);
+}
+
+.bg-orb-peach-rose {
+  background: radial-gradient(circle at 15% 15%, rgba(244, 197, 168, 0.35) 0%, transparent 50%),
+              radial-gradient(circle at 85% 85%, rgba(232, 184, 196, 0.35) 0%, transparent 50%),
+              var(--color-surface-card);
+}
+
+/* Hairline helper utilities */
+.border-hairline {
+  border: 1px solid var(--color-hairline);
+}
+
+.border-b-hairline {
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.border-t-hairline {
+  border-top: 1px solid var(--color-hairline);
+}
+
+.border-r-hairline {
+  border-right: 1px solid var(--color-hairline);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline-strong);
+  border-radius: 9999px;
+}
