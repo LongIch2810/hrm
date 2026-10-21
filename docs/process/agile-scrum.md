@@ -4,7 +4,7 @@ Tài liệu này ghi đề xuất khung làm việc Agile Scrum cho dự án HRM
 
 **Status:** TBD (To Be Determined)
 
-**Proposal — Pending Approval:** Toàn bộ vai trò, thời lượng Sprint, nghi thức, DoR, DoD và cách tổ chức backlog dưới đây chưa là quy định dự án. Tiếp tục dùng [Git Rules](../rules/git.md) và [Testing Rules](../rules/testing.md) đã được xác nhận.
+**Proposal — Pending Approval:** Khung Scrum chung, vai trò, nghi thức, DoR, DoD và cách tổ chức backlog dưới đây chưa là quy định dự án. Product Owner chỉ duyệt kế hoạch [Sprint 0](../../sprints/sprint-00-core-backend.md) ở trạng thái Planned. Tiếp tục dùng [Git Rules](../rules/git.md) và [Testing Rules](../rules/testing.md) đã được xác nhận.
 
 - Product Owner có chọn Scrum và Sprint 2 tuần không?
 - Ai đảm nhiệm Scrum Master, QA, và phê duyệt DoR/DoD?
