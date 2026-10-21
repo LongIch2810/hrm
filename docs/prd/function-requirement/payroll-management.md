@@ -14,7 +14,7 @@ Quản lý dữ liệu lương, tính toán lương tự động từ dữ liệ
 ## Actors
 
 - **HR Staff / Kế toán lương (Payroll Specialist):** Thiết lập thông tin lương, phụ cấp, thưởng, thực thi tính toán và kết xuất bảng lương dự thảo.
-- **HR Manager / Ban Giám Đốc:** Rà soát, phê duyệt và thực hiện "Khóa kỳ lương" (`Closed`).
+- **HR Manager / Ban Giám Đốc:** Rà soát và phê duyệt kỳ lương thành `Approved`; HR Staff khóa kỳ thành `Closed` bằng thao tác riêng.
 - **Employee:** Xem và tải phiếu lương điện tử bảo mật của chính mình (Read-only).
 
 ## Feature List
@@ -35,17 +35,17 @@ Quản lý dữ liệu lương, tính toán lương tự động từ dữ liệ
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-PAY-001 | Hệ thống phải hỗ trợ quản lý thông tin lương. | HR Staff | Lương cơ bản, mức đóng bảo hiểm theo HĐLĐ | Thông tin cấu hình lương nhân viên được lưu an toàn. | BR-PAY-001; BR-AUTH-001 | AC-PAY-001 | Confirmed | Should Have |
-| FR-PAY-002 | Hệ thống phải hỗ trợ quản lý kỳ lương. | HR Staff | Tháng kỳ lương (ví dụ: Tháng 10/2026) | Kỳ lương được tạo ở trạng thái `Draft` hoặc chuyển `Closed`. | BR-PAY-002 | AC-PAY-002 | Confirmed | Should Have |
+| FR-PAY-001 | Hệ thống phải hỗ trợ quản lý thông tin lương. | HR Staff | Lương cơ bản, mức đóng bảo hiểm theo HĐLĐ | Thông tin cấu hình lương nhân viên được lưu an toàn. | BR-PAY-001; BR-PAY-AUTH-001 | AC-PAY-001 | Confirmed | Should Have |
+| FR-PAY-002 | Hệ thống phải hỗ trợ quản lý kỳ lương. | HR Staff; HR Manager hoặc Giám đốc (duyệt) | Tháng kỳ lương (ví dụ: Tháng 10/2026) | Kỳ lương chuyển `Draft` → `Approved` khi duyệt, `Approved` → `Closed` khi HR Staff khóa. | BR-PAY-002 | AC-PAY-002 | Confirmed | Should Have |
 | FR-PAY-003 | Hệ thống phải hỗ trợ tính lương. | HR Staff | Dữ liệu công, phép, phụ cấp, thưởng | Tính toán tự động lương Net, BHXH và Thuế TNCN chính xác. | BR-PAY-001; BR-PAY-002 | AC-PAY-003 | Confirmed | Should Have |
 | FR-PAY-004 | Hệ thống phải hỗ trợ quản lý phụ cấp. | HR Staff | Danh mục phụ cấp (ăn trưa, xăng xe, điện thoại) | Phân loại phụ cấp chịu thuế và miễn thuế theo quy định. | BR-PAY-001 | AC-PAY-004 | Confirmed | Should Have |
 | FR-PAY-005 | Hệ thống phải hỗ trợ quản lý thưởng. | HR Staff | Tiền thưởng dự án, KPI, thưởng lễ | Khoản thưởng được cộng vào tổng thu nhập chịu thuế. | BR-PAY-001 | AC-PAY-005 | Confirmed | Should Have |
 | FR-PAY-006 | Hệ thống phải hỗ trợ quản lý khấu trừ. | HR Staff | Tạm ứng, đền bù tài sản, khấu trừ khác | Khấu trừ trừ trực tiếp vào thu nhập sau thuế. | BR-PAY-001 | AC-PAY-006 | Confirmed | Should Have |
 | FR-PAY-007 | Hệ thống phải hỗ trợ quản lý các khoản liên quan đến thuế. | Hệ thống tự động; HR Staff | Thu nhập chịu thuế, số người phụ thuộc | Tính thuế TNCN theo biểu lũy tiến từng phần chuẩn Việt Nam. | BR-PAY-002 | AC-PAY-007 | Confirmed | Should Have |
 | FR-PAY-008 | Hệ thống phải hỗ trợ quản lý các khoản liên quan đến bảo hiểm. | Hệ thống tự động; HR Staff | Mức lương đóng BHXH | Trích đóng BHXH (8%), BHYT (1.5%), BHTN (1%) chính xác. | BR-PAY-002 | AC-PAY-008 | Confirmed | Should Have |
-| FR-PAY-009 | Hệ thống phải hỗ trợ tạo phiếu lương. | HR Staff; Hệ thống | Bảng lương đã khóa | Tự động sinh phiếu lương điện tử riêng biệt cho từng nhân sự. | BR-PAY-002; BR-AUTH-001 | AC-PAY-009 | Confirmed | Should Have |
-| FR-PAY-010 | Hệ thống phải hỗ trợ xem lịch sử lương. | Employee (cá nhân); HR Staff | Kỳ lương cần xem | Hiển thị phiếu lương cá nhân an toàn (Read-only). | BR-AUTH-001 | AC-PAY-010 | Confirmed | Should Have |
-| FR-PAY-011 | Hệ thống phải hỗ trợ tổng hợp bảng lương. | HR Staff; HR Manager | Kỳ lương | Bảng tổng hợp quỹ lương toàn công ty hoặc theo phòng ban. | BR-PAY-001; BR-AUTH-001 | AC-PAY-011 | Confirmed | Should Have |
+| FR-PAY-009 | Hệ thống phải hỗ trợ tạo phiếu lương. | HR Staff; Hệ thống | Bảng lương đã khóa | Tự động sinh phiếu lương điện tử riêng biệt cho từng nhân sự. | BR-PAY-002; BR-PAY-AUTH-001 | AC-PAY-009 | Confirmed | Should Have |
+| FR-PAY-010 | Hệ thống phải hỗ trợ xem lịch sử lương. | Employee (cá nhân); HR Staff | Kỳ lương cần xem | Hiển thị phiếu lương cá nhân an toàn (Read-only). | BR-PAY-AUTH-001 | AC-PAY-010 | Confirmed | Should Have |
+| FR-PAY-011 | Hệ thống phải hỗ trợ tổng hợp bảng lương. | HR Staff; HR Manager | Kỳ lương | Bảng tổng hợp quỹ lương toàn công ty hoặc theo phòng ban. | BR-PAY-001; BR-PAY-AUTH-001 | AC-PAY-011 | Confirmed | Should Have |
 
 ## Inputs & Outputs
 
@@ -64,7 +64,7 @@ Quản lý dữ liệu lương, tính toán lương tự động từ dữ liệ
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Payroll Management](../business-rule/payroll-management.md):
   - **BR-PAY-001:** Công thức tính lương Net chuẩn: Lương Net = Lương cơ bản * (Công thực tế / Công chuẩn) + Phụ cấp + Thưởng + Lương OT - BHXH (10.5%) - Thuế TNCN - Khấu trừ (`PD-017`).
   - **BR-PAY-002:** Áp dụng biểu thuế TNCN lũy tiến từng phần, giảm trừ bản thân 11.000.000 VNĐ, người phụ thuộc 4.400.000 VNĐ; Khóa kỳ lương (`Closed`) bất biến dữ liệu; chỉ HR Manager/Giám đốc mới có quyền mở khóa kèm giải trình (`PD-018, PD-019`).
-  - **BR-AUTH-001:** Bảo mật cấp cao; nhân viên chỉ thấy phiếu lương mình; cấm Trưởng phòng xem lương nhân viên phòng khác (`PD-008`).
+  - **BR-PAY-AUTH-001:** Bảo mật cấp cao; nhân viên chỉ thấy phiếu lương mình; cấm Trưởng phòng xem lương nhân viên phòng khác (`PD-008`).
 
 ## Edge Cases
 

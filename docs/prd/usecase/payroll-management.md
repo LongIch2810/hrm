@@ -7,7 +7,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Phạm vi module:** Quản lý kỳ lương, thông tin lương cơ bản, tính toán lương tự động từ dữ liệu công/phép, phụ cấp, thưởng, khấu trừ, trích nộp bảo hiểm bắt buộc (10.5%), thuế TNCN lũy tiến, khóa kỳ lương và phát hành phiếu lương (Payslip).
 - **Actors liên quan:**
   - `HR Staff` (Payroll Specialist): Thiết lập cấu hình lương, phụ cấp, nhập thưởng/khấu trừ, thực thi tính toán lương dự thảo, đối soát bảng lương.
-  - `HR Manager / Ban Giám Đốc`: Rà soát bảng lương tổng hợp, phê duyệt và thực hiện Khóa kỳ lương (`Closed`), duyệt mở khóa khi có sai sót đặc biệt.
+  - `HR Manager / Ban Giám Đốc`: Rà soát bảng lương tổng hợp, chuyển kỳ từ `Draft` sang `Approved`; duyệt mở khóa khi có sai sót đặc biệt. HR Staff khóa kỳ `Approved` thành `Closed`.
   - `Employee`: Xem và tải phiếu lương điện tử cá nhân bảo mật (Read-only, không xem lương của đồng nghiệp).
 
 ---
@@ -17,7 +17,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 | Mã Story | Nội dung User Story | Mã FR | Tiêu chí nghiệm thu (Acceptance Criteria) |
 |---|---|---|---|
 | US-PAY-001 | As a HR Staff, I want cấu hình thông tin lương cơ bản, mức đóng bảo hiểm và tài khoản ngân hàng của nhân viên theo hợp đồng lao động, So that hệ thống có căn cứ tính lương chuẩn xác. | FR-PAY-001 | Dữ liệu lương lưu trữ bảo mật (mã hóa dữ liệu nhạy cảm); chỉ HR có thẩm quyền mới được truy cập xem/sửa. |
-| US-PAY-002 | As a HR Staff, I want tạo kỳ lương theo tháng (kỳ công từ ngày 1 đến ngày cuối tháng), So that chu trình tính và trả lương diễn ra đúng hạn vào ngày 5 hàng tháng. | FR-PAY-002 | Kỳ lương hỗ trợ các trạng thái: `Draft` (Dự thảo), `Approved` (Đã duyệt), `Closed` (Đã khóa); không cho phép tạo trùng kỳ lương. |
+| US-PAY-002 | As a HR Staff, I want tạo kỳ lương theo tháng (kỳ công từ ngày 1 đến ngày cuối tháng), So that chu trình chốt lương ngày 5 và phát lương ngày 10 diễn ra đúng hạn. | FR-PAY-002 | Kỳ lương hỗ trợ các trạng thái: `Draft` (Dự thảo), `Approved` (Đã duyệt), `Closed` (Đã khóa); không cho phép tạo trùng kỳ lương. |
 | US-PAY-003 | As a HR Staff, I want hệ thống tự động tính toán lương Gross, tiền công thực tế, phụ cấp, trích nộp bảo hiểm, thuế TNCN và lương Net, So that giảm thiểu 95% sai sót tính toán thủ công bằng Excel. | FR-PAY-003 | Làm tròn 0 chữ số thập phân (VNĐ); đối soát chính xác theo công thức lương đã được phê duyệt. |
 | US-PAY-004 | As a HR Staff, I want quản lý danh mục và gán các khoản phụ cấp (ăn trưa, xăng xe, điện thoại, phụ cấp trách nhiệm), So that các khoản phụ cấp chịu thuế và miễn thuế được phân loại đúng luật. | FR-PAY-004 | Phụ cấp ăn trưa (tối đa 730k/tháng) được miễn thuế TNCN; các khoản phụ cấp khác tính vào thu nhập chịu thuế. |
 | US-PAY-005 | As a HR Staff, I want nhập các khoản thưởng (thưởng KPI, thưởng dự án, thưởng lễ tết) cho nhân viên trong kỳ, So that các khoản thu nhập bổ sung được chi trả đầy đủ. | FR-PAY-005 | Tiền thưởng được cộng vào thu nhập trước thuế; lưu trữ căn cứ và quyết định khen thưởng. |
@@ -40,10 +40,10 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Tiền điều kiện:**
   - Tháng chấm công tương ứng (`ATT`) đã được chốt và khóa (`LOCKED`).
   - Hợp đồng lao động và mức lương cơ bản đã được thiết lập.
-- **Dữ liệu đầu vào (Input Fields):** Tháng kỳ lương (`YYYY-MM`), Ngày bắt đầu kỳ (`YYYY-MM-01`), Ngày kết thúc kỳ, Ngày dự kiến chi trả (`mùng 5`).
+- **Dữ liệu đầu vào (Input Fields):** Tháng kỳ lương (`YYYY-MM`), Ngày bắt đầu kỳ (`YYYY-MM-01`), Ngày kết thúc kỳ, Ngày dự kiến chi trả (`mùng 10`).
 - **Luồng sự kiện chính (Basic Flow):**
   1. HR Staff mở mục "Quản lý lương" > "Kỳ lương" và nhấn "Tạo kỳ lương mới".
-  2. HR Staff chọn Tháng lương (ví dụ: `2026-10`), hệ thống mặc định chu kỳ từ `2026-10-01` đến `2026-10-31`, ngày chi trả `2026-11-05`.
+  2. HR Staff chọn Tháng lương (ví dụ: `2026-10`), hệ thống mặc định chu kỳ từ `2026-10-01` đến `2026-10-31`, ngày chi trả `2026-11-10`.
   3. Hệ thống tạo kỳ lương ở trạng thái `Draft` (Dự thảo).
   4. HR Staff nhấn nút "Chạy tính toán lương".
   5. Hệ thống thực hiện batch processing xử lý tuần tự từng nhân viên đang hoạt động:
@@ -101,7 +101,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 ### UC-PAY-003: Phê duyệt, Khóa kỳ lương và xuất báo cáo quỹ lương
 
 - **Mã FR:** FR-PAY-002, FR-PAY-011.
-- **Actor:** HR Manager / Ban Giám Đốc.
+- **Actor:** HR Manager / Ban Giám Đốc (duyệt), HR Staff (khóa kỳ).
 - **Tiền điều kiện:** Bảng lương dự thảo đã được HR Staff kiểm tra và gửi yêu cầu phê duyệt.
 - **Luồng sự kiện chính (Basic Flow):**
   1. HR Manager / Giám Đốc mở kỳ lương cần duyệt.
@@ -112,14 +112,14 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
      - Tổng thuế TNCN nộp ngân sách nhà nước.
      - Tổng tiền thực chi trả vào tài khoản nhân viên (Net Total).
   3. Cấp quản lý kiểm tra chi tiết bảng lương theo từng phòng ban.
-  4. Nếu thông tin chính xác, Manager nhấn nút "Phê duyệt & Khóa kỳ lương" (`Close Payroll`).
-  5. Hệ thống yêu cầu xác nhận lần cuối bằng hộp thoại bảo mật.
-  6. Sau khi xác nhận:
+  4. Nếu thông tin chính xác, HR Manager hoặc Giám đốc nhấn "Phê duyệt"; kỳ lương chuyển sang `Approved`.
+  5. HR Staff mở kỳ `Approved`, nhấn "Khóa kỳ lương" và xác nhận lần cuối.
+  6. Sau khi HR Staff xác nhận:
      - Kỳ lương đổi trạng thái sang `Closed` (Đã khóa).
      - Toàn bộ các bản ghi lương trong kỳ trở thành bất biến (Không ai có thể thêm/sửa/xóa).
      - Tự động kích hoạt job phát sinh Phiếu lương điện tử (`Payslips`) cho từng nhân viên.
-     - Ghi audit log chi tiết hành động phê duyệt của Manager.
-  7. Manager nhấn "Xuất bảng lương ngân hàng" (file Excel ủy nhiệm chi theo form Vietcombank, Techcombank, MB...) để gửi ngân hàng giải ngân.
+     - Ghi audit log riêng cho hành động phê duyệt và khóa kỳ.
+  7. HR Staff có quyền xuất nhấn "Xuất bảng lương ngân hàng" (file Excel ủy nhiệm chi theo form Vietcombank, Techcombank, MB...) để gửi ngân hàng giải ngân.
 - **Luồng ngoại lệ (Exception Flows):**
   - *E1 - Bảng lương chưa cân đối:* Nếu Manager phát hiện sai sót, bấm "Yêu cầu tính lại" kèm ghi chú. Bảng lương quay về trạng thái `Draft` cho HR Staff điều chỉnh.
 - **Hậu điều kiện:** Kỳ lương được khóa vĩnh viễn, dữ liệu sẵn sàng chuyển giao thanh toán.
@@ -144,7 +144,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
      - **Lương thực nhận (Net):** Số tiền lớn, bôi đậm màu xanh nổi bật.
   6. Employee có thể nhấn nút "Tải phiếu lương (PDF)" để lưu trữ.
 - **Luồng ngoại lệ (Exception Flows):**
-  - *E1 - Truy cập trái phép phiếu lương người khác:* Nếu Employee đổi tham số `payslip_id` trên URL hoặc API để xem lương đồng nghiệp, hệ thống kiểm tra quyền sở hữu (`payslip.employee_id == currentUser.employee_id`) và từ chối ngay lập tức với mã `403 FORBIDDEN` (`FORBIDDEN_RESOURCE`).
+  - *E1 - Truy cập trái phép phiếu lương người khác:* Nếu Employee đổi tham số `payslip_id` trên URL hoặc API để xem lương đồng nghiệp, hệ thống kiểm tra quyền sở hữu (`payslip.employee_id == currentUser.employee_id`) và trả `404 Not Found` (`RESOURCE_NOT_FOUND`), không tiết lộ phiếu lương có tồn tại.
 - **Hậu điều kiện:** Nhân viên nắm bắt chi tiết thu nhập của mình một cách hoàn toàn riêng tư và bảo mật.
 
 ---

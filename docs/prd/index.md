@@ -1,8 +1,8 @@
 # HRM — Đặc tả yêu cầu (PRD Index)
 
 - **Parent Document:** docs/PRD.md
-- **Phiên bản:** 0.1 (bản dự thảo tài liệu).
-- **Status:** Confirmed — Approved by Product Owner. Toàn bộ 40/40 Pending Decisions đã được chốt và đồng bộ.
+- **Phiên bản:** 0.1.
+- **Status:** Confirmed — Approved by Product Owner. Toàn bộ 40/40 Pending Decisions đã được chốt.
 
 ## Danh mục tài liệu đặc tả chi tiết
 
@@ -16,9 +16,9 @@
 | 6. Yêu cầu chức năng | 109 chức năng của 12 module | [function-requirement/index.md](function-requirement/index.md) |
 | 7. User stories và use cases | Use cases chi tiết 12 module | [usecase/index.md](usecase/index.md) |
 | 8. Quy tắc nghiệp vụ | Business rules chi tiết 12 module | [business-rule/index.md](business-rule/index.md) |
-| 9. Workflow | 6 quy trình nghiệp vụ cốt lõi | [workflow/index.md](workflow/index.md) |
+| 9. Workflow | 11 quy trình nghiệp vụ cốt lõi | [workflow/index.md](workflow/index.md) |
 | 10. Yêu cầu phi chức năng | NFR bảo mật, hiệu năng, tải | [details/non-functional-requirements.md](details/non-functional-requirements.md) |
 | 11. Tiêu chí nghiệm thu | Tiêu chí kiểm chứng năng lực | [Acceptance Criteria](../PRD.md#11-acceptance-criteria) |
-| 12. Giả định, rủi ro & PD | 40 nhóm quyết định chờ PO chốt | [details/assumptions-dependencies-risks.md](details/assumptions-dependencies-risks.md) |
+| 12. Giả định, rủi ro & PD | 40 nhóm quyết định đã được PO chốt | [details/assumptions-dependencies-risks.md](details/assumptions-dependencies-risks.md) |
 | 13. Dữ liệu khái quát | 6 nhóm thực thể dữ liệu mức cao | [details/high-level-data.md](details/high-level-data.md) |
 | 14. Lộ trình | Kế hoạch các giai đoạn | [Roadmap](../PRD.md#14-roadmap--phases) |

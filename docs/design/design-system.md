@@ -1,7 +1,7 @@
 # HRM Design System Specification
 
 Tài liệu đặc tả toàn diện Design System cho hệ thống Quản trị Nhân sự (HRM).
-Tuân thủ chuẩn mực từ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md), kết hợp quy tắc [UI Rules](file:///d:/saved/Project/hrm/docs/rules/ui.md) (HeroUI v3 + Tailwind CSS v4) và các bổ sung chuyên biệt cho phần mềm B2B SaaS đã được phê duyệt.
+Tuân thủ chuẩn mực từ [frontend/DESIGN.md](../../frontend/DESIGN.md), kết hợp quy tắc [UI Rules](../rules/ui.md) (HeroUI v3 + Tailwind CSS v4) và các bổ sung chuyên biệt cho phần mềm B2B SaaS đã được phê duyệt.
 
 ---
 

@@ -31,5 +31,5 @@ flowchart TD
 1. **Ghi nhận giờ vào:** Nhân viên chấm công đầu ca, hệ thống kiểm tra và tự động tính toán số phút đi muộn nếu có.
 2. **Ghi nhận giờ ra:** Nhân viên chấm công cuối ca, hệ thống kiểm tra và tính toán về sớm.
 3. **Đối soát ngoại lệ:** Nếu nhân viên quên chấm vào/ra hoặc xin nghỉ phép giữa giờ, nhân viên gửi giải trình hoặc đơn bổ sung công/phép.
-4. **Tổng hợp kỳ công:** Đến ngày kết thúc kỳ công (ví dụ ngày 25 hàng tháng), hệ thống tự động tổng hợp tổng số ngày công chuẩn, số giờ làm thêm (OT), số giờ đi muộn/về sớm và số ngày nghỉ có phép/không phép.
+4. **Tổng hợp kỳ công:** Ngày 01 tháng kế tiếp, hệ thống tổng hợp công của tháng trước, gồm ngày công chuẩn, OT, phút đi muộn/về sớm và ngày nghỉ có phép/không phép.
 5. **Khóa bảng công:** HR duyệt bảng công chính thức và bàn giao sang module Lương.

@@ -2,7 +2,7 @@
 
 Tài liệu này giúp agent nắm sản phẩm cần xây. Tra [mục lục đặc tả yêu cầu](prd/index.md) trước khi thiết kế hoặc triển khai một chức năng.
 
-**Status:** Confirmed — Approved by Product Owner. Toàn bộ 40/40 Pending Decisions đã được chốt và đồng bộ.
+**Status:** Confirmed — Approved by Product Owner. Toàn bộ 40/40 Pending Decisions đã được chốt.
 
 ## 1. Product Overview
 
@@ -111,13 +111,13 @@ Bốn nhóm vai trò là dữ liệu đã xác nhận; không tự tạo tuổi,
 | Tài nguyên / Nghiệp vụ | System Administrator | HR Staff | Department Manager | Employee |
 |---|---|---|---|---|
 | **Tài khoản & Phân quyền** | Quản lý toàn quyền (CRUD, Reset pass) | Chỉ xem danh sách | Không có quyền | Không có quyền |
-| **Hồ sơ nhân viên** | Xem thông tin kỹ thuật | Toàn quyền (CRUD) toàn công ty | Xem nhân viên thuộc đúng phòng ban mình | Xem hồ sơ mình; sửa thông tin cơ bản |
+| **Hồ sơ nhân viên** | Xem thông tin kỹ thuật | Toàn quyền (CRUD) toàn công ty | Xem liên hệ cần thiết và thông tin công tác của nhân viên thuộc đúng phòng ban mình | Xem hồ sơ mình; sửa thông tin cơ bản |
 | **Cơ cấu phòng ban** | Cấu hình kỹ thuật | Toàn quyền tạo, sửa sơ đồ cây | Xem thông tin phòng ban mình | Xem sơ đồ tổ chức công ty (Read-only) |
 | **Chấm công** | Cấu hình ca / nguồn giờ | Toàn quyền xem, Import file Excel máy công | Xem dữ liệu công của phòng ban mình | Tự Check-in/out Web, xem bảng công mình |
-| **Đơn nghỉ phép** | Cấu hình loại phép, ngày lễ | Xem toàn bộ, xử lý/duyệt cấp công ty | Duyệt đơn nhân viên phòng ban mình | Tạo đơn nghỉ, theo dõi trạng thái, xem số dư |
+| **Đơn nghỉ phép** | Cấu hình loại phép, ngày lễ | Xem và giám sát toàn công ty; không duyệt | Duyệt đơn nhân viên phòng ban mình | Tạo đơn nghỉ, theo dõi trạng thái, xem số dư |
 | **Audit Logs** | Xem toàn quyền nhật ký bảo mật | Không có quyền | Không có quyền | Không có quyền |
 
-Ứng viên, kế toán, người phỏng vấn hoặc người phụ trách cấp phát chưa được xác nhận là nhóm người dùng bổ sung; cần quyết định trước khi mở rộng vai trò.
+Giữ bốn vai trò đăng nhập. Gán vai trò nền theo chức vụ thực tế và cấp quyền nghiệp vụ theo nhiệm vụ cho HR Manager, Giám đốc, Kế toán, Interviewer, Trainer và IT; không coi các chức danh này là vai trò đăng nhập mới.
 
 ## 5. Product Scope
 
@@ -173,10 +173,10 @@ Các nghiệp vụ và tính năng chính thức nằm ngoài phạm vi phát tr
 |---|---|
 | EMP | DEPT: phân công tổ chức; CON: hợp đồng; ONB: tiếp nhận/nghỉ việc; SYS: phân quyền. |
 | DEPT | EMP: nhân viên được phân công; SYS: phạm vi quản lý và quyền. |
-| ATT | EMP/DEPT: nhân viên và phạm vi; LEAVE: dữ liệu nghỉ; PAY: dữ liệu đầu vào tính lương nếu được xác nhận. |
-| LEAVE | EMP/DEPT: nhân viên và phạm vi; ATT/PAY: ảnh hưởng bảng công/lương cần xác nhận; SYS: quyền. |
-| PAY | EMP, ATT, LEAVE, CON: nguồn dữ liệu cần xác nhận; SYS: quyền dữ liệu nhạy cảm. |
-| REC | ONB: bàn giao ứng viên; EMP: liên hệ hồ sơ nhân viên sau tiếp nhận cần xác nhận; SYS: quyền. |
+| ATT | EMP/DEPT: nhân viên và phạm vi; LEAVE: dữ liệu nghỉ; PAY: dữ liệu công đầu vào tính lương. |
+| LEAVE | EMP/DEPT: nhân viên và phạm vi; ATT/PAY: đồng bộ ngày nghỉ vào bảng công và dữ liệu tính lương; SYS: quyền. |
+| PAY | EMP, ATT, LEAVE, CON: nguồn dữ liệu tính lương; SYS: quyền dữ liệu nhạy cảm. |
+| REC | ONB: tự động bàn giao ứng viên `HIRED`; EMP: hồ sơ nhân viên được tạo qua ONB; SYS: quyền. |
 | ONB | REC: tiếp nhận ứng viên trúng tuyển; EMP: trạng thái nhân viên; SYS: tài khoản/quyền; CON/PAY: tạo hợp đồng thử việc và hồ sơ lương. |
 | PERF | EMP/DEPT: nhân viên, quản lý và phạm vi; SYS: quyền; liên hệ với PAY/TRAIN để xét thưởng và kế hoạch đào tạo. |
 | CON | EMP: hồ sơ nhân viên; SYS: quyền và thông báo cảnh báo hết hạn; PAY: cung cấp thông tin mức lương và phụ cấp theo hợp đồng. |
@@ -256,8 +256,8 @@ Tra [yêu cầu phi chức năng](prd/details/non-functional-requirements.md) (T
 
 Toàn bộ 109 AC chức năng và 3 tiêu chí kiểm thử liên module (AC-CROSS) đã được phê duyệt chính thức:
 
-- **AC-CROSS-001 — Phạm vi quyền:** Xác thực phân quyền chuẩn theo RBAC Matrix đã phê duyệt (Admin, HR Staff, Manager, Employee); từ chối truy cập 403 Forbidden nếu vượt quyền. Manager chỉ xem/duyệt nhân viên thuộc phòng ban mình trực tiếp quản lý.
-- **AC-CROSS-002 — Nhất quán dữ liệu liên module:** Dữ liệu bàn giao giữa REC -> ONB, ATT + LEAVE -> PAY được kiểm soát toàn vẹn bằng database transactions. Trạng thái nhân viên đồng bộ nhất quán giữa EMP và SYS.
+- **AC-CROSS-001 — Phạm vi quyền:** Xác thực theo RBAC Matrix đã duyệt; trả `403 INSUFFICIENT_PERMISSIONS` khi vai trò không được thao tác hoặc Manager xem nhân viên ngoài phòng ban, `404 RESOURCE_NOT_FOUND` với tài nguyên khác ngoài phạm vi. Manager chỉ xem/duyệt nhân viên thuộc phòng ban mình trực tiếp quản lý.
+- **AC-CROSS-002 — Nhất quán dữ liệu liên module:** Dữ liệu bàn giao giữa REC -> ONB, ATT + LEAVE -> PAY được kiểm soát toàn vẹn bằng database transactions. Trạng thái nhân viên đồng bộ nhất quán giữa EMP và SYS. Mọi lượt lưu dựa trên bản cũ bị từ chối và yêu cầu tải lại trước khi sửa tiếp.
 - **AC-CROSS-003 — Ngoại lệ:** Mọi edge case (trùng mã nhân viên, trùng email, thiếu ngày phép, lỗi file import máy chấm công) đều trả về mã lỗi rõ ràng và thông báo tiếng Việt cụ thể.
 
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
@@ -266,7 +266,7 @@ Toàn bộ 109 AC chức năng và 3 tiêu chí kiểm thử liên module (AC-CR
 
 Mỗi NFR ở Section 10 có AC-NFR tương ứng, toàn bộ đã được chốt ngưỡng định lượng:
 
-- **AC-NFR-001 (Security):** Mật khẩu băm Argon2id/Bcrypt; HTTPS toàn bộ kết nối; JWT + HttpOnly Secure Cookie; kiểm soát lỗi theo OWASP Top 10.
+- **AC-NFR-001 (Security):** Mật khẩu băm bằng bcrypt; HTTPS khi triển khai, HTTP loopback chỉ cho local; access token JWT trong bộ nhớ ứng dụng, refresh token JWT trong HttpOnly cookie; kiểm soát lỗi theo OWASP Top 10.
 - **AC-NFR-002 (Performance):** Phản hồi API p95 <= 500ms; tải trang Web <= 1.5s; chịu tải đồng thời >= 50 concurrent users.
 - **AC-NFR-003 (Availability & Backup):** Uptime >= 99.5% trong giờ hành chính; RPO <= 24h, RTO <= 2h; tự động sao lưu PostgreSQL hàng ngày, lưu trữ 30 ngày.
 - **AC-NFR-004 (Privacy & Compliance):** Tuân thủ Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân; phân loại và bảo vệ dữ liệu nhạy cảm.
@@ -447,7 +447,7 @@ Kiểm tra này áp dụng cho PRD dự thảo, không chứng nhận sản ph�
 | User Stories | 109 US; mỗi US liên kết FR tương ứng. |
 | BR và workflows | 100% BR và workflow cốt lõi đã được phê duyệt chính thức theo phương án Recommended. |
 | Đánh dấu chưa quyết định | Toàn bộ 40 nhóm quyết định PD đã được chốt và đồng bộ. |
-| Heading/section | Giữ cấu trúc tài liệu rõ ràng, minh bạch và hoàn toàn không còn TBD. |
+| Heading/section | Giữ cấu trúc tài liệu rõ ràng; 40 quyết định sản phẩm đã chốt, các contract và kế hoạch chưa duyệt tiếp tục ghi TBD (To Be Determined). |
 | Giới hạn kỹ thuật | Tuân thủ Tech Stack và Architecture Design đã phê duyệt. |
 | Phân biệt đề xuất | Toàn bộ các phương án đề xuất (Recommended) đã được Product Owner chấp thuận chính thức. |
 
@@ -461,6 +461,6 @@ Kiểm tra này áp dụng cho PRD dự thảo, không chứng nhận sản ph�
 | RBAC | Phân quyền truy cập theo 4 vai trò: Admin, HR Staff, Manager, Employee; chi tiết tại Authorization Matrix. |
 | KPI / OKR | Chỉ số hiệu suất đánh giá định kỳ 6 tháng/1 năm, thang điểm 1-5; quy trình 3 bước. |
 | Onboarding / Offboarding | Quy trình tiếp nhận/nghỉ việc tự động kích hoạt theo checklist chuẩn hóa. |
-| Audit logs | Nhật ký kiểm toán bất biến ghi nhận đăng nhập, phân quyền, đổi mật khẩu, sửa/xóa hồ sơ; lưu 12 tháng. |
+| Audit logs | Nhật ký kiểm toán bất biến ghi nhận đăng nhập, phân quyền, đổi mật khẩu, sửa/xóa hồ sơ; lưu tối thiểu 2 năm. |
 | RPO / RTO | Mục tiêu khôi phục dữ liệu RPO <= 24h, thời gian phục hồi RTO <= 2h. |
 | Confirmed | Trạng thái yêu cầu và quyết định đã được Product Owner phê duyệt chính thức. |

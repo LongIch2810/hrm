@@ -43,18 +43,18 @@ Toàn bộ 8 nhóm rủi ro phân tích đã được phê duyệt phương án 
 
 - **Kỹ thuật:** Backend chạy NestJS (Node.js 22 LTS), TypeORM, PostgreSQL; Frontend chạy React 19, HeroUI, TailwindCSS.
 - **Kiến trúc:** Monolith chia module rõ ràng (Modular Monolith), kiến trúc phân lớp Controller - Service - Repository; RESTful API chuẩn JSON.
-- **Bảo mật:** Băm mật khẩu Argon2id/Bcrypt; Token lưu HttpOnly Cookie; kiểm soát phân quyền chặt chẽ theo RBAC Guards.
+- **Bảo mật:** Băm mật khẩu bằng bcrypt; access token lưu trong bộ nhớ ứng dụng, refresh token lưu trong HttpOnly cookie; kiểm soát phân quyền theo RBAC Guards.
 - **Pháp lý:** Tuân thủ quy định lao động và Nghị định 13/2023/NĐ-CP của Việt Nam về bảo vệ dữ liệu cá nhân.
 
 ## 12.5. Open Questions
 
 **Status:** Confirmed / Resolved — All Questions Closed (2026-10-21)
 
-Tất cả các câu hỏi mở trước đây đã được giải quyết và chốt quyết định chính thức tại 40 nhóm quyết định PD-001 đến PD-040 bên dưới. Không còn câu hỏi mở nào tồn đọng.
+Toàn bộ câu hỏi thuộc 40 nhóm quyết định sản phẩm PD-001 đến PD-040 đã được chốt. Các quyết định kỹ thuật và kế hoạch còn mở được liệt kê ở mục 12.7.
 
 ## 12.6. Pending Decisions
 
-Có **40 nhóm quyết định TBD có ID**, mỗi nhóm có thể chứa nhiều câu hỏi chi tiết. Đây là số mục TBD quản lý theo quyết định, không phải số lần chuỗi TBD xuất hiện trong văn bản.
+Có **40 nhóm quyết định sản phẩm có ID** đã được chốt; mỗi nhóm có thể chứa nhiều câu hỏi chi tiết. Số này không bao gồm các TBD kỹ thuật và kế hoạch.
 
 | Decision ID | Quyết định đã xác nhận | Nội dung quy tắc đã phê duyệt (Recommended) | Phần liên quan | Status | Người xác nhận / bằng chứng |
 |---|---|---|---|---|---|
@@ -65,8 +65,8 @@ Có **40 nhóm quyết định TBD có ID**, mỗi nhóm có thể chứa nhiề
 | PD-005 | Future scope và roadmap | Phase 2 (PAY, CON, REC, ONB); Phase 3 (PERF, TRAIN, REP). | 5.3, 5.6, 14 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-006 | Giới hạn sản phẩm | Không Bank Transfer API, không chữ ký số USB token, không Public Job Portal; xuất bảng lương Excel. | 5.4, 5.6 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-007 | Liên hệ dữ liệu và tích hợp | EMP và DEPT là nguồn Master Data chính thức; lưu lịch sử biến động (employee_history) bảo đảm toàn vẹn dữ liệu lịch sử công/lương. | 5.5, 6, 7, 11, 13 | **Confirmed** | Product Owner (2026-10-21) |
-| PD-008 | Authorization Matrix | RBAC: Manager chỉ xem/duyệt phòng mình trực tiếp; Employee tự sửa thông tin cơ bản; HR toàn quyền nhân sự; Admin toàn quyền tài khoản/audit. | 4.3, 8.8, 10.1 | **Confirmed** | Product Owner (2026-10-21) |
-| PD-009 | Hồ sơ và định danh nhân viên | Mã nhân viên tự sinh tăng dần (EMP0001, EMP0002...); nhân viên sửa thông tin cơ bản; thông tin nhạy cảm do HR duyệt/sửa. | 6.1, 8.1 | **Confirmed** | Product Owner (2026-10-21) |
+| PD-008 | Authorization Matrix | Giữ 4 vai trò nền theo chức vụ thực tế, cấp quyền nghiệp vụ theo nhiệm vụ; Manager chỉ xem/duyệt phòng mình trực tiếp; Employee tự sửa thông tin cơ bản; HR toàn quyền nhân sự; Admin toàn quyền tài khoản/audit. | 4.3, 8.8, 10.1 | **Confirmed** | Product Owner (2026-10-21) |
+| PD-009 | Hồ sơ và định danh nhân viên | Mã nhân viên tự sinh theo năm (`EMP-YYYY-NNNN`); nhân viên sửa thông tin cơ bản; thông tin nhạy cảm do HR duyệt/sửa. | 6.1, 8.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-010 | Trạng thái và lịch sử nhân viên | 4 trạng thái chuẩn: PROBATION, ACTIVE, ON_LEAVE, TERMINATED; ghi nhận lịch sử công tác kèm ngày hiệu lực khi đổi chức vụ/phòng ban. | 6.1, 7.3, 8.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-011 | Tài liệu nhân viên | Upload file đính kèm (CCCD, bằng cấp, hợp đồng, CV); hỗ trợ PDF, JPG, PNG tối đa 5MB/file; lưu trữ private storage, chỉ HR và chủ hồ sơ được xem. | 6.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-012 | Cơ cấu tổ chức | Cây phân cấp đa tầng linh hoạt (Multi-level Tree), không giới hạn độ sâu; cấm tạo vòng lặp quan hệ cha-con. | 6.2 | **Confirmed** | Product Owner (2026-10-21) |
@@ -77,7 +77,7 @@ Có **40 nhóm quyết định TBD có ID**, mỗi nhóm có thể chứa nhiề
 | PD-017 | Công thức và chính sách lương | Tiền tệ VNĐ, làm tròn 0 chữ số thập phân; công thức: Lương thực lĩnh = Lương cơ bản * (công thực tế / công chuẩn) + phụ cấp + OT - BHXH - Thuế TNCN. | 6.5, 8.4, 9.4 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-018 | Thuế, bảo hiểm và pháp lý | Áp dụng tỷ lệ BHXH (8%), BHYT (1.5%), BHTN (1%) trích từ lương NLĐ; Thuế TNCN lũy tiến từng phần kèm giảm trừ bản thân (11tr) và người phụ thuộc (4.4tr). | 6.5, 8.4, 10.9 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-019 | Kỳ lương và phiếu lương | Kỳ lương tính theo tháng dương lịch (01 -> cuối tháng); chốt công ngày 01, chốt lương ngày 05, phát lương ngày 10; phiếu lương bảo mật cá nhân. | 6.5, 9.4 | **Confirmed** | Product Owner (2026-10-21) |
-| PD-020 | Quy trình tuyển dụng | 5 bước chuẩn: NEW -> SCREENING -> INTERVIEW -> OFFER -> HIRED; ứng viên HIRED tự động chuyển dữ liệu sang phân hệ Onboarding. | 6.6, 8.5, 9.5 | **Confirmed** | Product Owner (2026-10-21) |
+| PD-020 | Quy trình tuyển dụng | 5 bước chuẩn: NEW -> SCREENING -> INTERVIEWING -> OFFERED -> HIRED; ứng viên HIRED tự động chuyển dữ liệu sang phân hệ Onboarding. | 6.6, 8.5, 9.5 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-021 | Onboarding | Tự động kích hoạt khi ứng viên HIRED; checklist gồm: cấp tài khoản hệ thống + cấp trang thiết bị + ký hợp đồng thử việc + hội nhập. | 6.7, 9.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-022 | Offboarding | Kích hoạt khi có quyết định thôi việc; checklist: bàn giao công việc + thu hồi thiết bị + quyết toán công/phép/lương + vô hiệu hóa tài khoản đúng ngày. | 6.7, 9.6 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-023 | KPI, OKR và tiêu chí hiệu suất | Đánh giá định kỳ 6 tháng hoặc 1 năm; thang điểm 1 đến 5 (Xuất sắc, Tốt, Đạt, Cần cải thiện, Không đạt). | 6.8, 8.7 | **Confirmed** | Product Owner (2026-10-21) |
@@ -88,8 +88,8 @@ Có **40 nhóm quyết định TBD có ID**, mỗi nhóm có thể chứa nhiề
 | PD-028 | Quyền và xuất báo cáo | Xuất báo cáo định dạng Excel và PDF; phân quyền xuất file chỉ dành cho Admin và HR Staff. | 6.11 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-029 | Authentication và vòng đời quyền | Xác thực Email + Password, bắt buộc đổi mật khẩu lần đầu; cấp phát tài khoản bởi HR/Admin; JWT + Refresh token cookie. | 6.12, 8.8, 10.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-030 | Cấu hình và thông báo | Cấu hình lưu DB; thông báo đa kênh qua Web In-App (chuông) và Email thông báo sự kiện duyệt phép, kích hoạt tài khoản. | 6.12 | **Confirmed** | Product Owner (2026-10-21) |
-| PD-031 | Audit và hoạt động quản trị | Ghi nhật ký bất biến: Đăng nhập, thay đổi quyền, đổi mật khẩu, sửa/xóa hồ sơ nhân viên, duyệt đơn, chốt bảng lương; lưu trữ tối thiểu 12 tháng. | 6.12, 10.8 | **Confirmed** | Product Owner (2026-10-21) |
-| PD-032 | Tiêu chí security | Mật khẩu băm Argon2id/Bcrypt; HTTPS toàn bộ kết nối; chống OWASP Top 10 (SQLi, XSS, CSRF); Token lưu HttpOnly Secure cookie. | 10.1 | **Confirmed** | Product Owner (2026-10-21) |
+| PD-031 | Audit và hoạt động quản trị | Ghi nhật ký bất biến: Đăng nhập, thay đổi quyền, đổi mật khẩu, sửa/xóa hồ sơ nhân viên, duyệt đơn, chốt bảng lương; lưu trữ tối thiểu 2 năm. | 6.12, 10.8 | **Confirmed** | Product Owner (2026-10-21) |
+| PD-032 | Tiêu chí security | Mật khẩu băm bằng bcrypt; HTTPS khi triển khai, HTTP loopback chỉ cho local; chống OWASP Top 10 (SQLi, XSS, CSRF); access token lưu trong bộ nhớ ứng dụng, refresh token JWT HS256 lưu trong HttpOnly cookie (`SameSite=Lax`, `Secure` trên HTTPS). | 10.1 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-033 | Performance và scalability | Phản hồi API <= 500ms (95th percentile); tải trang web <= 1.5s; chịu tải đồng thời tối thiểu 50 người dùng cho quy mô SME. | 10.2, 10.3 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-034 | Reliability và availability | Uptime mục tiêu >= 99.5% trong khung giờ làm việc hành chính; có trang bảo trì khi nâng cấp hệ thống. | 10.4 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-035 | Usability, accessibility | Giao diện tiếng Việt chuẩn, Responsive tốt trên Desktop và Mobile trình duyệt hiện đại (Chrome, Edge, Safari). | 10.6, 10.11 | **Confirmed** | Product Owner (2026-10-21) |
@@ -99,4 +99,30 @@ Có **40 nhóm quyết định TBD có ID**, mỗi nhóm có thể chứa nhiề
 | PD-039 | Backup và recovery | Tự động sao lưu PostgreSQL hàng ngày (Daily dump), lưu trữ 30 ngày gần nhất; RPO <= 24h, RTO <= 2h. | 10.10 | **Confirmed** | Product Owner (2026-10-21) |
 | PD-040 | Nghiệm thu và phát hành | DoD: Code pass TypeScript strict, pass unit test, đúng PRD/BR, được code review và kiểm chứng trên môi trường staging. | 11, 14, phụ lục B | **Confirmed** | Product Owner (2026-10-21) |
 
-**Nhật ký quyết định:** Toàn bộ 40/40 Pending Decisions (PD-001 đến PD-040) đã được Product Owner phê duyệt chính thức theo phương án đề xuất chuẩn (Recommended) vào ngày 2026-10-21. Trạng thái toàn bộ tài liệu PRD được chuyển từ Draft sang Confirmed.
+**Nhật ký quyết định:** Toàn bộ 40/40 Pending Decisions (PD-001 đến PD-040) đã được Product Owner phê duyệt vào ngày 2026-10-21.
+
+- Product Owner ban đầu xác nhận `crypto.scrypt`, sau đó đổi quyết định băm mật khẩu sang bcrypt ngày 2026-10-21; refresh token JWT HS256 và cookie `SameSite=Lax` giữ nguyên.
+- Product Owner chốt `bcrypt` 6.0.0, work factor 12 và mật khẩu tối thiểu 15 ký tự, tối đa 72 byte UTF-8; khi tăng work factor, băm lại sau lần đăng nhập thành công.
+- Product Owner chốt tài khoản tạm khóa trả `429 RATE_LIMIT_EXCEEDED` kèm `Retry-After`; endpoint/DTO Auth tiếp tục TBD (To Be Determined).
+- Product Owner chốt link tuyển dụng chỉ chia sẻ tin, CV gửi qua email/kênh ngoài để HR nhập; ứng viên bắt đầu ở `New`, offer thu hồi đưa ứng viên sang `Rejected` và lưu lý do.
+- Product Owner chốt `Cache-Control: no-store` cho API cần đăng nhập và response chứa token, timeout thông thường 30 giây, kết quả `Idempotency-Key` lưu 24 giờ.
+- Product Owner chốt ATT: từ chối chấm thêm sau khi hoàn tất ngày công, HR chọn giờ khi Web/file máy lệch, Web chỉ ghi IP/thiết bị, OT ngày nghỉ có đơn duyệt được chấm Web, giờ OT thực tế làm tròn lên block 30 phút.
+- Product Owner thay quyết định ghi đè trước đó: mọi lượt lưu dựa trên bản cũ đều bị từ chối; người dùng phải tải lại trước khi sửa tiếp. Cơ chế API còn TBD (To Be Determined).
+- Offer thu hồi sau `Hired` hủy Onboarding chưa hoàn tất và giữ lịch sử; gian lận bị loại khỏi Talent Pool tái liên hệ.
+- Tính năng MVP đủ 5 module Phase 1 dự kiến hoàn tất sau Sprint 8; UAT ở Sprint 9 là điều kiện trước phát hành. Lịch phát hành và roadmap Sprint 1–9 tiếp tục TBD (To Be Determined).
+- Ứng viên từ chối offer chuyển `Rejected`; offer mang trạng thái `OFFER_DECLINED` và lưu lý do.
+- Product Owner xác nhận bảng `user_sessions` lưu hash và trạng thái thu hồi refresh token; logout đánh dấu thu hồi, không xóa bản ghi.
+- Product Owner duyệt kế hoạch Sprint 0 ở trạng thái Planned; lộ trình Sprint 1–9 và contract endpoint/DTO từng module tiếp tục TBD. Quy ước API chung đã duyệt tại [API spec](../../api-spec.md).
+- Product Owner xác nhận không đặt ngưỡng coverage theo phần trăm; dùng [Testing Rules](../../rules/testing.md).
+
+## 12.7. Quyết định kỹ thuật và kế hoạch còn mở
+
+Theo dõi các quyết định ngoài 40 nhóm PD đã chốt; không triển khai phần phụ thuộc trước khi có xác nhận.
+
+**Status:** TBD (To Be Determined)
+
+- [API spec](../../api-spec.md): Endpoint/DTO từng module, cookie path Auth, cache cho endpoint công khai và operation dùng `Idempotency-Key` là gì?
+- [API spec](../../api-spec.md): Truyền phiên bản bản ghi và báo lỗi lượt lưu dựa trên bản cũ bằng cơ chế nào?
+- [Architecture Overview](../../architecture/overview.md): Dịch vụ email và private storage nào được chọn khi biết hạ tầng triển khai?
+- [Architecture Overview](../../architecture/overview.md): Phase 2 có đồng bộ máy chấm công tự động không; nếu có, dùng model và giao thức nào?
+- [Sprint roadmap](../../process/sprint-roadmap.md): Story Points, phạm vi Sprint 1–9 và lịch phát hành các Phase được duyệt như thế nào?

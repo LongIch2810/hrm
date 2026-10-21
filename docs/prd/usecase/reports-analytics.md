@@ -7,7 +7,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Phạm vi module:** Bảng điều khiển (Dashboard) KPI nhân sự thời gian thực, báo cáo cơ cấu tổ chức, chấm công, chuyên cần, nghỉ phép, hiệu quả tuyển dụng, chi phí quỹ lương, biến động nhân sự và phân tích tỷ lệ thôi việc (Turnover Rate).
 - **Actors liên quan:**
   - `Ban Giám Đốc` (Executive / CEO): Toàn quyền xem Dashboard tổng thể toàn công ty, phân tích chi phí nhân sự và quỹ lương cấp cao.
-  - `HR Manager`: Toàn quyền xem, cấu hình và xuất tất cả các báo cáo nhân sự, tuyển dụng, tiền lương và biến động.
+  - `HR Manager`: Xem và cấu hình các báo cáo theo quyền nghiệp vụ; quyền xuất chỉ có khi tài khoản thuộc vai trò nền HR Staff.
   - `Department Manager`: Chỉ xem Dashboard và các báo cáo chấm công, nghỉ phép, biến động thuộc phạm vi nhân viên phòng ban mình trực tiếp quản lý (không xem báo cáo lương chi tiết).
   - `HR Staff`: Tổng hợp dữ liệu và xuất các báo cáo chuyên đề định dạng Excel (.xlsx) và PDF.
 
@@ -26,7 +26,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 | US-REP-007 | As a Ban Giám Đốc và HR Manager, I want báo cáo phân tích chi phí quỹ lương qua các kỳ (Lương cơ bản, Lương OT, Thưởng, Trích nộp BHXH công ty, Thuế TNCN), So that kiểm soát ngân sách tiền lương của doanh nghiệp. | FR-REP-007 | Bảo mật nghiêm ngặt theo RBAC; chỉ Giám đốc và HR Manager có quyền truy cập; ẩn dữ liệu đối với Department Manager. |
 | US-REP-008 | As a HR Manager và Ban Giám Đốc, I want thống kê biến động nhân sự (số lượng nhân sự mới tiếp nhận Onboarding vs số lượng nhân sự thôi việc Offboarding theo từng quý), So that nhận diện xu hướng phát triển tổ chức. | FR-REP-008 | Hiển thị biểu đồ tăng trưởng ròng (Net Headcount Growth = Nhân sự mới - Nhân sự nghỉ). |
 | US-REP-009 | As a Ban Giám Đốc và HR Manager, I want phân tích tỷ lệ thôi việc (Turnover Rate) chuẩn hóa theo tháng/quý/năm và phân loại theo lý do nghỉ việc chính, So that có chính sách giữ chân nhân tài kịp thời. | FR-REP-009 | Tính theo công thức chuẩn: (Số nghỉ trong kỳ / Số nhân sự trung bình) * 100%; biểu đồ lý do nghỉ việc (Lương, Môi trường, Cá nhân). |
-| US-REP-010 | As a Tất cả các cấp quản lý theo quyền, I want kết xuất các bảng báo cáo ra file Excel (.xlsx) chuẩn form và file PDF có tiêu đề công ty, So that phục vụ lưu trữ quản trị và họp giao ban. | FR-REP-010 | Xuất file nhanh chóng; dữ liệu xuất khớp 100% với bộ lọc trên màn hình; áp dụng che dữ liệu nhạy cảm theo quyền. |
+| US-REP-010 | As a System Administrator / HR Staff, I want kết xuất các bảng báo cáo ra file Excel (.xlsx) chuẩn form và file PDF có tiêu đề công ty, So that phục vụ lưu trữ quản trị và họp giao ban. | FR-REP-010 | Xuất file nhanh chóng; dữ liệu xuất khớp 100% với bộ lọc trên màn hình; áp dụng che dữ liệu nhạy cảm theo quyền. |
 
 ---
 
@@ -71,7 +71,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
      - **Tổng giờ OT:** Tổng số giờ làm thêm đã được phê duyệt trong tháng theo từng nhóm việc.
      - **Phân bổ ngày nghỉ:** Số ngày phép năm đã sử dụng, số ngày nghỉ ốm, số ngày nghỉ không lương.
   4. Actor có thể nhấn vào từng dòng nhân viên để xem bảng công chi tiết từng ngày.
-  5. Actor nhấn "Xuất báo cáo chuyên cần (Excel)" để lưu trữ.
+  5. Nếu cần lưu tệp, HR Staff hoặc Admin có quyền xuất thực hiện `UC-REP-005` với bộ lọc tương ứng.
 - **Hậu điều kiện:** Quản lý có căn cứ số liệu chính xác để chấn chỉnh kỷ luật lao động và đánh giá KPI.
 
 ---
@@ -103,7 +103,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Tiền điều kiện:** Các kỳ lương đã được chốt và khóa (`Closed`).
 - **Luồng sự kiện chính (Basic Flow):**
   1. Actor mở mục "Báo cáo tài chính nhân sự & Quỹ lương".
-  2. Hệ thống kiểm tra quyền: Nếu là `Department Manager` hoặc `Employee` truy cập, hệ thống chặn ngay với mã `403 FORBIDDEN` (`FORBIDDEN_RESOURCE`).
+  2. Hệ thống kiểm tra quyền: Nếu là `Department Manager` hoặc `Employee` truy cập, hệ thống chặn ngay với mã `403 Forbidden` (`INSUFFICIENT_PERMISSIONS`).
   3. Với Giám Đốc và HR Manager, hệ thống hiển thị:
      - Biểu đồ cột chồng (Stacked Bar Chart) biến động chi phí lương qua 12 tháng:
        - Phần lương cơ bản.
@@ -112,7 +112,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
        - Phần chi phí bảo hiểm công ty đóng (21.5%).
      - Bảng cơ cấu chi phí lương theo từng phòng ban và tỷ trọng % trên tổng quỹ lương.
      - Dự báo chi phí quỹ lương cho quý tiếp theo dựa trên kế hoạch tuyển dụng.
-  4. Actor nhấn "Xuất báo cáo quỹ lương (PDF)" có chữ ký số để nộp cho Hội Đồng Quản Trị.
+  4. Nếu cần nộp tệp PDF cho Hội Đồng Quản Trị, HR Staff hoặc Admin có quyền xem dữ liệu quỹ lương thực hiện `UC-REP-005`.
 - **Hậu điều kiện:** Chi phí nhân sự được kiểm soát chặt chẽ, tối ưu hóa ngân sách hoạt động.
 
 ---
@@ -120,7 +120,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 ### UC-REP-005: Xuất dữ liệu báo cáo đa chiều định dạng Excel / PDF
 
 - **Mã FR:** FR-REP-010.
-- **Actor:** Ban Giám Đốc, HR Manager, Department Manager.
+- **Actor:** System Administrator, HR Staff.
 - **Tiền điều kiện:** Đang xem một bảng dữ liệu báo cáo cụ thể.
 - **Luồng sự kiện chính (Basic Flow):**
   1. Actor tùy chỉnh bộ lọc dữ liệu trên màn hình (Khoảng ngày, Phòng ban, Trạng thái).

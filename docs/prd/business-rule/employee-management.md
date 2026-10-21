@@ -15,7 +15,7 @@
   - Các trường thông tin bắt buộc gồm: Họ và tên, Ngày sinh, Giới tính, Phòng ban, Chức vụ, Ngày bắt đầu làm việc.
 - **Hành vi khi vi phạm:** Hệ thống từ chối lưu và trả thông báo lỗi `DUPLICATE_IDENTIFIER` hoặc `MISSING_REQUIRED_FIELD`.
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-009`).
-- **Quy tắc đã chốt:** Mã nhân viên do hệ thống tự động sinh theo mẫu `EMP0001`, `EMP0002`... tăng dần; không được phép chỉnh sửa sau khi tạo. Nhân viên nước ngoài sử dụng số Hộ chiếu thay cho CCCD.
+- **Quy tắc đã chốt:** Mã nhân viên do hệ thống tự động sinh theo mẫu `EMP-YYYY-NNNN`, tăng dần trong từng năm; không được phép chỉnh sửa sau khi tạo. Nhân viên nước ngoài sử dụng số Hộ chiếu thay cho CCCD.
 
 ### BR-EMP-002: Trạng thái, lịch sử và tài liệu hồ sơ
 
@@ -28,8 +28,8 @@
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-010, PD-011`).
 - **Quy tắc đã chốt:** Hồ sơ và tài liệu của nhân viên sau khi thôi việc được lưu trữ tối thiểu 5 năm dưới dạng lưu trữ an toàn (Soft-delete), phục vụ kiểm toán và tra cứu theo quy định pháp luật.
 
-### BR-AUTH-001: Phân quyền truy cập hồ sơ nhân viên
+### BR-EMP-AUTH-001: Phân quyền truy cập hồ sơ nhân viên
 
 - **Employee:** Chỉ được xem hồ sơ của chính mình; chỉ được chỉnh sửa thông tin liên hệ (SĐT, địa chỉ, người liên hệ khẩn cấp).
-- **Department Manager:** Chỉ được xem thông tin công tác của nhân viên trực thuộc phòng ban mình; không được xem thông tin tài chính/lương.
+- **Department Manager:** Chỉ được xem liên hệ cần thiết và thông tin công tác của nhân viên trực thuộc phòng ban mình; không được xem thông tin tài chính/lương, hợp đồng hoặc tài liệu đính kèm.
 - **HR Staff:** Được quản lý toàn bộ hồ sơ trong phạm vi được phân quyền (`PD-008`).

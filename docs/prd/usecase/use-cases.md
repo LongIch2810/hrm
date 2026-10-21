@@ -72,7 +72,7 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
 | US-LEAVE-009 | As a HR Staff, I want xuất báo cáo thống kê tình hình nghỉ phép theo tháng/quý/năm của từng bộ phận, So that đánh giá tỷ lệ vắng mặt và phục vụ quyết toán phép cuối năm. | FR-LEAVE-009 |
 | **Phân hệ 5: PAY — Payroll Management** | | |
 | US-PAY-001 | As a HR Staff, I want cấu hình thông tin lương cơ bản, mức đóng bảo hiểm và tài khoản ngân hàng của nhân viên theo hợp đồng lao động, So that hệ thống có căn cứ tính lương chuẩn xác. | FR-PAY-001 |
-| US-PAY-002 | As a HR Staff, I want tạo kỳ lương theo tháng (kỳ công từ ngày 1 đến ngày cuối tháng), So that chu trình tính và trả lương diễn ra đúng hạn vào ngày 5 hàng tháng. | FR-PAY-002 |
+| US-PAY-002 | As a HR Staff, I want tạo kỳ lương theo tháng (kỳ công từ ngày 1 đến ngày cuối tháng), So that chu trình chốt lương ngày 5 và phát lương ngày 10 diễn ra đúng hạn. | FR-PAY-002 |
 | US-PAY-003 | As a HR Staff, I want hệ thống tự động tính toán lương Gross, tiền công thực tế, phụ cấp, trích nộp bảo hiểm, thuế TNCN và lương Net, So that giảm thiểu 95% sai sót tính toán thủ công bằng Excel. | FR-PAY-003 |
 | US-PAY-004 | As a HR Staff, I want quản lý danh mục và gán các khoản phụ cấp (ăn trưa, xăng xe, điện thoại, phụ cấp trách nhiệm), So that các khoản phụ cấp chịu thuế và miễn thuế được phân loại đúng luật. | FR-PAY-004 |
 | US-PAY-005 | As a HR Staff, I want nhập các khoản thưởng (thưởng KPI, thưởng dự án, thưởng lễ tết) cho nhân viên trong kỳ, So that các khoản thu nhập bổ sung được chi trả đầy đủ. | FR-PAY-005 |
@@ -85,13 +85,13 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
 | **Phân hệ 6: REC — Recruitment Management** | | |
 | US-REC-001 | As a HR Staff, I want tạo và quản lý các vị trí tuyển dụng (Job Openings) theo đề xuất của phòng ban, So that việc tìm kiếm nhân tài có mục tiêu, ngân sách và tiêu chí tuyển dụng rõ ràng. | FR-REC-001 |
 | US-REC-002 | As a HR Staff, I want đăng thông tin tuyển dụng lên cổng nội bộ công ty và tạo nội dung chia sẻ cho các mạng xã hội (LinkedIn, TopCV), So that tiếp cận được nhiều ứng viên tiềm năng. | FR-REC-002 |
-| US-REC-003 | As a HR Staff, I want tiếp nhận, tải lên tệp CV (PDF/DOCX <= 5MB) và quản lý danh sách hồ sơ ứng viên tập trung, So that không bị thất lạc hồ sơ và dễ dàng tra cứu. | FR-REC-003 |
+| US-REC-003 | As a HR Staff, I want tiếp nhận, tải lên tệp CV (PDF <= 5MB) và quản lý danh sách hồ sơ ứng viên tập trung, So that không bị thất lạc hồ sơ và dễ dàng tra cứu. | FR-REC-003 |
 | US-REC-004 | As a HR Staff / Manager, I want theo dõi tiến trình tuyển dụng dạng bảng Kanban trực quan (Ứng tuyển → Sàng lọc → Phỏng vấn → Offer → Trúng tuyển → Từ chối), So that tôi nắm bắt được tỷ lệ chuyển đổi qua từng giai đoạn. | FR-REC-004 |
 | US-REC-005 | As a HR Staff, I want cấu hình số vòng phỏng vấn linh hoạt cho từng vị trí, So that quy trình đánh giá phù hợp với độ phức tạp của từng chức danh. | FR-REC-005 |
 | US-REC-006 | As a HR Staff, I want lên lịch phỏng vấn và hệ thống tự động gửi thư mời kèm link họp trực tuyến (Google Meet/Teams) hoặc địa điểm cho ứng viên và người phỏng vấn, So that buổi phỏng vấn diễn ra đúng hẹn và chuyên nghiệp. | FR-REC-006 |
 | US-REC-007 | As an Interviewer, I want điền phiếu đánh giá ứng viên trực tiếp trên hệ thống theo thang điểm 1-5 và nhận xét chi tiết, So that kết quả phỏng vấn được lưu vết khách quan, hỗ trợ quyết định tuyển dụng. | FR-REC-007 |
 | US-REC-008 | As a HR Staff, I want soạn thảo Thư mời nhận việc (Offer Letter) và trình HR Manager duyệt trước khi gửi ứng viên, So that mức đãi ngộ và thời gian nhận việc được kiểm soát chặt chẽ. | FR-REC-008 |
-| US-REC-009 | As a HR Staff, I want chuyển ứng viên đã chấp thuận offer sang phân hệ Onboarding chỉ bằng 1 click, So that toàn bộ thông tin cá nhân và vị trí trúng tuyển được kế thừa tự động sang quy trình tiếp nhận nhân viên mới. | FR-REC-009 |
+| US-REC-009 | As a HR Staff, I want ghi nhận ứng viên đã chấp thuận offer, So that thông tin cá nhân và vị trí trúng tuyển tự động chuyển sang quy trình tiếp nhận nhân viên mới. | FR-REC-009 |
 | **Phân hệ 7: ONB — Onboarding & Offboarding** | | |
 | US-ONB-001 | As a HR Staff, I want khởi tạo quy trình Onboarding tự động khi ứng viên đồng ý nhận việc từ phân hệ Tuyển dụng, So that các bộ phận liên quan có đủ thời gian chuẩn bị chu đáo trước ngày nhân viên vào làm. | FR-ONB-001 |
 | US-ONB-002 | As a HR Staff, I want áp dụng bộ Onboarding Checklist chuẩn hóa theo từng vị trí và phòng ban, So that không bỏ sót bất kỳ đầu việc chuẩn bị quan trọng nào. | FR-ONB-002 |
@@ -116,7 +116,7 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
 | US-CON-002 | As a HR Staff, I want quản lý 3 loại hợp đồng chuẩn theo Bộ luật Lao động (Thử việc, Xác định thời hạn, Không xác định thời hạn), So that loại hình hợp đồng tuân thủ đúng khung pháp lý Việt Nam. | FR-CON-002 |
 | US-CON-003 | As a HR Staff, I want theo dõi chính xác ngày bắt đầu và ngày kết thúc hiệu lực của từng hợp đồng, So that quản lý được thời gian làm việc và quyền lợi tương ứng của nhân viên. | FR-CON-003 |
 | US-CON-004 | As a HR Staff, I want tạo phụ lục hợp đồng gắn với hợp đồng gốc khi có thay đổi về mức lương, chức danh hoặc địa điểm làm việc, So that các điều chỉnh đãi ngộ được lưu vết pháp lý chặt chẽ. | FR-CON-004 |
-| US-CON-005 | As a HR Staff và Department Manager, I want hệ thống tự động gửi cảnh báo qua Email và Dashboard khi hợp đồng sắp hết hạn trước 30 ngày và 45 ngày, So that chúng tôi kịp thời đánh giá và chuẩn bị thủ tục tái ký hoặc bàn giao. | FR-CON-005 |
+| US-CON-005 | As a HR Staff và Department Manager, I want hệ thống tự động gửi cảnh báo qua Email và Dashboard khi hợp đồng sắp hết hạn trước 30 ngày, So that chúng tôi kịp thời đánh giá và chuẩn bị thủ tục tái ký hoặc bàn giao. | FR-CON-005 |
 | US-CON-006 | As a HR Staff, I want thực hiện quy trình gia hạn hợp đồng (ký tiếp hợp đồng có thời hạn lần 2 hoặc chuyển sang hợp đồng vô thời hạn), So that nhân viên tiếp tục cống hiến mà không bị gián đoạn quan hệ lao động. | FR-CON-006 |
 | US-CON-007 | As a HR Staff, I want tải lên và lưu trữ an toàn tệp PDF scan hợp đồng đã có đầy đủ chữ ký và con dấu pháp nhân, So that hồ sơ pháp lý số hóa có thể đối chiếu bất cứ lúc nào khi thanh tra. | FR-CON-007 |
 | US-CON-008 | As a HR Staff và Employee, I want xem toàn bộ lịch sử các đời hợp đồng và phụ lục đã từng ký từ ngày đầu vào làm việc, So that quá trình cống hiến và tăng lương của nhân viên được theo dõi xuyên suốt. | FR-CON-008 |
@@ -140,11 +140,11 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
 | US-REP-007 | As a Ban Giám Đốc và HR Manager, I want báo cáo phân tích chi phí quỹ lương qua các kỳ (Lương cơ bản, Lương OT, Thưởng, BHXH công ty, Thuế TNCN), So that kiểm soát ngân sách tiền lương của doanh nghiệp. | FR-REP-007 |
 | US-REP-008 | As a HR Manager và Ban Giám Đốc, I want thống kê biến động nhân sự (số lượng tiếp nhận Onboarding vs số lượng thôi việc Offboarding), So that nhận diện xu hướng phát triển tổ chức. | FR-REP-008 |
 | US-REP-009 | As a Ban Giám Đốc và HR Manager, I want phân tích tỷ lệ thôi việc (Turnover Rate) chuẩn hóa theo tháng/quý/năm và phân loại theo lý do nghỉ việc chính, So that có chính sách giữ chân nhân tài kịp thời. | FR-REP-009 |
-| US-REP-010 | As a Tất cả các cấp quản lý theo quyền, I want kết xuất các bảng báo cáo ra file Excel (.xlsx) chuẩn form và file PDF có tiêu đề công ty, So that phục vụ lưu trữ quản trị và họp giao ban. | FR-REP-010 |
+| US-REP-010 | As a System Administrator / HR Staff, I want kết xuất các bảng báo cáo ra file Excel (.xlsx) chuẩn form và file PDF có tiêu đề công ty, So that phục vụ lưu trữ quản trị và họp giao ban. | FR-REP-010 |
 | **Phân hệ 12: SYS — System Administration** | | |
 | US-SYS-001 | As a System Administrator, I want tạo, kích hoạt, khóa và đặt lại mật khẩu cho tài khoản người dùng gắn với mã nhân viên, So that nhân sự có tài khoản truy cập hệ thống đúng thẩm quyền. | FR-SYS-001 |
 | US-SYS-002 | As a Tất cả người dùng, I want đăng nhập hệ thống an toàn bằng Email và Mật khẩu, nhận JWT Access Token và Refresh Token bảo mật, So that danh tính của tôi được xác thực trước khi làm việc. | FR-SYS-002 |
-| US-SYS-003 | As a Hệ thống, I want tự động chặn đứng các truy cập trái phép bằng HTTP 403 Forbidden nếu người dùng không đủ quyền trên endpoint hoặc tài nguyên, So that dữ liệu doanh nghiệp không bị rò rỉ. | FR-SYS-003 |
+| US-SYS-003 | As a Hệ thống, I want từ chối truy cập trái phép, So that dữ liệu doanh nghiệp không bị rò rỉ. | FR-SYS-003 |
 | US-SYS-004 | As a System Administrator, I want áp dụng mô hình phân quyền theo vai trò (RBAC) với 4 vai trò chuẩn hóa (Admin, HR Staff, Manager, Employee), So that việc phân bổ trách nhiệm nghiệp vụ rõ ràng và nhất quán. | FR-SYS-004 |
 | US-SYS-005 | As a System Administrator, I want quản lý danh mục và mô tả chi tiết của 4 vai trò người dùng trong hệ thống, So that chính sách phân quyền luôn được tài liệu hóa và bảo trì dễ dàng. | FR-SYS-005 |
 | US-SYS-006 | As a System Administrator, I want cấu hình chi tiết các mã quyền (Permissions) theo từng thao tác, So that hệ thống có thể mở rộng quyền hạn linh hoạt khi cần. | FR-SYS-006 |
@@ -167,16 +167,16 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
 | [UC-LEAVE-001](leave-management.md#uc-leave-001-tạo-và-nộp-đơn-xin-nghỉ-phép) | LEAVE — Employee | FR-LEAVE-001, FR-LEAVE-007 | Nộp đơn xin nghỉ trực tuyến, kiểm tra số dư phép khả dụng, tự loại trừ Thứ 7/CN và ngày lễ. |
 | [UC-LEAVE-002](leave-management.md#uc-leave-002-phê-duyệt-hoặc-từ-chối-đơn-nghỉ-phép-luồng-1-cấp) | LEAVE — Department Manager | FR-LEAVE-004, FR-LEAVE-005 | Quy trình duyệt phép 1 cấp trực tiếp, tự động trừ số dư ngày phép và đồng bộ bảng công ATT. |
 | [UC-PAY-001](payroll-management.md#uc-pay-001-khởi-tạo-kỳ-lương-và-chạy-tính-toán-lương-tự-động) | PAY — HR Staff (Payroll) | FR-PAY-002, FR-PAY-003, FR-PAY-007 | Tính toán tự động lương Net, BHXH (10.5%), Thuế TNCN biểu lũy tiến, làm tròn 0 chữ số VNĐ. |
-| [UC-PAY-003](payroll-management.md#uc-pay-003-phê-duyệt-khóa-kỳ-lương-và-xuất-báo-cáo-quỹ-lương) | PAY — HR Manager / Giám Đốc | FR-PAY-002, FR-PAY-011 | Rà soát quỹ lương toàn công ty, khóa kỳ lương bất biến và phát hành phiếu lương điện tử Payslip. |
+| [UC-PAY-003](payroll-management.md#uc-pay-003-phê-duyệt-khóa-kỳ-lương-và-xuất-báo-cáo-quỹ-lương) | PAY — HR Manager / Giám Đốc và HR Staff | FR-PAY-002, FR-PAY-011 | Quản lý duyệt kỳ lương, HR Staff khóa kỳ; hệ thống phát hành phiếu lương điện tử Payslip. |
 | [UC-REC-001](recruitment-management.md#uc-rec-001-khởi-tạo-và-quản-lý-vị-trí-tuyển-dụng) | REC — HR Staff | FR-REC-001, FR-REC-002, FR-REC-005 | Quản lý vị trí tuyển dụng, đăng tin, quản lý pipeline tuyển dụng 5 vòng dạng bảng Kanban. |
 | [UC-REC-006](recruitment-management.md#uc-rec-006-tiếp-nhận-kết-quả-offer-và-chuyển-giao-sang-onboarding) | REC — HR Staff | FR-REC-009 | Bàn giao ứng viên trúng tuyển sang module ONB, tự động kế thừa hồ sơ và gán checklist tiếp nhận. |
 | [UC-ONB-001](onboarding-offboarding.md#uc-onb-001-khởi-tạo-quy-trình-onboarding-và-phân-công-checklist) | ONB — HR Staff, IT, Manager | FR-ONB-001, FR-ONB-002, FR-ONB-003 | Phân công checklist Onboarding 4 bên, cấp phát laptop/email và theo dõi tiến độ % hoàn thành. |
 | [UC-ONB-004](onboarding-offboarding.md#uc-onb-004-thu-hồi-tài-sản-đóng-quyền-truy-cập-và-hoàn-tất-thôi-việc) | ONB — IT Admin & HR Staff | FR-ONB-007, FR-ONB-008, FR-ONB-009 | Bàn giao công việc, thu hồi thiết bị, đóng quyền truy cập lúc 23:59:59 và chuyển trạng thái Terminated. |
 | [UC-PERF-001](performance-management.md#uc-perf-001-thiết-lập-và-phê-duyệt-mục-tiêu-đầu-kỳ-kpi--okr) | PERF — Employee & Manager | FR-PERF-001, FR-PERF-002 | Thống nhất mục tiêu KPI/OKR đầu kỳ với tổng trọng số bắt buộc = 100%. |
 | [UC-PERF-004](performance-management.md#uc-perf-004-quản-lý-trực-tiếp-chấm-điểm-và-phản-hồi-hiệu-suất) | PERF — Department Manager | FR-PERF-005, FR-PERF-006, FR-PERF-007 | Quản lý chấm điểm hiệu suất, viết nhận xét định tính và xếp loại nhân viên theo 5 mức (A, B, C, D, E). |
-| [UC-CON-001](contract-management.md#uc-con-001-tạo-mới-và-kích-hoạt-hợp-đồng-lao-động) | CON — HR Staff | FR-CON-001, FR-CON-002, FR-CON-009 | Quản lý 3 loại hợp đồng chuẩn, gắn mức lương cơ bản, cảnh báo hết hạn tự động trước 30 và 45 ngày. |
+| [UC-CON-001](contract-management.md#uc-con-001-tạo-mới-và-kích-hoạt-hợp-đồng-lao-động) | CON — HR Staff | FR-CON-001, FR-CON-002, FR-CON-009 | Quản lý 3 loại hợp đồng chuẩn, gắn mức lương cơ bản, cảnh báo hết hạn tự động trước 30 ngày. |
 | [UC-TRAIN-001](training-management.md#uc-train-001-lập-kế-hoạch-khóa-học-và-phân-công-học-viên) | TRAIN — HR Staff & Trainer | FR-TRAIN-001, FR-TRAIN-003, FR-TRAIN-004 | Lập lịch khóa học, điểm danh chuyên cần $\ge 80\%$, kiểm tra $\ge 6.0/10$ và cấp chứng chỉ số hóa. |
-| [UC-REP-001](reports-analytics.md#uc-rep-001-khai-thác-dashboard-tổng-quan-nhân-sự) | REP — Giám Đốc, HR Manager | FR-REP-001, FR-REP-007, FR-REP-009 | Báo cáo trực quan Dashboard KPI, tỷ lệ thôi việc Turnover Rate, xuất báo cáo Excel/PDF bảo mật. |
+| [UC-REP-001](reports-analytics.md#uc-rep-001-khai-thác-dashboard-tổng-quan-nhân-sự) | REP — Giám Đốc, HR Manager | FR-REP-001, FR-REP-007, FR-REP-009 | Xem Dashboard KPI và tỷ lệ thôi việc Turnover Rate; quyền xuất Excel/PDF theo `UC-REP-005`. |
 | [UC-SYS-001](system-administration.md#uc-sys-001-đăng-nhập-và-xác-thực-danh-tính-authentication) | SYS — Tất cả người dùng | FR-SYS-002, FR-SYS-003 | Đăng nhập an toàn, cấp JWT 15m + Refresh Token Cookie 7d, chống Brute-force khóa sau 5 lần sai. |
 
 ---
@@ -201,8 +201,9 @@ Cấu trúc chuẩn: `As a <Actor>, I want <Hành động chức năng cụ th�
    - Trùng CCCD hoặc Email công ty trong `EMP`: `DUPLICATE_IDENTIFIER`.
    - Trùng Mã phòng ban trong `DEPT`: `DUPLICATE_DEPARTMENT_CODE`.
    - Trùng Số hợp đồng trong `CON`: `DUPLICATE_CONTRACT_NUMBER`.
-2. **Truy cập ngoài thẩm quyền phân quyền (`403 FORBIDDEN`):**
-   - Department Manager cố tình truy vấn nhân sự hoặc bảng lương ngoài phòng ban mình phụ trách: `FORBIDDEN_RESOURCE`.
+2. **Truy cập ngoài thẩm quyền (`403` hoặc `404` theo phạm vi):**
+   - Department Manager cố tình xem nhân viên ngoài phòng ban: `403 INSUFFICIENT_PERMISSIONS`; truy vấn tài nguyên khác ngoài phạm vi: `404 RESOURCE_NOT_FOUND`.
+   - Thao tác không có quyền: `403 INSUFFICIENT_PERMISSIONS`.
    - Employee cố tình sửa trường nghiệp vụ (Lương, Chức vụ, Phòng ban): `INSUFFICIENT_PERMISSIONS`.
 3. **Số dư phép không đủ (`400 BAD_REQUEST`):**
    - Nhân viên nộp đơn phép năm vượt quá số dư phép năm khả dụng: `INSUFFICIENT_LEAVE_BALANCE`.

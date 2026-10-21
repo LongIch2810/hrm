@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Quản Lý Nghỉ Phép — Phân Hệ LEAVE (Screens 29 - 33)
 
 Tài liệu thiết kế chi tiết phân hệ Nghỉ phép (`LEAVE`), quy trình phê duyệt đơn 1 cấp và quản lý quỹ phép năm.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-LEAVE-001 → 009](file:///d:/saved/Project/hrm/docs/prd/function-requirement/leave-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-LEAVE-001 → 009](../../prd/function-requirement/leave-management.md).
 
 ---
 
@@ -23,7 +23,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
   - Cột 3: Thời gian nghỉ (Từ ngày $\rightarrow$ Đến ngày, số ngày trừ quỹ)
   - Cột 4: Người duyệt (Trưởng phòng)
   - Cột 5: Trạng thái (Huy hiệu: `Pending` vàng cam, `Approved` xanh lục, `Rejected` đỏ)
-  - Cột 6: Thao tác: Xem chi tiết; **Nút "Hủy đơn"** (chỉ hiển thị khi đơn đã duyệt nhưng ngày nghỉ chưa diễn ra, hoàn lại ngày phép vào quỹ nguyên vẹn theo `PD-015`).
+  - Cột 6: Thao tác: Xem chi tiết; nút "Hủy đơn" cho đơn `Pending`, nút "Yêu cầu hủy" cho đơn `Approved` trước ngày nghỉ. Manager xác nhận yêu cầu trước khi hoàn phép theo `PD-015`.
 
 ---
 

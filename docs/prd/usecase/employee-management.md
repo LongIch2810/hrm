@@ -54,12 +54,12 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   6. Hệ thống tự động sinh Mã nhân viên định dạng `EMP-YYYY-NNNN` (Ví dụ: `EMP-2026-0001`).
   7. Hệ thống lưu bản ghi nhân viên vào database với trạng thái được chọn, gán ngày tạo và người tạo.
   8. Hệ thống ghi nhận sự kiện vào `audit_logs` (`action = 'CREATE_EMPLOYEE'`).
-  9. Hệ thống hiển thị thông báo thành công: "Tạo mới hồ sơ nhân viên thành công: EMP-2026-NNNN" và điều hướng đến trang chi tiết nhân viên vừa tạo.
+  9. Hệ thống hiển thị thông báo thành công cùng mã nhân viên vừa sinh (ví dụ: `EMP-2026-0001`) và điều hướng đến trang chi tiết nhân viên vừa tạo.
 - **Luồng rẽ nhánh (Alternative Flows):**
   - *A1 - Tạo hồ sơ từ ứng viên trúng tuyển (Tích hợp REC):* Khi chọn nguồn "Từ ứng viên trúng tuyển", hệ thống tự động điền sẵn các trường Họ tên, Email, SĐT, Vị trí đã được duyệt từ phân hệ Tuyển dụng (`ONB`). HR Staff chỉ cần bổ sung ngày vào làm và phòng ban.
 - **Luồng ngoại lệ (Exception Flows):**
   - *E1 - Trùng lặp Email hoặc CCCD:* Hệ thống chặn lưu, giữ nguyên dữ liệu trên form và hiển thị thông báo lỗi `409 CONFLICT` (`DUPLICATE_IDENTIFIER`: "Số CCCD hoặc Email đã tồn tại trên hệ thống").
-  - *E2 - Thiếu trường bắt buộc hoặc dữ liệu sai định dạng:* Hệ thống highlight đỏ các trường lỗi và trả về lỗi `400 BAD_REQUEST` (`VALIDATION_FAILED`).
+  - *E2 - Thiếu trường bắt buộc hoặc dữ liệu sai định dạng:* Hệ thống highlight đỏ các trường lỗi và trả về `400 VALIDATION_ERROR` với chi tiết từng field.
 - **Hậu điều kiện (Postconditions):** Hồ sơ nhân viên được lưu vào bảng `employees`, hiển thị ngay lập tức trên danh sách nhân viên.
 
 ---
@@ -69,7 +69,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Mã FR:** FR-EMP-003, FR-EMP-009.
 - **Actor:** HR Staff, Department Manager, Employee.
 - **Tiền điều kiện:** Người dùng đã xác thực danh tính qua JWT Token hợp lệ.
-- **Dữ liệu đầu vào:** Từ khóa tìm kiếm (Tên, Mã NV, Email), Bộ lọc (Phòng ban, Chức danh, Trạng thái), Tiêu chí sắp xếp, Trang hiện tại (`page`, `limit`).
+- **Dữ liệu đầu vào:** Từ khóa tìm kiếm (Tên, Mã NV, Email), Bộ lọc (Phòng ban, Chức danh, Trạng thái), Tiêu chí sắp xếp, Trang hiện tại (`page`, `pageSize`).
 - **Luồng sự kiện chính (Basic Flow):**
   1. Actor truy cập mục "Nhân sự" > "Danh sách nhân viên".
   2. Hệ thống kiểm tra vai trò người dùng (RBAC Data Scope):
@@ -79,14 +79,15 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   3. Actor nhập từ khóa tìm kiếm hoặc chọn lọc theo Phòng ban / Trạng thái.
   4. Hệ thống thực hiện truy vấn cơ sở dữ liệu có phân trang (`offset`, `limit`) và trả về danh sách kết quả.
   5. Actor nhấn vào một dòng nhân viên để xem trang chi tiết.
-  6. Hệ thống hiển thị hồ sơ chi tiết phân tách theo các tab:
+  6. Hệ thống hiển thị các tab theo quyền của actor:
      - Tab 1: Thông tin cá nhân & Liên hệ.
      - Tab 2: Thông tin công tác & Chức vụ.
      - Tab 3: Hợp đồng lao động hiện tại và phụ lục.
      - Tab 4: Lịch sử công tác (điều chuyển, thăng chức).
      - Tab 5: Tài liệu đính kèm.
+     - Manager chỉ thấy liên hệ cần thiết và thông tin công tác của nhân viên phòng mình; không thấy dữ liệu pháp lý, lương, hợp đồng hoặc tài liệu đính kèm.
 - **Luồng ngoại lệ (Exception Flows):**
-  - *E1 - Manager xem nhân viên ngoài phòng ban:* Nếu cố tình nhập ID qua URL, hệ thống kiểm tra và chặn ngay với lỗi `403 FORBIDDEN` (`FORBIDDEN_RESOURCE`: "Bạn không có quyền xem thông tin nhân sự phòng ban khác").
+  - *E1 - Manager xem nhân viên ngoài phòng ban:* Nếu cố tình nhập ID qua URL và nhân viên thuộc phòng ban khác, hệ thống trả `403 Forbidden` (`INSUFFICIENT_PERMISSIONS`).
   - *E2 - Không tìm thấy nhân viên:* Trả về lỗi `404 NOT_FOUND` (`EMPLOYEE_NOT_FOUND`).
 - **Hậu điều kiện:** Dữ liệu hiển thị đúng phân quyền và không để lộ thông tin nhạy cảm.
 

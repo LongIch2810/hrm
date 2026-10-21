@@ -17,10 +17,10 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 |---|---|---|---|
 | US-SYS-001 | As a System Administrator, I want tạo, kích hoạt, khóa và đặt lại mật khẩu cho tài khoản người dùng gắn với mã nhân viên, So that nhân sự có tài khoản truy cập hệ thống đúng thẩm quyền. | FR-SYS-001 | Mỗi nhân viên chỉ liên kết duy nhất 1 tài khoản đang hoạt động; hỗ trợ reset password gửi mail tự động. |
 | US-SYS-002 | As a Tất cả người dùng, I want đăng nhập hệ thống an toàn bằng Email và Mật khẩu, nhận JWT Access Token và Refresh Token bảo mật, So that danh tính của tôi được xác thực trước khi làm việc. | FR-SYS-002 | Access Token hết hạn sau 15 phút; Refresh Token 7 ngày lưu trong HttpOnly Cookie; khóa tài khoản 15 phút nếu sai 5 lần. |
-| US-SYS-003 | As a Hệ thống, I want tự động chặn đứng các truy cập trái phép bằng HTTP 403 Forbidden nếu người dùng không đủ quyền trên endpoint hoặc tài nguyên, So that dữ liệu doanh nghiệp không bị rò rỉ. | FR-SYS-003 | Kiểm tra JwtAuthGuard và RolesGuard trên từng request; từ chối truy cập ngoài phạm vi phòng ban của Manager. |
-| US-SYS-004 | As a System Administrator, I want áp dụng mô hình phân quyền theo vai trò (RBAC) với 4 vai trò chuẩn hóa (Admin, HR Staff, Manager, Employee), So that việc phân bổ trách nhiệm nghiệp vụ rõ ràng và nhất quán. | FR-SYS-004 | Áp dụng đúng 100% Ma trận phân quyền đã chốt tại PRD; mỗi tài khoản chỉ gán 1 vai trò chính tại một thời điểm. |
+| US-SYS-003 | As a Hệ thống, I want từ chối truy cập trái phép, So that dữ liệu doanh nghiệp không bị rò rỉ. | FR-SYS-003 | Trả 403 khi vai trò không được thao tác hoặc Manager xem nhân viên ngoài phòng ban; trả 404 với tài nguyên khác ngoài phạm vi. |
+| US-SYS-004 | As a System Administrator, I want áp dụng mô hình phân quyền theo vai trò (RBAC) với 4 vai trò chuẩn hóa (Admin, HR Staff, Manager, Employee), So that việc phân bổ trách nhiệm nghiệp vụ rõ ràng và nhất quán. | FR-SYS-004 | Mỗi tài khoản có 1 vai trò nền theo chức vụ thực tế và quyền nghiệp vụ theo nhiệm vụ trong phạm vi được duyệt. |
 | US-SYS-005 | As a System Administrator, I want quản lý danh mục và mô tả chi tiết của 4 vai trò người dùng trong hệ thống, So that chính sách phân quyền luôn được tài liệu hóa và bảo trì dễ dàng. | FR-SYS-005 | Hiển thị mô tả phạm vi trách nhiệm và danh sách tài khoản thuộc từng vai trò. |
-| US-SYS-006 | As a System Administrator, I want cấu hình chi tiết các mã quyền (Permissions) theo từng thao tác (Xem, Tạo, Sửa, Xóa, Duyệt, Xuất), So that hệ thống có thể mở rộng quyền hạn linh hoạt khi cần. | FR-SYS-006 | Mã quyền chuẩn dạng `<module>:<resource>:<action>` (ví dụ `emp:profile:update`, `leave:request:approve`). |
+| US-SYS-006 | As a System Administrator, I want cấu hình chi tiết các mã quyền (Permissions) theo từng thao tác (Xem, Tạo, Sửa, Xóa, Duyệt, Xuất), So that hệ thống có thể mở rộng quyền hạn linh hoạt khi cần. | FR-SYS-006 | Mã quyền chuẩn dạng `<module>:<resource>:<action>`; cấp cho tài khoản theo nhiệm vụ và giữ phạm vi tài nguyên đã duyệt. |
 | US-SYS-007 | As a System Administrator, I want cấu hình các tham số toàn cục của hệ thống (Giờ làm ca chuẩn, Ngưỡng ân hạn chấm công, Tỷ lệ trích BHXH, Ngưỡng giảm trừ gia cảnh), So that hệ thống vận hành linh hoạt theo luật định. | FR-SYS-007 | Các tham số lưu dạng Key-Value trong database; cập nhật có hiệu lực ngay mà không cần khởi động lại server. |
 | US-SYS-008 | As an Employee / Manager / HR Staff, I want nhận thông báo In-App (icon chuông) và Email thời gian thực khi có sự kiện liên quan (đơn phép được duyệt, ca làm thay đổi, nhận offer), So that tôi cập nhật tin tức công việc kịp thời. | FR-SYS-008 | Đánh dấu đã đọc/chưa đọc; hiển thị số lượng badge chưa đọc trên icon chuông; gửi mail thông báo quan trọng. |
 | US-SYS-009 | As a System Administrator, I want hệ thống tự động ghi nhật ký kiểm toán (Audit Logs) bất biến đối với mọi hành vi nhạy cảm, So that luôn có đầy đủ dấu vết để đối soát và điều tra sự cố bảo mật. | FR-SYS-009 | Ghi nhận: Actor, IP, Action, Timestamp, Status, Target ID; lưu trữ tối thiểu 2 năm; không ai có quyền sửa hoặc xóa log. |
@@ -40,21 +40,28 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   1. Người dùng mở trang đăng nhập `/login` và nhập Email cùng Mật khẩu.
   2. Người dùng nhấn nút "Đăng nhập".
   3. Hệ thống kiểm tra số lần đăng nhập sai gần nhất của tài khoản:
-     - Nếu số lần sai >= 5 lần trong vòng 15 phút: Hệ thống từ chối ngay lập tức với mã `429 TOO_MANY_REQUESTS` hoặc `403 FORBIDDEN` ("Tài khoản đã bị tạm khóa 15 phút do nhập sai mật khẩu quá 5 lần").
+     - Nếu số lần sai >= 5 lần trong vòng 15 phút: Hệ thống từ chối ngay lập tức và thông báo "Tài khoản đã bị tạm khóa 15 phút do nhập sai mật khẩu quá 5 lần".
+
   4. Hệ thống truy vấn tài khoản trong bảng `users` theo Email.
-  5. Nếu không tìm thấy hoặc mật khẩu không khớp (so khớp băm qua `crypto.scrypt`):
+  5. Nếu không tìm thấy hoặc mật khẩu không khớp (kiểm tra hash bcrypt):
      - Hệ thống tăng bộ đếm số lần sai (`failed_login_attempts += 1`).
      - Ghi audit log sự kiện `LOGIN_FAILED`.
      - Trả về thông báo lỗi chung: "Email hoặc mật khẩu không chính xác" (không chỉ rõ email hay pass sai để chống dò quét).
   6. Nếu mật khẩu khớp và tài khoản đang hoạt động:
      - Hệ thống reset bộ đếm `failed_login_attempts = 0`.
      - Sinh Access Token (JWT, payload gồm `userId`, `email`, `role`, `departmentId`, hạn dùng 15 phút).
-     - Sinh Refresh Token ngẫu nhiên (UUIDv4 hoặc opaque token, hạn dùng 7 ngày), băm và lưu vào bảng `user_sessions`.
-     - Đặt Refresh Token vào Cookie phản hồi với các thuộc tính: `HttpOnly = true`, `Secure = true` (khi chạy HTTPS), `SameSite = Lax`, `Path = /api/v1/auth`.
+     - Sinh Refresh Token JWT HS256 (hạn dùng 7 ngày), băm và lưu trạng thái thu hồi vào bảng `user_sessions`.
+     - Đặt Refresh Token vào Cookie phản hồi với các thuộc tính: `HttpOnly = true`, `Secure = true` (khi chạy HTTPS), `SameSite = Lax`; cookie path chờ contract Auth.
      - Ghi audit log sự kiện `LOGIN_SUCCESS`.
      - Trả về HTTP 200 kèm Access Token và thông tin tóm tắt người dùng (Họ tên, Avatar, Vai trò).
   7. Frontend lưu Access Token vào bộ nhớ ứng dụng (Memory/State) và điều hướng về Dashboard tương ứng với vai trò.
 - **Hậu điều kiện:** Phiên làm việc được thiết lập, người dùng truy cập được các chức năng được cấp quyền.
+
+**Status:** Confirmed — Tài khoản tạm khóa sau 5 lần đăng nhập sai trả `429 RATE_LIMIT_EXCEEDED` kèm `Retry-After` là số giây còn lại trong thời gian khóa 15 phút; không dùng `403 INSUFFICIENT_PERMISSIONS`.
+
+**Status:** TBD (To Be Determined) — Cookie path của refresh token chưa được duyệt trong contract Auth.
+
+- Refresh token cookie áp dụng cho những endpoint Auth nào?
 
 ---
 
@@ -129,7 +136,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Luồng sự kiện chính (Basic Flow):**
   1. Admin mở trang "Nhật ký kiểm toán" (Audit Logs).
   2. Hệ thống hiển thị bảng danh sách các sự kiện mới nhất xếp theo thời gian giảm dần:
-     - Thời gian (Timestamp chuẩn ISO 8601).
+     - Thời gian hiển thị theo định dạng `DD/MM/YYYY HH:mm:ss` giờ Việt Nam UTC+7 trong [API spec](../../api-spec.md#4-quy-ước-requestresponse-chung).
      - Người thực hiện (Actor: Họ tên, Email, Vai trò).
      - Địa chỉ IP & User Agent.
      - Hành động (`Action`: `LOGIN`, `LOGOUT`, `CREATE_EMPLOYEE`, `UPDATE_SALARY`, `APPROVE_LEAVE`, v.v.).
@@ -151,7 +158,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   1. Người dùng bấm vào menu đại diện (Avatar) và chọn "Đăng xuất".
   2. Frontend gửi request `POST /api/v1/auth/logout` kèm Cookie chứa Refresh Token.
   3. Backend xử lý:
-     - Tìm và xóa bản ghi phiên làm việc trong bảng `user_sessions` tương ứng với Refresh Token này.
+     - Tìm và đánh dấu thu hồi bản ghi phiên làm việc trong bảng `user_sessions` tương ứng với Refresh Token này.
      - Xóa Cookie Refresh Token bằng cách đặt `Max-Age = 0`.
      - Ghi audit log sự kiện `LOGOUT`.
   4. Frontend xóa Access Token khỏi bộ nhớ (Memory/State) và chuyển hướng người dùng về trang `/login`.

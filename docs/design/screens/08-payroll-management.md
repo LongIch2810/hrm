@@ -1,28 +1,29 @@
 # Thiết Kế Chi Tiết: Quản Lý Tiền Lương — Phân Hệ PAY (Screens 34 - 37)
 
 Tài liệu thiết kế chi tiết phân hệ Tính Lương (`PAY`), bảo mật thu nhập, tính thuế TNCN 7 bậc và phát hành phiếu lương điện tử.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-PAY-001 → 011](file:///d:/saved/Project/hrm/docs/prd/function-requirement/payroll-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-PAY-001 → 011](../../prd/function-requirement/payroll-management.md).
 
 ---
 
 ## 1. Quản Lý Kỳ Lương Công Ty (`/payroll/cycles` — Screen 34)
 
 ### 1.1. Actor & Quy trình
-- **Actor:** HR Staff / Kế toán lương và Ban Giám Đốc.
-- **Kỳ lương chuẩn:** Tính theo tháng dương lịch (01 đến ngày cuối tháng), chi trả vào ngày 05 hàng tháng (`PD-018`).
-- **Quy trình 2 trạng thái:**
+- **Actor:** HR Staff lập và khóa kỳ; HR Manager hoặc Giám đốc duyệt kỳ theo quyền nghiệp vụ được cấp.
+- **Kỳ lương chuẩn:** Tính theo tháng dương lịch (01 đến ngày cuối tháng), chốt lương ngày 05 và chi trả ngày 10 hàng tháng (`PD-019`).
+- **Quy trình 3 trạng thái:**
   1. `Draft` (Kỳ lương nháp): Dành cho HR kiểm tra, đối soát công phép và chạy tính toán lương tự động.
-  2. `Closed` (Khóa kỳ vĩnh viễn): Ban Giám Đốc phê duyệt chốt sổ, phát hành phiếu lương riêng tư cho từng nhân viên, không thể chỉnh sửa.
+  2. `Approved` (Đã duyệt): HR Manager hoặc Giám đốc phê duyệt bảng lương để HR Staff khóa kỳ.
+  3. `Closed` (Đã khóa): HR Staff khóa kỳ bằng thao tác riêng; hệ thống phát hành phiếu lương riêng tư cho từng nhân viên.
 
 ### 1.2. Bố cục Giao diện
 - Header: Tiêu đề `display-lg` *"Bảng Lương & Kỳ Lương"*, Nút Primary "+ Mở kỳ lương mới".
 - Danh sách các kỳ lương (Cards / Table):
   - Tên kỳ lương (Ví dụ: *"Kỳ lương Tháng 10/2026"*).
-  - Trạng thái: Badge xám `DRAFT` hoặc Badge xanh lá `CLOSED`.
+  - Trạng thái: Badge xám `DRAFT`, Badge xanh dương `APPROVED` hoặc Badge xanh lá `CLOSED`.
   - Tổng quỹ lương ròng (Net): Được làm mờ (Masking) chỉ hiển thị khi có quyền hoặc nhấp icon mắt.
   - Tổng số nhân sự trong kỳ: 184 nhân viên.
-  - Ngày chi trả dự kiến: 05/11/2026.
-  - Thao tác: Nút "Vào tính toán lương", Nút "Khóa kỳ lương", Nút "Xuất file ngân hàng / Ủy nhiệm chi Excel".
+  - Ngày chi trả dự kiến: 10/11/2026.
+  - Thao tác theo quyền và trạng thái: HR Staff vào tính toán khi `Draft`; HR Manager hoặc Giám đốc nhấn "Phê duyệt" để chuyển sang `Approved`; HR Staff nhấn "Khóa kỳ lương" để chuyển sang `Closed` và xuất file ngân hàng khi có quyền.
 
 ---
 

@@ -28,7 +28,7 @@
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-026`).
 - **Quy tắc đã chốt:** Quản lý khóa học, học viên và điểm số trực tiếp trên hệ thống; không tích hợp nền tảng LMS E-learning bên thứ ba ngoài phạm vi.
 
-### BR-AUTH-001: Phân quyền quản trị đào tạo
+### BR-TRAIN-AUTH-001: Phân quyền quản trị đào tạo
 
 - **Employee:** Xem danh sách khóa học được phân công, tài liệu bài học và chứng chỉ cá nhân.
 - **Trainer / HR Staff:** Điểm danh, nhập điểm số, nhận xét và cấp phát chứng chỉ.

@@ -12,7 +12,7 @@
 - **Nội dung quy tắc:**
   - Mục tiêu cá nhân (KPI hoặc OKR) phải được thiết lập và chốt trong vòng 15 ngày đầu tiên của kỳ đánh giá.
   - Tổng trọng số của tất cả các chỉ số KPI trong một kỳ đánh giá phải bằng chính xác 100%.
-  - Thang điểm đánh giá chuẩn hóa: Thang điểm 5 hoặc 100 điểm, quy đổi thành xếp loại (Xuất sắc, Tốt, Đạt, Cần cải thiện).
+  - Thang điểm đánh giá chuẩn hóa từ 1 đến 5, quy đổi thành 5 mức (Xuất sắc, Tốt, Đạt, Cần cải thiện, Không đạt).
   - Mục tiêu sau khi đã qua bước "Xác nhận kỳ" giữa Quản lý và Nhân viên thì không được tự ý sửa đổi (trừ khi có phê duyệt mở lại từ HR).
 - **Hành vi khi vi phạm:** Báo lỗi `TOTAL_WEIGHT_MUST_BE_100` hoặc `GOALS_LOCKED`.
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-023`).
@@ -28,7 +28,7 @@
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-024`).
 - **Quy tắc đã chốt:** Áp dụng luồng đánh giá trực tiếp 2 cấp (Nhân viên tự đánh giá & Quản lý trực tiếp chấm); đánh giá 360 độ từ đồng nghiệp là tính năng nâng cao không bắt buộc trong giai đoạn này.
 
-### BR-AUTH-001: Phân quyền xem kết quả đánh giá
+### BR-PERF-AUTH-001: Phân quyền xem kết quả đánh giá
 
 - **Employee:** Được xem mục tiêu cá nhân, điểm tự chấm và kết quả cuối cùng đã công bố của mình; không được xem điểm của người khác.
 - **Department Manager:** Đánh giá và xem kết quả của toàn bộ nhân viên trong phòng ban mình quản lý.

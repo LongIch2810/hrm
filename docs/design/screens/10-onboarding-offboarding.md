@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Tiếp Nhận & Thôi Việc — Phân Hệ ONB (Screens 43 - 46)
 
 Tài liệu thiết kế chi tiết quy trình tiếp nhận nhân viên mới (Onboarding) và quy trình thôi việc (Offboarding) với checklist 4 bên phối hợp chặt chẽ.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-ONB-001 → 009](file:///d:/saved/Project/hrm/docs/prd/function-requirement/onboarding-offboarding.md).
+Tuân thủ [Design System](../design-system.md) và [FR-ONB-001 → 009](../../prd/function-requirement/onboarding-offboarding.md).
 
 ---
 
@@ -39,7 +39,7 @@ Hiển thị dạng 4 nhóm công việc có phân định rõ người chịu t
 3. **Khối 3: Hội nhập Bộ phận (Department Manager phụ trách):**
    - [ ] Phân công Người hướng dẫn trực tiếp (Mentor).
    - [ ] Giới thiệu thành viên phòng ban và phổ biến quy chế làm việc.
-   - [ ] Thiết lập Kế hoạch thử việc & Mục tiêu 60 ngày đầu tiên.
+   - [ ] Thiết lập kế hoạch thử việc theo vị trí: tối đa 60 ngày cho vị trí chuyên môn, 30 ngày cho vị trí khác.
 4. **Khối 4: Nhân viên mới xác nhận (Employee phụ trách):**
    - [ ] Ký biên bản bàn giao nhận thiết bị và tài sản.
    - [ ] Hoàn tất cập nhật thông tin liên hệ khẩn cấp trên trang cá nhân.

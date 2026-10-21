@@ -90,7 +90,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
      - Quỹ phép năm của nhân viên không bị trừ.
      - Gửi thông báo cho Employee kèm lý do từ chối.
 - **Luồng ngoại lệ (Exception Flows):**
-  - *E1 - Phê duyệt đơn ngoài phòng ban quản lý:* Hệ thống từ chối với lỗi `403 FORBIDDEN` (`FORBIDDEN_RESOURCE`).
+  - *E1 - Phê duyệt đơn ngoài phòng ban quản lý:* Hệ thống từ chối với lỗi `404 Not Found` (`RESOURCE_NOT_FOUND`), không tiết lộ đơn có tồn tại.
 - **Hậu điều kiện:** Đơn nghỉ phép hoàn tất quy trình phê duyệt, trạng thái công và số dư phép được cập nhật nhất quán.
 
 ---

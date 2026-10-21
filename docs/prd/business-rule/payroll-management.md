@@ -25,13 +25,14 @@
 - **Nội dung quy tắc:**
   - Áp dụng biểu thuế lũy tiến từng phần theo quy định của Luật Thuế TNCN Việt Nam hiện hành; mức giảm trừ bản thân 11.000.000 VNĐ/tháng và giảm trừ người phụ thuộc 4.400.000 VNĐ/người/tháng.
   - Tỷ lệ trích đóng bảo hiểm bắt buộc trừ vào lương nhân viên: BHXH (8%), BHYT (1.5%), BHTN (1%). Mức đóng tối đa áp trần theo lương cơ sở.
-  - Sau khi kỳ lương được cấp có thẩm quyền nhấn "Khóa kỳ lương" (`Closed`), toàn bộ dữ liệu bảng lương và phiếu lương trở thành bất biến (Read-only).
+  - Kỳ lương chuyển `Draft` → `Approved` khi HR Manager hoặc Giám đốc phê duyệt; HR Staff chuyển `Approved` → `Closed` bằng thao tác khóa kỳ riêng.
+  - Sau khi HR Staff khóa kỳ (`Closed`), toàn bộ dữ liệu bảng lương và phiếu lương trở thành bất biến (Read-only).
   - Mọi điều chỉnh truy lĩnh/truy thu phát sinh sau khi khóa kỳ sẽ được cộng/trừ dồn vào kỳ lương của tháng tiếp theo.
 - **Hành vi khi vi phạm:** Báo lỗi `PAYROLL_PERIOD_LOCKED` nếu cố tình sửa bảng lương đã khóa.
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-018, PD-019`).
 - **Quy tắc đã chốt:** Chỉ HR Manager hoặc Ban Giám Đốc mới có thẩm quyền mở khóa kỳ lương (`Unlock Payroll`) và bắt buộc phải nhập lý do giải trình, ghi nhật ký bất biến vào Audit Trail.
 
-### BR-AUTH-001: Bảo mật và quyền riêng tư bảng lương
+### BR-PAY-AUTH-001: Bảo mật và quyền riêng tư bảng lương
 
 - Dữ liệu lương là **Dữ liệu tuyệt mật (Confidential / Sensitive Data)** theo [Quy tắc bảo mật](../../rules/security.md).
 - Nhân viên chỉ được xem duy nhất Phiếu lương cá nhân của chính mình.

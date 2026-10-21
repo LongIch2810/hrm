@@ -22,7 +22,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 | US-ATT-004 | As a HR Staff, I want cấu hình ca làm việc chuẩn (08:00 - 17:30, nghỉ trưa 12:00 - 13:30, T2 - T6) và quy tắc ân hạn đi muộn, So that hệ thống tự động đối soát giờ làm việc thống nhất. | FR-ATT-004 | Ca chuẩn 8 giờ làm việc; thời gian ân hạn 15 phút (đến 08:15); sau 08:15 tính muộn từ mốc 08:00. |
 | US-ATT-005 | As an Employee / System, I want hệ thống tự động phát hiện và ghi nhận số phút đi muộn khi check-in sau thời gian ân hạn, So that dữ liệu kỷ luật lao động được minh bạch. | FR-ATT-005 | Check-in <= 08:15: Không tính muộn; Check-in > 08:15: Số phút muộn = Thời gian check-in - 08:00. |
 | US-ATT-006 | As an Employee / System, I want hệ thống tự động ghi nhận số phút về sớm nếu check-out trước giờ tan ca (17:30), So that việc đảm bảo đủ thời lượng làm việc được giám sát chặt chẽ. | FR-ATT-006 | Check-out < 17:30: Ghi nhận trạng thái Về sớm; Số phút sớm = 17:30 - Thời gian check-out. |
-| US-ATT-007 | As an Employee, I want tạo đơn đăng ký làm thêm giờ (OT) gửi Manager duyệt trước khi làm việc, So that số giờ OT được tính hợp lệ vào bảng công và bảng lương. | FR-ATT-007 | Làm tròn block 30 phút; chỉ đơn OT được Manager duyệt mới được cộng giờ công làm thêm. |
+| US-ATT-007 | As an Employee, I want tạo đơn đăng ký làm thêm giờ (OT) gửi Manager duyệt trước khi làm việc, So that số giờ OT được tính hợp lệ vào bảng công và bảng lương. | FR-ATT-007 | Làm tròn lên giờ OT thực tế theo block 30 phút, tối đa bằng giờ được duyệt. |
 | US-ATT-008 | As an Employee, I want xem bảng công tổng hợp cá nhân theo từng tháng (tổng công chuẩn, công thực tế, ngày nghỉ phép, giờ OT), So that tôi nắm rõ số công của mình trước khi chốt lương. | FR-ATT-008 | Hiển thị dạng lịch (Calendar view) hoặc bảng chi tiết; thể hiện đầy đủ các loại công. |
 | US-ATT-009 | As a Department Manager, I want xem bảng công của toàn bộ nhân viên trong phòng ban mình quản lý, So that tôi giám sát được tình hình chuyên cần của đội ngũ trực thuộc. | FR-ATT-009 | Chỉ hiển thị nhân viên thuộc phòng ban mình; lọc theo ngày/tháng; hỗ trợ xuất bảng đối soát. |
 | US-ATT-010 | As a HR Staff, I want tổng hợp dữ liệu chấm công cả tháng thành Bảng tổng hợp công và đồng bộ sang phân hệ Tính lương (PAY), So that việc tính lương được thực hiện tự động và chính xác. | FR-ATT-010 | Tích hợp dữ liệu từ Check-in/out, đơn nghỉ phép (LEAVE) và đơn OT đã duyệt; khóa bảng công sau khi chốt. |
@@ -36,7 +36,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Mã FR:** FR-ATT-001, FR-ATT-002, FR-ATT-005, FR-ATT-006.
 - **Actor chính:** Employee.
 - **Actor phụ:** System (tự động tính toán số phút muộn/sớm).
-- **Tiền điều kiện:** Nhân viên đã đăng nhập vào hệ thống; ngày hiện tại là ngày làm việc hợp lệ.
+- **Tiền điều kiện:** Nhân viên đã đăng nhập; ngày hiện tại là ngày làm việc hoặc ngày nghỉ có đơn OT được duyệt.
 - **Luồng sự kiện chính (Basic Flow):**
   1. Employee truy cập màn hình chính (Dashboard) hoặc trang "Chấm công".
   2. Hệ thống hiển thị đồng hồ thời gian thực và nút hành động:
@@ -59,7 +59,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
        $$\text{Work Hours} = (\text{check\_out\_time} - \text{check\_in\_time}) - \text{Thời gian nghỉ trưa (1.5h nếu làm vắt qua trưa)}$$
      - Cập nhật bản ghi `attendance_records` và hiển thị tóm tắt ngày công.
 - **Luồng ngoại lệ (Exception Flows):**
-  - *E1 - Check-in nhiều lần:* Nếu người dùng đã Check-in và Check-out trong ngày mà muốn Check-in lại (ví dụ ca làm việc chia nhỏ hoặc quên), hệ thống hỏi: "Bạn đã hoàn tất ngày công, bạn có muốn cập nhật lại lượt check-out không?" hoặc từ chối với lỗi `409 CONFLICT` (`ATTENDANCE_ALREADY_EXISTS`).
+  - *E1 - Check-in nhiều lần:* Sau khi đã Check-in và Check-out trong ngày, hệ thống từ chối Check-in tiếp; nhân viên gửi giải trình nếu cần sửa công.
   - *E2 - Check-out trước khi Check-in:* Hệ thống chặn nút Check-out khi chưa có Check-in.
 - **Hậu điều kiện:** Dữ liệu chấm công được lưu vết tức thời, hiển thị trên bảng công cá nhân.
 
@@ -74,7 +74,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Luồng sự kiện chính (Basic Flow):**
   1. Employee mở form "Đăng ký làm thêm giờ (OT)".
   2. Employee chọn Ngày làm việc, nhập Giờ bắt đầu (ví dụ: 18:00) và Giờ kết thúc (ví dụ: 20:30).
-  3. Hệ thống tự động tính thời lượng: 2.5 giờ (150 phút), làm tròn theo block 30 phút (`PD-010`).
+  3. Hệ thống tự động tính thời lượng: 2.5 giờ (150 phút); thời gian OT thực tế được làm tròn lên theo block 30 phút.
   4. Employee nhập lý do và nhấn "Gửi đơn phê duyệt".
   5. Hệ thống lưu đơn với trạng thái `PENDING` và gửi email/thông báo thông chuông đến Department Manager trực tiếp.
   6. Department Manager mở danh sách "Duyệt đơn OT phòng ban", kiểm tra lý do và khối lượng công việc.
@@ -116,7 +116,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   4. Manager kiểm tra tỷ lệ chuyên cần, các trường hợp nhân viên vắng mặt không lý do để nhắc nhở.
   5. Manager có thể nhấn nút "Xuất Excel bảng công phòng" để phục vụ họp giao ban.
 - **Luồng ngoại lệ (Exception Flows):**
-  - *E1 - Truy cập ngoài phạm vi:* Nếu Manager cố tình xem phòng ban khác, hệ thống chặn với lỗi `403 FORBIDDEN` (`FORBIDDEN_RESOURCE`).
+  - *E1 - Truy cập ngoài phạm vi:* Nếu Manager cố tình xem phòng ban khác, hệ thống chặn với lỗi `404 Not Found` (`RESOURCE_NOT_FOUND`).
 - **Hậu điều kiện:** Bảng công được giám sát chặt chẽ ở cấp quản lý trực tiếp.
 
 ---
@@ -130,7 +130,8 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   1. HR Staff vào chức năng "Tổng hợp công tháng".
   2. **Trường hợp import từ máy chấm công:**
      - HR Staff tải tệp Excel/CSV kết xuất từ máy chấm công vân tay/khuôn mặt.
-     - Hệ thống đọc file, map mã chấm công với `employee_code`, đối soát và bổ sung giờ check-in/out vào cơ sở dữ liệu.
+     - Hệ thống đọc file, map mã chấm công với `employee_code` và đối soát với dữ liệu Web.
+     - Nếu giờ hai nguồn khác nhau cho cùng nhân viên/ngày, HR chọn giờ có hiệu lực trước khi tổng hợp.
   3. **Tổng hợp dữ liệu toàn diện:**
      - Hệ thống kết hợp 3 nguồn:
        1. Dữ liệu quẹt thẻ/web check-in (`attendance_records`).

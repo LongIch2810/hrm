@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Quản Lý Nhân Viên — Phân Hệ EMP (Screens 14 - 17)
 
 Tài liệu thiết kế chi tiết phân hệ Quản lý hồ sơ nhân viên (`EMP`), phục vụ Master Data cho toàn bộ hệ thống HRM.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-EMP-001 → 009](file:///d:/saved/Project/hrm/docs/prd/function-requirement/employee-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-EMP-001 → 009](../../prd/function-requirement/employee-management.md).
 
 ---
 
@@ -19,7 +19,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
   - Dropdown chọn Trạng thái: `Tất cả`, `Đang làm việc (Active)`, `Thử việc (Probation)`, `Nghỉ phép (OnLeave)`, `Thôi việc (Terminated)`.
   - Dropdown chọn Chức vụ.
 - **Bảng dữ liệu chuẩn (Data Table ở Desktop 1440px):**
-  - Cột 1: Mã NV (`EMP0001`...)
+  - Cột 1: Mã NV (`EMP-2026-0001`...)
   - Cột 2: Nhân viên (Avatar tròn 36px, Họ và tên đậm, Email công ty mờ bên dưới)
   - Cột 3: Phòng ban
   - Cột 4: Chức vụ & Cấp bậc
@@ -40,7 +40,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 
 ### 2.1. Actor & Quy tắc Nghiệp vụ
 - **Actor:** HR Staff.
-- **Mã nhân viên:** Tự động sinh tăng dần dạng `EMPxxxx` (`BR-EMP-001`), hiển thị readonly.
+- **Mã nhân viên:** Tự động sinh tăng dần theo năm dạng `EMP-YYYY-NNNN` (`BR-EMP-001`), hiển thị readonly.
 - **Ràng buộc:** CCCD/Hộ chiếu duy nhất, Email công ty hợp lệ và duy nhất.
 
 ### 2.2. Giao diện Biểu Mẫu (Multi-Tab / Multi-Step Form)
@@ -72,6 +72,7 @@ Chia làm 3 bước rõ ràng để người dùng không bị quá tải thông
   - Tab 3: **Hợp đồng lao động:** Danh sách các đời hợp đồng (Thử việc, Chính thức, Phụ lục) và file scan PDF.
   - Tab 4: **Chấm công & Nghỉ phép:** Thống kê tóm tắt số ngày công tháng này, số ngày phép năm còn lại.
   - Tab 5: **Tài liệu đính kèm (FR-EMP-008):** Kho tài liệu scan (CCCD, Bằng cấp, Giấy khám sức khỏe, HĐLĐ <= 5MB/file), có nút Tải lên và Tải về an toàn.
+  - **Manager:** Chỉ hiển thị liên hệ cần thiết và thông tin công tác của nhân viên phòng mình; ẩn dữ liệu pháp lý, lương, hợp đồng và tài liệu đính kèm.
 
 ---
 

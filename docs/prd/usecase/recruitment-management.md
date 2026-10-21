@@ -18,14 +18,14 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 | Mã Story | Nội dung User Story | Mã FR | Tiêu chí nghiệm thu (Acceptance Criteria) |
 |---|---|---|---|
 | US-REC-001 | As a HR Staff, I want tạo và quản lý các vị trí tuyển dụng (Job Openings) theo đề xuất của phòng ban, So that việc tìm kiếm nhân tài có mục tiêu, ngân sách và tiêu chí tuyển dụng rõ ràng. | FR-REC-001 | Mỗi vị trí có: Chức danh, Phòng ban, Số lượng cần tuyển, Mức lương đề xuất, Hạn nộp hồ sơ, Trạng thái (`Open`, `Closed`). |
-| US-REC-002 | As a HR Staff, I want đăng thông tin tuyển dụng lên cổng nội bộ công ty và tạo nội dung chia sẻ cho các mạng xã hội (LinkedIn, TopCV), So that tiếp cận được nhiều ứng viên tiềm năng. | FR-REC-002 | Tin tuyển dụng định dạng chuẩn (Mô tả công việc JD, Yêu cầu, Quyền lợi); tự động sinh link chia sẻ ứng tuyển. |
-| US-REC-003 | As a HR Staff, I want tiếp nhận, tải lên tệp CV (PDF/DOCX <= 5MB) và quản lý danh sách hồ sơ ứng viên tập trung, So that không bị thất lạc hồ sơ và dễ dàng tra cứu. | FR-REC-003 | Lưu trữ thông tin cá nhân cơ bản và file CV; tự động phát hiện ứng viên nộp trùng lặp qua Email và Số điện thoại. |
+| US-REC-002 | As a HR Staff, I want đăng thông tin tuyển dụng lên cổng nội bộ công ty và tạo nội dung chia sẻ cho các mạng xã hội (LinkedIn, TopCV), So that tiếp cận được nhiều ứng viên tiềm năng. | FR-REC-002 | Tin tuyển dụng định dạng chuẩn (Mô tả công việc JD, Yêu cầu, Quyền lợi); link chỉ chia sẻ nội dung tin. Ứng viên gửi CV qua email/kênh ngoài và HR nhập hồ sơ; không có biểu mẫu nộp hồ sơ công khai. |
+| US-REC-003 | As a HR Staff, I want tiếp nhận, tải lên tệp CV (PDF <= 5MB) và quản lý danh sách hồ sơ ứng viên tập trung, So that không bị thất lạc hồ sơ và dễ dàng tra cứu. | FR-REC-003 | Lưu trữ thông tin cá nhân cơ bản và file CV; tự động phát hiện ứng viên nộp trùng lặp qua Email và Số điện thoại. |
 | US-REC-004 | As a HR Staff / Manager, I want theo dõi tiến trình tuyển dụng dạng bảng Kanban trực quan (Ứng tuyển → Sàng lọc → Phỏng vấn → Offer → Trúng tuyển → Từ chối), So that tôi nắm bắt được tỷ lệ chuyển đổi qua từng giai đoạn. | FR-REC-004 | Hỗ trợ kéo thả (Drag-and-drop) ứng viên giữa các cột trạng thái; cập nhật trạng thái thời gian thực. |
 | US-REC-005 | As a HR Staff, I want cấu hình số vòng phỏng vấn linh hoạt cho từng vị trí (ví dụ: Vòng 1 HR, Vòng 2 Technical Manager, Vòng 3 Giám đốc), So that quy trình đánh giá phù hợp với độ phức tạp của từng chức danh. | FR-REC-005 | Hỗ trợ cấu hình tối đa 3 vòng phỏng vấn cho mỗi vị trí; xác định người phỏng vấn tương ứng cho từng vòng. |
 | US-REC-006 | As a HR Staff, I want lên lịch phỏng vấn và hệ thống tự động gửi thư mời kèm link họp trực tuyến (Google Meet/Teams) hoặc địa điểm cho ứng viên và người phỏng vấn, So that buổi phỏng vấn diễn ra đúng hẹn và chuyên nghiệp. | FR-REC-006 | Gửi email mời phỏng vấn có file đính kèm lịch (`.ics`); hiển thị lịch phỏng vấn trên Calendar của Interviewer. |
 | US-REC-007 | As an Interviewer, I want điền phiếu đánh giá ứng viên trực tiếp trên hệ thống theo thang điểm 1-5 và nhận xét chi tiết, So that kết quả phỏng vấn được lưu vết khách quan, hỗ trợ quyết định tuyển dụng. | FR-REC-007 | Đánh giá các tiêu chí: Kiến thức chuyên môn, Kỹ năng giải quyết vấn đề, Giao tiếp, Mức độ phù hợp văn hóa; kết luận Đạt/Không đạt. |
 | US-REC-008 | As a HR Staff, I want soạn thảo Thư mời nhận việc (Offer Letter) và trình HR Manager duyệt trước khi gửi ứng viên, So that mức đãi ngộ và thời gian nhận việc được kiểm soát chặt chẽ. | FR-REC-008 | Mẫu offer chuẩn gồm: Vị trí, Mức lương thử việc, Lương chính thức, Ngày bắt đầu, Hạn phản hồi; chỉ gửi đi sau khi Quản lý duyệt. |
-| US-REC-009 | As a HR Staff, I want chuyển ứng viên đã chấp thuận offer sang phân hệ Onboarding chỉ bằng 1 click, So that toàn bộ thông tin cá nhân và vị trí trúng tuyển được kế thừa tự động sang quy trình tiếp nhận nhân viên mới. | FR-REC-009 | Đổi trạng thái ứng viên sang `Hired`; tự động sinh bản ghi tiếp nhận và gán Onboarding Checklist trong module `ONB`. |
+| US-REC-009 | As a HR Staff, I want ghi nhận ứng viên đã chấp thuận offer, So that thông tin cá nhân và vị trí trúng tuyển tự động chuyển sang quy trình tiếp nhận nhân viên mới. | FR-REC-009 | Khi chuyển trạng thái sang `Hired`, hệ thống tự động sinh bản ghi tiếp nhận và gán Onboarding Checklist trong module `ONB`. |
 
 ---
 
@@ -62,9 +62,9 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
   1. HR Staff mở vị trí tuyển dụng đang mở và bấm "Thêm ứng viên".
   2. HR Staff nhập thông tin ứng viên và tải lên tệp CV.
   3. Hệ thống kiểm tra:
-     - Định dạng file PDF, DOCX dung lượng <= 5MB.
+     - Chỉ nhận file PDF dung lượng <= 5MB.
      - Kiểm tra xem Email hoặc SĐT đã nộp vào vị trí này trong vòng 6 tháng gần nhất chưa để phát hiện nộp trùng lặp.
-  4. Hệ thống lưu hồ sơ ứng viên vào bảng `candidates` và gắn vào vị trí tuyển dụng với trạng thái ban đầu là `Applied` (Mới ứng tuyển).
+  4. Hệ thống lưu hồ sơ ứng viên vào bảng `candidates` và gắn vào vị trí tuyển dụng với trạng thái ban đầu là `New` (Mới ứng tuyển).
   5. HR Staff mở CV trực tiếp trên trình duyệt để đọc và sàng lọc.
   6. HR Staff kéo thả hoặc chuyển trạng thái ứng viên:
      - "Phù hợp": Chuyển sang cột `Screening` (Đã sàng lọc, sẵn sàng mời phỏng vấn).
@@ -141,12 +141,12 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Tiền điều kiện:** Ứng viên đang ở trạng thái `Offered`.
 - **Luồng sự kiện chính (Basic Flow):**
   1. Khi nhận được phản hồi từ ứng viên:
-     - **Nếu ứng viên Từ chối offer:** HR Staff chọn trạng thái "Từ chối offer", nhập lý do (ví dụ: nhận offer khác, lương chưa phù hợp) và kết thúc quy trình.
+     - **Nếu ứng viên Từ chối offer:** HR Staff ghi nhận lý do; ứng viên chuyển `Rejected`, offer chuyển `OFFER_DECLINED` và quy trình kết thúc.
      - **Nếu ứng viên Đồng ý offer:** HR Staff chọn "Ứng viên đã nhận việc (Hired)".
-  2. HR Staff nhấn nút "Chuyển giao sang Onboarding".
-  3. Hệ thống tự động thực hiện:
+  2. Khi ứng viên chuyển sang `Hired`, hệ thống tự động thực hiện:
      - Đồng bộ gói dữ liệu ứng viên (Họ tên, Ngày sinh, SĐT, Email, Vị trí, Phòng ban, Lương đề xuất, Ngày gia nhập) sang phân hệ Onboarding & Offboarding (`ONB`).
      - Tự động khởi tạo quy trình tiếp nhận nhân viên mới trong module `ONB`.
      - Tự động gán bộ Checklist Onboarding mẫu tương ứng với chức danh.
-  4. Hệ thống hiển thị thông báo thành công: "Đã chuyển ứng viên sang quy trình Onboarding tiếp nhận nhân viên mới".
+  3. Hệ thống hiển thị thông báo thành công: "Đã chuyển ứng viên sang quy trình Onboarding tiếp nhận nhân viên mới".
 - **Hậu điều kiện:** Quy trình tuyển dụng khép lại thành công, bắt đầu quy trình hội nhập nhân viên mới.
+- **Thu hồi offer:** Đặt offer `OFFER_REVOKED`, ứng viên `Rejected`, ghi lý do; nếu Onboarding chưa hoàn tất thì hủy quy trình và giữ lịch sử. Trường hợp gian lận không vào Talent Pool tái liên hệ.

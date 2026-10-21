@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Quản Trị Hệ Thống & Bảo Mật — Phân Hệ SYS (Screens 64 - 68)
 
 Tài liệu thiết kế chi tiết phân hệ Quản trị hệ thống (`SYS`), kiểm soát tài khoản người dùng, ma trận phân quyền RBAC, cấu hình thông số và nhật ký kiểm toán bất biến (Audit Logs).
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-SYS-001 → 010](file:///d:/saved/Project/hrm/docs/prd/function-requirement/system-administration.md).
+Tuân thủ [Design System](../design-system.md) và [FR-SYS-001 → 010](../../prd/function-requirement/system-administration.md).
 
 ---
 
@@ -37,7 +37,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
   - Trục dọc: 12 Module nghiệp vụ (`EMP`, `DEPT`, `ATT`, `LEAVE`, `PAY`, `REC`, `ONB`, `PERF`, `CON`, `TRAIN`, `REP`, `SYS`).
   - Trục ngang: 4 Vai trò người dùng.
   - Các quyền chi tiết tại mỗi giao điểm: `Xem (Read)`, `Thêm/Sửa (Write)`, `Xóa (Delete)`, `Phê duyệt (Approve)`, `Toàn công ty / Phòng ban`.
-  - Icon Check xanh hiển thị quyền đã được phê duyệt, ổ khóa xám hiển thị quyền bị cấm tuyệt đối (Ví dụ: Admin bị cấm xem chi tiết lương theo `PD-008`).
+  - Icon Check xanh hiển thị quyền đã được phê duyệt, ổ khóa xám hiển thị quyền chưa được cấp (ví dụ: Admin không mặc định được xem chi tiết lương theo `PD-008`).
 
 ---
 
@@ -77,7 +77,7 @@ Bố trí dạng các thẻ Card nhóm chức năng rõ ràng:
 
 ### 5.1. Ràng Buộc Kỹ Thuật Nghiêm Ngặt (`PD-031`, `BR-SYS-002`)
 - **Nguyên tắc:** Bất biến (Append-only). Database cấm hoàn toàn quyền `UPDATE` và `DELETE` trên bảng `audit_logs`.
-- **Thời hạn lưu trữ:** Tối thiểu **12 tháng**.
+  - **Thời hạn lưu trữ:** Tối thiểu **2 năm**.
 
 ### 5.2. Giao diện Bảng Nhật Ký & Drawer So Sánh Thay Đổi
 - **Data Table Nhật Ký Kiểm Toán:**

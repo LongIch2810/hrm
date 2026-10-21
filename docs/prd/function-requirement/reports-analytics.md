@@ -13,7 +13,7 @@ Cung cấp hệ thống báo cáo quản trị, bảng điều khiển (Dashboar
 
 ## Actors
 
-- **Ban Giám Đốc / HR Manager:** Xem toàn bộ Dashboard tổng thể, các chỉ số phân tích chuyên sâu toàn công ty và xuất báo cáo cấp cao.
+- **Ban Giám Đốc / HR Manager:** Xem toàn bộ Dashboard tổng thể và các chỉ số phân tích chuyên sâu toàn công ty theo quyền được cấp.
 - **Department Manager:** Xem Dashboard và các báo cáo chuyên cần, nghỉ phép, hiệu suất của phòng ban mình trực tiếp quản lý.
 - **HR Staff:** Tạo, tổng hợp và xuất dữ liệu báo cáo chuyên môn (Excel, PDF) theo thẩm quyền phân công.
 
@@ -34,26 +34,26 @@ Cung cấp hệ thống báo cáo quản trị, bảng điều khiển (Dashboar
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-REP-001 | Hệ thống phải hỗ trợ dashboard tổng quan nhân sự. | Giám Đốc; HR Manager; Manager | Kỳ báo cáo, phòng ban | Hiển thị các widget chỉ số: Tổng nhân sự, Đi làm hôm nay, Nghỉ phép, Tuyển dụng. | BR-REP-001; BR-AUTH-001 | AC-REP-001 | Confirmed | Could Have |
+| FR-REP-001 | Hệ thống phải hỗ trợ dashboard tổng quan nhân sự. | Giám Đốc; HR Manager; Manager | Kỳ báo cáo, phòng ban | Hiển thị các widget chỉ số: Tổng nhân sự, Đi làm hôm nay, Nghỉ phép, Tuyển dụng. | BR-REP-001; BR-REP-AUTH-001 | AC-REP-001 | Confirmed | Could Have |
 | FR-REP-002 | Hệ thống phải hỗ trợ thống kê số lượng nhân viên. | HR Staff; Admin; Giám Đốc | Khoảng thời gian tra cứu | Biểu đồ biến động quy mô nhân sự qua các tháng/năm. | BR-REP-001 | AC-REP-002 | Confirmed | Could Have |
-| FR-REP-003 | Hệ thống phải hỗ trợ thống kê nhân sự theo phòng ban. | Tất cả vai trò quản lý | Thời điểm thống kê | Biểu đồ phân bổ tỷ trọng nhân lực giữa các phòng ban. | BR-REP-001; BR-AUTH-001 | AC-REP-003 | Confirmed | Could Have |
+| FR-REP-003 | Hệ thống phải hỗ trợ thống kê nhân sự theo phòng ban. | Tất cả vai trò quản lý | Thời điểm thống kê | Biểu đồ phân bổ tỷ trọng nhân lực giữa các phòng ban. | BR-REP-001; BR-REP-AUTH-001 | AC-REP-003 | Confirmed | Could Have |
 | FR-REP-004 | Hệ thống phải hỗ trợ thống kê tuyển dụng. | HR Staff; Giám Đốc | Đợt tuyển dụng, kỳ báo cáo | Báo cáo tỷ lệ chuyển đổi các vòng tuyển, thời gian tuyển và chi phí trung bình. | BR-REP-001 | AC-REP-004 | Confirmed | Could Have |
-| FR-REP-005 | Hệ thống phải hỗ trợ thống kê nghỉ phép. | Manager (phòng mình); HR Staff | Phòng ban, năm xem | Báo cáo tỷ lệ nghỉ phép, tổng số ngày phép đã dùng và quỹ phép tồn. | BR-REP-001; BR-AUTH-001 | AC-REP-005 | Confirmed | Could Have |
-| FR-REP-006 | Hệ thống phải hỗ trợ báo cáo chấm công. | Manager (phòng mình); HR Staff | Tháng, phòng ban | Bảng thống kê tỷ lệ đi làm đúng giờ, đi muộn, về sớm, vắng mặt. | BR-REP-001; BR-AUTH-001 | AC-REP-006 | Confirmed | Could Have |
-| FR-REP-007 | Hệ thống phải hỗ trợ báo cáo lương. | Giám Đốc; HR Manager | Kỳ lương, năm tài chính | Báo cáo phân tích tổng quỹ lương, phụ cấp, thưởng, thuế và bảo hiểm. | BR-REP-002; BR-AUTH-001 | AC-REP-007 | Confirmed | Could Have |
+| FR-REP-005 | Hệ thống phải hỗ trợ thống kê nghỉ phép. | Manager (phòng mình); HR Staff | Phòng ban, năm xem | Báo cáo tỷ lệ nghỉ phép, tổng số ngày phép đã dùng và quỹ phép tồn. | BR-REP-001; BR-REP-AUTH-001 | AC-REP-005 | Confirmed | Could Have |
+| FR-REP-006 | Hệ thống phải hỗ trợ báo cáo chấm công. | Manager (phòng mình); HR Staff | Tháng, phòng ban | Bảng thống kê tỷ lệ đi làm đúng giờ, đi muộn, về sớm, vắng mặt. | BR-REP-001; BR-REP-AUTH-001 | AC-REP-006 | Confirmed | Could Have |
+| FR-REP-007 | Hệ thống phải hỗ trợ báo cáo lương. | Giám Đốc; HR Manager | Kỳ lương, năm tài chính | Báo cáo phân tích tổng quỹ lương, phụ cấp, thưởng, thuế và bảo hiểm. | BR-REP-002; BR-REP-AUTH-001 | AC-REP-007 | Confirmed | Could Have |
 | FR-REP-008 | Hệ thống phải hỗ trợ thống kê biến động nhân sự. | HR Staff; Giám Đốc | Kỳ báo cáo | Thống kê số lượng nhân sự mới tiếp nhận và số lượng nhân sự thôi việc. | BR-REP-001 | AC-REP-008 | Confirmed | Could Have |
 | FR-REP-009 | Hệ thống phải hỗ trợ phân tích tỷ lệ nghỉ việc. | HR Staff; Giám Đốc | Kỳ báo cáo | Tính tỷ lệ nghỉ việc (Turnover Rate) chuẩn theo công thức quy định. | BR-REP-001 | AC-REP-009 | Confirmed | Could Have |
-| FR-REP-010 | Hệ thống phải hỗ trợ tổng hợp dữ liệu phục vụ quản lý. | HR Staff; Giám Đốc | Các tiêu chí lọc báo cáo | Kết xuất dữ liệu tổng hợp đa chiều dưới định dạng Excel hoặc PDF. | BR-REP-002; BR-AUTH-001 | AC-REP-010 | Confirmed | Could Have |
+| FR-REP-010 | Hệ thống phải hỗ trợ tổng hợp dữ liệu phục vụ quản lý. | HR Staff; System Administrator | Các tiêu chí lọc báo cáo | Kết xuất dữ liệu tổng hợp đa chiều dưới định dạng Excel hoặc PDF theo quyền từng trường. | BR-REP-002; BR-REP-AUTH-001 | AC-REP-010 | Confirmed | Could Have |
 
 ## Inputs & Outputs
 
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
 
-- **Input:** Kỳ báo cáo (Tháng, Quý, Năm), Phạm vi phòng ban, Loại báo cáo, Định dạng xuất file (Excel, PDF, CSV).
+- **Input:** Kỳ báo cáo (Tháng, Quý, Năm), Phạm vi phòng ban, Loại báo cáo, Định dạng xuất file (Excel, PDF).
 - **Output:** Biểu đồ tương tác trực quan (Bar, Line, Pie charts), Bảng dữ liệu phân trang, Tệp báo cáo xuất khẩu.
 - **Validation:**
   - Khoảng thời gian tra cứu hợp lệ (Từ ngày $\le$ Đến ngày).
-  - Áp dụng kỹ thuật che dữ liệu nhạy cảm (Data Masking) đối với CCCD, số tài khoản và lương cá nhân khi xuất báo cáo cho các vai trò ngoài Giám Đốc/HR Manager.
+  - Áp dụng kỹ thuật che dữ liệu nhạy cảm (Data Masking) đối với CCCD, số tài khoản và lương cá nhân khi người xuất không có quyền xem từng trường.
 
 ## Business Rules
 
@@ -62,7 +62,7 @@ Cung cấp hệ thống báo cáo quản trị, bảng điều khiển (Dashboar
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Reports & Analytics](../business-rule/reports-analytics.md):
   - **BR-REP-001:** 3 báo cáo cốt lõi chuẩn: Biến động nhân sự (Headcount/Turnover), Chuyên cần & Phép, Chi phí lương; dữ liệu báo cáo lịch sử lưu trữ dưới dạng Snapshot (`PD-027`).
   - **BR-REP-002:** Kiểm soát quyền xuất dữ liệu (Excel/PDF); che dữ liệu nhạy cảm theo phân loại bảo mật; ghi nhật ký kiểm toán cho mỗi lượt xuất dữ liệu (`PD-028, PD-031, PD-038`).
-  - **BR-AUTH-001:** Manager chỉ xem báo cáo nhân sự trong phòng ban mình trực tiếp quản lý (`PD-008`).
+  - **BR-REP-AUTH-001:** Manager chỉ xem báo cáo nhân sự trong phòng ban mình trực tiếp quản lý (`PD-008`).
 
 ## Edge Cases
 

@@ -26,12 +26,12 @@
   - Hệ thống tự động kích hoạt cảnh báo hợp đồng sắp hết hạn trước **30 ngày**.
   - Thông báo cảnh báo được gửi định kỳ hàng tuần cho HR Staff và Trưởng bộ phận phụ trách qua chuông In-App và Email.
   - Khi gia hạn hợp đồng mới, hợp đồng cũ tự động chuyển trạng thái sang `Expired` vào đúng ngày hết hạn.
-  - Tệp scan hợp đồng lưu trữ bắt buộc là PDF có đầy đủ chữ ký hoặc con dấu của các bên (tối đa 5MB).
+  - Tệp scan hợp đồng lưu trữ bắt buộc là PDF có đầy đủ chữ ký và con dấu của các bên (tối đa 5MB).
 - **Hành vi khi vi phạm:** Cảnh báo đỏ nếu hợp đồng đã quá hạn mà chưa có quyết định gia hạn hoặc thôi việc.
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-006, PD-025`).
 - **Quy tắc đã chốt:** Hệ thống không tích hợp USB token ký số phần cứng (Out of scope); sử dụng quy trình upload file scan PDF hợp đồng đã ký tay/đóng dấu để quản lý và lưu trữ hồ sơ hợp đồng.
 
-### BR-AUTH-001: Phân quyền quản lý hợp đồng
+### BR-CON-AUTH-001: Phân quyền quản lý hợp đồng
 
 - **Employee:** Được xem hợp đồng và phụ lục của chính mình (chế độ Read-only).
 - **HR Staff:** Soạn thảo, cập nhật, theo dõi gia hạn và tải tài liệu hợp đồng.

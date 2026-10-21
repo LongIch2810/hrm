@@ -21,12 +21,12 @@
 ### BR-REP-002: Kiểm soát quyền xuất dữ liệu và che dấu thông tin (Masking)
 
 - **Nội dung quy tắc:**
-  - Quyền xuất báo cáo (Excel, PDF, CSV) bị kiểm soát nghiêm ngặt; mọi lượt xuất file phải ghi nhận vào Audit Log.
-  - **Che thông tin nhạy cảm (Data Masking):** Khi xuất báo cáo cho cấp quản lý bộ phận, số tài khoản ngân hàng, số CCCD và mức lương cá nhân bắt buộc phải được che dạng `******1234` hoặc ẩn cột (`PD-028, PD-038`).
+  - Chỉ Admin và HR Staff được xuất báo cáo Excel hoặc PDF theo `PD-028`; mọi lượt xuất file phải ghi nhận vào Audit Log.
+  - **Che thông tin nhạy cảm (Data Masking):** Khi người xuất không có quyền xem từng trường, số tài khoản ngân hàng, số CCCD và mức lương cá nhân phải được che dạng `******1234` hoặc ẩn cột (`PD-028, PD-038`).
   - Ban Giám Đốc và HR Manager được xem số liệu đầy đủ theo ma trận quyền.
 - **Hành vi khi vi phạm:** Báo lỗi `EXPORT_PERMISSION_DENIED` nếu người dùng không có quyền trích xuất dữ liệu.
 
-### BR-AUTH-001: Phân quyền xem báo cáo
+### BR-REP-AUTH-001: Phân quyền xem báo cáo
 
 - **Department Manager:** Chỉ được xem báo cáo hiệu suất, chấm công và cơ cấu nhân sự của phòng ban mình.
 - **Executive / HR Manager:** Được xem báo cáo toàn diện và báo cáo tài chính nhân sự toàn công ty.

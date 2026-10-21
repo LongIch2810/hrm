@@ -15,8 +15,8 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 - **Quy trình 5 bước chuẩn hóa:**
   1. `NEW`: Tạo yêu cầu và đăng tin tuyển dụng.
   2. `SCREENING`: Tiếp nhận và sàng lọc hồ sơ ứng viên (CV).
-  3. `INTERVIEW`: Lên lịch và thực hiện các vòng phỏng vấn (Vòng 1: HR Sơ loại; Vòng 2: Chuyên môn & Department Manager); chấm điểm trực tiếp trên hệ thống.
-  4. `OFFER`: Soạn thảo, phê duyệt và gửi thư mời nhận việc cho ứng viên đạt tiêu chuẩn.
+  3. `INTERVIEWING`: Lên lịch và thực hiện các vòng phỏng vấn (Vòng 1: HR Sơ loại; Vòng 2: Chuyên môn & Department Manager); chấm điểm trực tiếp trên hệ thống.
+  4. `OFFERED`: Soạn thảo, phê duyệt và gửi thư mời nhận việc cho ứng viên đạt tiêu chuẩn.
   5. `HIRED`: Ứng viên đồng ý nhận việc $\rightarrow$ Hệ thống tự động chuyển hồ sơ sang phân hệ Onboarding.
 
 ---
@@ -31,7 +31,7 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 - **Checklist chuẩn hóa 4 bên:**
   1. IT: Cấp tài khoản hệ thống (Email nội bộ, mật khẩu khởi tạo, phân quyền) và cấp phát laptop/thiết bị.
   2. HR: Ký kết hợp đồng lao động thử việc (`CON`) và thu thập hồ sơ pháp lý.
-  3. Quản lý phòng ban: Phân công người hướng dẫn (Mentor) và kế hoạch thử việc 60 ngày.
+  3. Quản lý phòng ban: Phân công người hướng dẫn (Mentor) và kế hoạch thử việc theo vị trí (tối đa 60 hoặc 30 ngày).
   4. Nhân viên mới: Hoàn tất hồ sơ cá nhân và ký nhận bàn giao thiết bị.
 - **Điều kiện hoàn tất:** 100% mục trong checklist được các bên xác nhận $\rightarrow$ Chuyển trạng thái nhân viên sang `ACTIVE`.
 
@@ -44,6 +44,8 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 **Status:** Confirmed — Approved by Product Owner (`PD-013`, `PD-014`)
 
 - **Phương thức ghi nhận:** Kết hợp Check-in / Check-out trên Web và Import file Excel từ máy chấm công.
+- **Lệch giờ giữa Web và file máy:** HR đối soát và chọn giờ có hiệu lực; không tự ưu tiên nguồn nhập sau.
+- **OT ngày nghỉ/cuối tuần:** Cho phép Check-in/Check-out trên Web khi có đơn OT được duyệt.
 - **Khung giờ chuẩn:** 08:00 - 17:30 (8 giờ làm việc, nghỉ trưa 12:00 - 13:30, từ Thứ Hai đến Thứ Sáu).
 - **Quy tắc tính công:**
   - Ân hạn đi muộn: Tối đa 15 phút (check-in sau 08:15 tính muộn từ mốc 08:00).
@@ -56,11 +58,11 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 
 **Liên kết:** FR-ATT-007, FR-ATT-010, FR-PAY-003. Xem chi tiết tại [Overtime Approval Workflow](overtime-approval-workflow.md).
 
-**Status:** Confirmed — Approved by Product Owner (`PD-010`, `PD-014`)
+**Status:** Confirmed — Approved by Product Owner (`PD-014`)
 
 - **Nguyên tắc bắt buộc:** Phải có đơn đăng ký được Quản lý trực tiếp phê duyệt trước mới được ghi nhận giờ OT vào bảng công. Mọi thời gian ở lại văn phòng không có đơn duyệt đều không được tính tiền OT.
-- **Làm tròn thời gian:** Làm tròn theo block **30 phút**.
-- **Đối soát thực tế:** Lấy $\min(\text{Giờ duyệt}, \text{Giờ quẹt thẻ thực tế})$.
+- **Làm tròn thời gian:** Làm tròn lên giờ OT thực tế theo block **30 phút**.
+- **Đối soát thực tế:** Lấy $\min(\text{Giờ duyệt}, \text{Giờ OT thực tế đã làm tròn lên})$.
 - **Hệ số lương OT:** Ngày thường x1.5, Ngày nghỉ cuối tuần x2.0, Ngày lễ tết x3.0.
 
 ---
@@ -86,11 +88,11 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 
 **Status:** Confirmed — Approved by Product Owner (`PD-017`, `PD-018`, `PD-019`)
 
-- **Kỳ lương:** Tính theo tháng dương lịch (từ ngày 01 đến ngày cuối cùng của tháng). Chi trả vào ngày 05 hàng tháng.
+- **Kỳ lương:** Tính theo tháng dương lịch (từ ngày 01 đến ngày cuối cùng của tháng). Chốt lương ngày 05, chi trả ngày 10 hàng tháng.
 - **Công thức tính toán:**
   - Tiền tệ: VNĐ, làm tròn 0 chữ số thập phân.
   - Lương thực lĩnh (Net) = Tổng thu nhập (Lương ngày công + Phụ cấp + Thưởng + Tiền OT) - Trích đóng bảo hiểm bắt buộc người lao động (10.5%) - Thuế TNCN (biểu lũy tiến 7 bậc, giảm trừ bản thân 11tr, người phụ thuộc 4.4tr/người) - Các khoản khấu trừ.
-- **Khóa kỳ lương & Phiếu lương:** Bảng lương sau khi Giám Đốc/HR Manager phê duyệt sẽ được Khóa kỳ (`Closed`) vĩnh viễn. Tự động phát hành Phiếu lương điện tử (Payslip) riêng tư cho từng nhân viên.
+- **Khóa kỳ lương & Phiếu lương:** Giám đốc/HR Manager chuyển kỳ từ `Draft` sang `Approved`; HR Staff khóa kỳ thành `Closed`. Hệ thống phát hành Phiếu lương điện tử (Payslip) riêng tư cho từng nhân viên.
 
 ---
 
@@ -100,7 +102,7 @@ Tài liệu này tổng hợp **11 quy trình nghiệp vụ cốt lõi** xuyên 
 
 **Status:** Confirmed — Approved by Product Owner (`PD-025`)
 
-- **Vòng đời hợp đồng:** Ký mới (Thử việc/Có thời hạn) $\rightarrow$ Phụ lục điều chỉnh $\rightarrow$ Cảnh báo tự động trước 45 & 30 ngày $\rightarrow$ Tái ký / Gia hạn $\rightarrow$ Thanh lý / Chấm dứt.
+- **Vòng đời hợp đồng:** Ký mới (Thử việc/Có thời hạn) $\rightarrow$ Phụ lục điều chỉnh $\rightarrow$ Cảnh báo tự động trước 30 ngày $\rightarrow$ Tái ký / Gia hạn $\rightarrow$ Thanh lý / Chấm dứt.
 - **Quy tắc pháp lý:** Mỗi nhân viên chỉ có 1 hợp đồng `ACTIVE` tại một thời điểm; sau 2 lần ký hợp đồng có thời hạn, hệ thống bắt buộc chuyển sang loại Không xác định thời hạn.
 
 ---

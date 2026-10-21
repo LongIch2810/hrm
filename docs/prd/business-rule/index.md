@@ -23,6 +23,6 @@
 
 ## Quy tắc áp dụng cho AI Agents
 
-- Mọi module đều bắt buộc kiểm tra quy tắc phân quyền dùng chung: `BR-AUTH-001` (Role-Based Access Control).
+- Mỗi module dùng mã phân quyền riêng `BR-<MODULE>-AUTH-001`; tra quy tắc trong file business rule của module đó và ma trận vai trò tại PRD.
 - Không tự ý sinh công thức tính toán hoặc giá trị mặc định khi chưa có quyết định phê duyệt chính thức.
 - Khi điều kiện nghiệp vụ vi phạm, hệ thống phải trả thông báo lỗi chính xác theo mã BR tương ứng.

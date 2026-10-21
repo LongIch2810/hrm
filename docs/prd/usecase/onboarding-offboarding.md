@@ -45,7 +45,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
      - Chọn Mẫu Checklist áp dụng (ví dụ: `Checklist Khối Công Nghệ`, `Checklist Khối Kinh Doanh`).
   4. Hệ thống nạp danh mục các nhiệm vụ mẫu và HR Staff phân công:
      - **Nhóm 1 - Nhiệm vụ IT:** Cấp email công ty (`@company.com`), cấp quyền truy cập Slack/Jira, chuẩn bị máy tính xách tay (giao cho IT Admin phụ trách).
-     - **Nhóm 2 - Nhiệm vụ Phòng ban:** Chỉ định Người hướng dẫn (Mentor), chuẩn bị tài liệu dự án và kế hoạch thử việc 60 ngày (giao cho Trưởng phòng phụ trách).
+     - **Nhóm 2 - Nhiệm vụ Phòng ban:** Chỉ định Người hướng dẫn (Mentor), chuẩn bị tài liệu dự án và kế hoạch thử việc theo vị trí (tối đa 60 hoặc 30 ngày; giao cho Trưởng phòng phụ trách).
      - **Nhóm 3 - Nhiệm vụ Nhân sự:** Chuẩn bị hợp đồng thử việc, giới thiệu văn hóa công ty, chụp ảnh thẻ, chuẩn bị bàn ghế làm việc (giao cho HR Staff).
      - **Nhóm 4 - Nhiệm vụ Nhân viên mới:** Bổ sung giấy khám sức khỏe, CCCD công chứng, số tài khoản ngân hàng nhận lương.
   5. HR Staff đặt Deadline cho từng nhiệm vụ (thường trước ngày đi làm 1 ngày).

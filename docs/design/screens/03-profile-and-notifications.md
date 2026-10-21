@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Hồ Sơ Cá Nhân & Trung Tâm Thông Báo (Screens 12 - 13)
 
 Tài liệu thiết kế chi tiết cổng tự cập nhật hồ sơ cá nhân (Employee Self-Service Profile) và Trung tâm thông báo hệ thống In-App.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [PRD PD-009, PD-029](file:///d:/saved/Project/hrm/docs/PRD.md#43-roles--permissions-matrix).
+Tuân thủ [Design System](../design-system.md) và [PRD PD-009, PD-029](../../PRD.md#43-roles--permissions-matrix).
 
 ---
 
@@ -15,7 +15,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 
 ### 1.2. Bố cục & Responsive
 - **Desktop (1440px):**
-  - Cột trái (320px): Thẻ Card tóm tắt: Avatar tròn 96px có nút đổi ảnh, Mã nhân viên (`EMP0142`), Họ tên, Chức vụ, Badge trạng thái `ACTIVE` màu xanh lá, Nút đổi mật khẩu.
+  - Cột trái (320px): Thẻ Card tóm tắt: Avatar tròn 96px có nút đổi ảnh, Mã nhân viên (`EMP-2026-0142`), Họ tên, Chức vụ, Badge trạng thái `ACTIVE` màu xanh lá, Nút đổi mật khẩu.
   - Cột phải (Phần còn lại): Hệ thống 3 Tabs:
     - Tab 1: **Thông tin Liên hệ (Cho phép chỉnh sửa):** SĐT (10 số VN), Email cá nhân, Địa chỉ hiện tại, Thông tin người liên hệ khẩn cấp (Họ tên, quan hệ, SĐT). Nút Primary "Lưu thay đổi".
     - Tab 2: **Thông tin Pháp lý & Công tác (Read-only):** CCCD, Ngày cấp, Nơi cấp, Mã số thuế cá nhân, Số sổ BHXH, Ngày vào làm, Phòng ban, Hợp đồng hiện tại.

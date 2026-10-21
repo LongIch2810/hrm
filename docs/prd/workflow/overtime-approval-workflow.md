@@ -5,7 +5,7 @@
 Tài liệu này đặc tả quy trình đăng ký, phê duyệt và đối soát giờ làm thêm (Overtime - OT) trong hệ thống HRM.
 
 - **Liên kết chức năng:** FR-ATT-007, FR-ATT-010, FR-PAY-003.
-- **Trạng thái:** Confirmed — Approved by Product Owner (`PD-010`, `PD-014`). Làm tròn thời gian làm thêm theo block 30 phút; bắt buộc phải có đơn đăng ký được Quản lý trực tiếp phê duyệt trước mới được ghi nhận giờ OT vào bảng công và bảng lương.
+- **Trạng thái:** Confirmed — Approved by Product Owner (`PD-014`). Làm tròn lên thời gian OT thực tế theo block 30 phút; đơn phải được Quản lý trực tiếp duyệt trước.
 
 ---
 
@@ -15,7 +15,7 @@ Tài liệu này đặc tả quy trình đăng ký, phê duyệt và đối soá
 flowchart TD
     A["Phát sinh nhu cầu làm thêm giờ theo yêu cầu dự án/công việc"] --> B["Employee tạo Đơn đăng ký làm thêm giờ (OT) trước giờ làm"]
     B --> C["Nhập: Ngày làm thêm, Giờ bắt đầu, Giờ kết thúc, Lý do & Hạng mục việc"]
-    C --> D["Hệ thống làm tròn dự kiến theo block 30 phút & gửi thông báo tới Manager"]
+    C --> D["Hệ thống tính thời lượng dự kiến & gửi thông báo tới Manager"]
     D --> E["Department Manager rà soát tính cần thiết & khối lượng việc"]
     E --> F{"Manager phê duyệt đơn OT?"}
     F -- "Từ chối (Reject)" --> G["Đơn chuyển sang REJECTED kèm lý do; Gửi thông báo cho nhân viên"]
@@ -23,8 +23,8 @@ flowchart TD
     F -- "Phê duyệt (Approve)" --> I["Đơn chuyển sang APPROVED; Sẵn sàng đối soát thực tế"]
     I --> J["Đến ngày làm thêm: Nhân viên thực hiện Check-in / Check-out"]
     J --> K["Hệ thống đối soát giữa Giờ OT đăng ký và Giờ quẹt thẻ thực tế"]
-    K --> L["Tính số giờ OT thực tế hợp lệ (Lấy min giữa giờ duyệt và giờ làm thực tế)"]
-    L --> M["Làm tròn block 30 phút & áp dụng hệ số (Ngày thường x1.5, Cuối tuần x2.0)"]
+    K --> L["Làm tròn lên giờ OT thực tế theo block 30 phút"]
+    L --> M["Lấy min với giờ được duyệt; áp dụng hệ số OT"]
     M --> N["Tổng hợp vào Bảng công tháng (ATT) & Chốt chuyển sang Bảng lương (PAY)"]
 ```
 
@@ -35,7 +35,7 @@ flowchart TD
 ### Giai đoạn 1: Đăng ký đơn làm thêm giờ
 1. Trước khi làm việc ngoài giờ quy định (sau 17:30 ngày làm việc hoặc vào các ngày Thứ Bảy, Chủ Nhật), Employee mở form "Đăng ký làm thêm giờ (OT)".
 2. Employee chọn Ngày làm việc, nhập Giờ bắt đầu, Giờ kết thúc, Lý do làm thêm và Dự án/Hạng mục phụ trách.
-3. Hệ thống tự động tính thời lượng dự kiến và làm tròn theo block 30 phút (ví dụ: làm từ 18:00 đến 19:40 được tính là 1.5 giờ / 90 phút; 10 phút lẻ bỏ qua).
+3. Hệ thống tự động tính thời lượng dự kiến; thời gian OT thực tế được làm tròn lên theo block 30 phút khi đối soát.
 4. Employee bấm "Gửi đơn phê duyệt". Đơn ở trạng thái `PENDING`.
 
 ### Giai đoạn 2: Quản lý phòng ban phê duyệt
@@ -46,10 +46,10 @@ flowchart TD
    - **Từ chối (`REJECTED`):** Bắt buộc nhập lý do từ chối. Nhân viên nhận thông báo và thời gian làm ngoài giờ sẽ không được tính tiền OT.
 
 ### Giai đoạn 3: Đối soát chấm công thực tế & Tổng hợp tính lương
-1. Vào ngày làm thêm, nhân viên phải thực hiện Check-in và Check-out đầy đủ trên hệ thống hoặc máy chấm công.
+1. Vào ngày làm thêm, kể cả ngày nghỉ/cuối tuần, nhân viên có đơn OT được duyệt có thể Check-in và Check-out trên Web; dữ liệu máy chấm công cũng được đối soát.
 2. Hệ thống chạy thuật toán đối soát:
-   - Số giờ OT ghi nhận = $\min(\text{Số giờ theo đơn được duyệt}, \text{Số giờ quẹt thẻ thực tế})$.
-   - Nếu nhân viên về sớm hơn giờ đăng ký: Chỉ tính theo thời gian quẹt thẻ thực tế.
+   - Số giờ OT ghi nhận = $\min(\text{Số giờ theo đơn được duyệt}, \text{Giờ OT thực tế làm tròn lên block 30 phút})$.
+   - Nếu nhân viên về sớm hơn giờ đăng ký: Làm tròn lên thời gian thực tế theo block 30 phút, tối đa bằng giờ được duyệt.
    - Nếu nhân viên về muộn hơn giờ đăng ký: Chỉ tính tối đa bằng số giờ đã được Manager duyệt trước đó.
 3. Cuối tháng, hệ thống tự động tổng hợp toàn bộ số giờ OT đã đối soát vào Bảng tổng hợp công tháng (`ATT`), phân loại theo hệ số lương:
    - Làm thêm ngày thường: Nhân hệ số 150% (x1.5).

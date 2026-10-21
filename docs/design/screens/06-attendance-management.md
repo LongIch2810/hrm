@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Chấm Công & Quản Lý Thời Gian — Phân Hệ ATT (Screens 22 - 28)
 
 Tài liệu thiết kế chi tiết phân hệ Chấm công (`ATT`), quy trình ghi nhận giờ làm, giải trình công, đăng ký/phê duyệt làm thêm giờ (OT) và bảng công tháng.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-ATT-001 → 010](file:///d:/saved/Project/hrm/docs/prd/function-requirement/attendance-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-ATT-001 → 010](../../prd/function-requirement/attendance-management.md).
 
 ---
 
@@ -20,7 +20,8 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
   - Ghi chú: Địa chỉ IP và thiết bị truy cập được ghi nhận tự động.
 - **Bảng Nhật Ký Vào/Ra Trong Ngày:**
   - Lịch sử các lần quẹt thẻ trong ngày (Lần 1 Check-in, Lần 2 Check-out...).
-  - Tổng số giờ làm việc thực tế được làm tròn theo quy tắc chuẩn.
+  - Tổng số giờ làm việc thực tế; thời gian OT được làm tròn lên theo block 30 phút khi đối soát.
+  - Từ chối chấm thêm sau khi hoàn tất ngày công; hướng dẫn gửi giải trình nếu cần sửa công.
 - **Nút Hành Động Phụ:** "Gửi đơn giải trình quên check-out" (mở modal giải trình có Manager duyệt).
 
 ---
@@ -43,9 +44,9 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 
 ## 3. Quản Lý Đơn Làm Thêm Giờ (OT) Của Tôi (`/attendance/my-overtime` — Screen 24)
 
-### 3.1. Nghiệp vụ & Ràng buộc (PD-010, PD-014)
+### 3.1. Nghiệp vụ & Ràng buộc (PD-014)
 - **Quy tắc:** Bắt buộc phải có đơn đăng ký được duyệt trước mới được tính công OT.
-- **Làm tròn thời gian:** Theo block **30 phút**.
+- **Làm tròn thời gian:** Làm tròn lên giờ OT thực tế theo block **30 phút**, tối đa bằng giờ được duyệt.
 - **Hệ số tính:** Ngày thường x1.5, Cuối tuần x2.0, Lễ Tết x3.0.
 
 ### 3.2. Màn hình & Modal Tạo Đơn
@@ -84,8 +85,9 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 ### 6.2. Thành phần Bảng Công Tổng Hợp
 - Bảng công tháng của toàn thể 184 nhân sự công ty.
 - **Nút Import File Máy Chấm Công:**
-  - Hộp thoại tải lên file Excel (.xlsx) xuất từ máy quẹt vân tay / nhận diện khuôn mặt.
-  - Chức năng Xem trước đối soát (Preview & Validation): Báo cáo số dòng hợp lệ, số dòng lỗi, tự động Upsert dữ liệu dựa trên cặp khóa `(employee_id, work_date)`.
+  - Hộp thoại tải lên file Excel/CSV (.xlsx, .csv) xuất từ máy quẹt vân tay / nhận diện khuôn mặt.
+  - Chức năng Xem trước đối soát (Preview & Validation): Báo cáo số dòng hợp lệ, số dòng lỗi và giờ lệch giữa Web/file máy theo `(employee_id, work_date)`.
+  - HR chọn giờ có hiệu lực cho ngày lệch nguồn trước khi tổng hợp; không tự ghi đè theo file nhập sau.
 - **Nút "Chốt Công Tháng":** Khóa toàn bộ dữ liệu chấm công tháng, chuyển giao dữ liệu an toàn sang Phân hệ Tính Lương (`PAY`).
 
 ---

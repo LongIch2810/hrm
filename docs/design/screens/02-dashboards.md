@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Bảng Điều Khiển Theo Từng Vai Trò (Screens 8 - 11)
 
 Tài liệu thiết kế chi tiết 4 Dashboard độc lập theo 4 nhóm vai trò RBAC: System Administrator, HR Staff, Department Manager và Employee Portal.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [PRD Section 4.1](file:///d:/saved/Project/hrm/docs/PRD.md#41-user-personas).
+Tuân thủ [Design System](../design-system.md) và [PRD Section 4.1](../../PRD.md#41-user-personas).
 
 ---
 

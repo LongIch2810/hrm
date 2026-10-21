@@ -32,7 +32,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 
 - **Mã FR:** FR-DEPT-001, FR-DEPT-007.
 - **Actor chính:** HR Staff, System Administrator.
-- **Tiền điều kiện:** Người dùng có quyền quản trị phòng ban (`BR-AUTH-001`).
+- **Tiền điều kiện:** Người dùng có quyền quản trị phòng ban (`BR-DEPT-AUTH-001`).
 - **Dữ liệu đầu vào (Input Fields):**
   - Mã phòng ban (`code`): Viết hoa không dấu, duy nhất (VD: `DEPT-TECH`, `DEPT-HR`).
   - Tên phòng ban (`name`): Chuỗi văn bản tiếng Việt duy nhất (VD: `Phòng Công Nghệ Thông Tin`).

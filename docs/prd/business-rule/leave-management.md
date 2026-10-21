@@ -25,13 +25,13 @@
   - **Vòng đời trạng thái đơn:** `Draft` $\rightarrow$ `Pending` $\rightarrow$ `Approved` / `Rejected` / `Cancelled`.
   - **Cơ chế phê duyệt 1 cấp:** Quản lý trực tiếp (Department Manager) của nhân viên là người duy nhất phê duyệt; khi Manager nhấn `Approved`, hệ thống lập tức trừ quỹ phép và tự động ghi nhận vào bảng chấm công; HR Staff có quyền xem và giám sát toàn công ty.
   - **Tạm giữ số dư (Hold balance):** Khi đơn ở trạng thái `Pending`, số ngày phép tương ứng bị tạm giữ để ngăn chặn tạo nhiều đơn vượt quá số dư.
-  - **Hoàn trả số dư:** Nếu đơn bị `Rejected` hoặc `Cancelled` trước thời điểm nghỉ, số ngày phép tạm giữ được hoàn trả 100% vào số dư khả dụng.
-  - **Hủy đơn:** Nhân viên chỉ được tự hủy đơn khi đơn ở trạng thái `Pending` hoặc trước ngày nghỉ bắt đầu; không cho phép tự hủy đơn trong quá khứ.
+  - **Hoàn trả số dư:** Nếu đơn `Pending` bị hủy hoặc bị từ chối, giải phóng toàn bộ số dư đang tạm giữ; nếu đơn `Approved` được Manager xác nhận hủy trước ngày nghỉ, hoàn trả toàn bộ số ngày phép đã trừ.
+  - **Hủy đơn:** Nhân viên chỉ được tự hủy đơn `Pending`; đơn `Approved` trước ngày nghỉ phải gửi yêu cầu để Manager trực tiếp xác nhận. Không cho phép hủy đơn sau khi ngày nghỉ bắt đầu.
 - **Hành vi khi vi phạm:** Báo lỗi `CANNOT_CANCEL_PAST_LEAVE` nếu nhân viên hủy đơn sau ngày đã nghỉ.
 - **Trạng thái xác nhận:** Confirmed bởi Product Owner (PD-016).
 
-### BR-AUTH-001: Phân quyền duyệt đơn nghỉ phép
+### BR-LEAVE-AUTH-001: Phân quyền duyệt đơn nghỉ phép
 
-- **Employee:** Chỉ được tạo đơn, hủy đơn của mình trước khi duyệt, và xem số dư phép cá nhân.
+- **Employee:** Được tạo đơn, tự hủy đơn `Pending`, yêu cầu Manager hủy đơn `Approved` trước ngày nghỉ và xem số dư phép cá nhân.
 - **Department Manager:** Duyệt/từ chối đơn của nhân viên cấp dưới trực tiếp.
 - **HR Staff:** Xem toàn bộ lịch nghỉ toàn công ty và quản lý danh mục loại nghỉ phép.

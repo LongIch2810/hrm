@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Quản Lý Đào Tạo — Phân Hệ TRAIN (Screens 55 - 58)
 
 Tài liệu thiết kế chi tiết phân hệ Đào tạo nhân sự nội bộ (`TRAIN`), tổ chức khóa học, điểm danh chuyên cần, đánh giá và cấp phát chứng chỉ số.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-TRAIN-001 → 008](file:///d:/saved/Project/hrm/docs/prd/function-requirement/training-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-TRAIN-001 → 008](../../prd/function-requirement/training-management.md).
 
 ---
 

@@ -18,8 +18,9 @@ flowchart TD
     D --> E["HR & Kế toán rà soát & Đối soát ngoại lệ"]
     E --> F{"Phê duyệt bảng lương?"}
     F -- "Cần điều chỉnh" --> B
-    F -- "Duyệt thành công" --> G["Khóa kỳ lương (Closed Payroll)"]
-    G --> H["Tự động sinh Phiếu lương điện tử (Payslips)"]
+    F -- "Duyệt thành công" --> G["HR Manager / Giám đốc chuyển sang Approved"]
+    G --> L["HR Staff khóa kỳ lương (Closed Payroll)"]
+    L --> H["Tự động sinh Phiếu lương điện tử (Payslips)"]
     H --> I["Gửi thông báo phiếu lương tới từng Nhân viên"]
     I --> K["Thực hiện lệnh chi trả lương qua Ngân hàng"]
 ```
@@ -29,5 +30,6 @@ flowchart TD
 1. **Khởi tạo:** Kế toán mở kỳ lương mới (ví dụ: Kỳ lương tháng 10/2026).
 2. **Tổng hợp dữ liệu nguồn:** Hệ thống kéo dữ liệu từ Hợp đồng (Lương cứng, phụ cấp cố định), Chấm công (Số công thực tế, giờ OT), và Nghỉ phép (Nghỉ không lương).
 3. **Tính toán:** Hệ thống tự động áp dụng công thức tính thu nhập chịu thuế, các khoản trích đóng bảo hiểm (BHXH, BHYT, BHTN) và thuế TNCN lũy tiến.
-4. **Kiểm tra & Phê duyệt:** Cấp quản lý kiểm tra tổng quỹ lương, sau khi duyệt thì nhấn "Khóa kỳ lương" để ngăn chặn sửa đổi dữ liệu quá khứ.
-5. **Công bố phiếu lương:** Mỗi nhân viên nhận được phiếu lương điện tử riêng biệt và an toàn trên cổng thông tin cá nhân.
+4. **Kiểm tra & Phê duyệt:** HR Manager hoặc Giám đốc kiểm tra tổng quỹ lương và chuyển kỳ từ `Draft` sang `Approved`.
+5. **Khóa kỳ:** HR Staff khóa kỳ `Approved` thành `Closed` để ngăn sửa dữ liệu quá khứ.
+6. **Công bố phiếu lương:** Mỗi nhân viên nhận được phiếu lương điện tử riêng biệt và an toàn trên cổng thông tin cá nhân.

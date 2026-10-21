@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Cơ Cấu Tổ Chức & Phòng Ban — Phân Hệ DEPT (Screens 18 - 21)
 
 Tài liệu thiết kế chi tiết phân hệ Quản lý Cơ cấu tổ chức và Phòng ban (`DEPT`).
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-DEPT-001 → 007](file:///d:/saved/Project/hrm/docs/prd/function-requirement/department-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-DEPT-001 → 007](../../prd/function-requirement/department-management.md).
 
 ---
 

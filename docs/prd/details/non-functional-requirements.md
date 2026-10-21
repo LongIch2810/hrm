@@ -13,11 +13,11 @@ Tài liệu này đặc tả toàn bộ các yêu cầu phi chức năng (NFR) �
 - **Mã định danh:** NFR-SEC-001
 - **Trạng thái:** Confirmed (PD-029, PD-032)
 - **Tiêu chuẩn kỹ thuật đã phê duyệt:**
-  - **Mật khẩu an toàn:** Băm mật khẩu bằng Argon2id hoặc Bcrypt trước khi lưu vào cơ sở dữ liệu. Bắt buộc độ dài tối thiểu 8 ký tự, bao gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt.
-  - **Quản lý phiên & Token:** Sử dụng Access Token (JWT thời hạn ngắn 15 phút) và Refresh Token (thời hạn 7 ngày) được lưu trữ trong `HttpOnly`, `Secure`, `SameSite=Strict` Cookie để chống tấn công XSS.
-  - **Mã hóa đường truyền:** Bắt buộc sử dụng giao thức HTTPS/TLS 1.3 cho toàn bộ kết nối web và API.
+  - **Mật khẩu an toàn:** Băm mật khẩu bằng `bcrypt` 6.0.0, work factor 12 trước khi lưu. Chấp nhận tối thiểu 15 ký tự, tối đa 72 byte UTF-8, gồm passphrase và khoảng trắng; không bắt buộc chữ hoa, chữ số hoặc ký tự đặc biệt.
+  - **Quản lý phiên & Token:** Access token JWT HS256 (15 phút) lưu trong bộ nhớ ứng dụng; refresh token JWT HS256 (7 ngày) lưu trong cookie `HttpOnly`, `SameSite=Lax`, bật `Secure` trên HTTPS.
+  - **Mã hóa đường truyền:** Dùng HTTPS/TLS 1.3 khi triển khai; chỉ dùng HTTP trên loopback `127.0.0.1` cho môi trường local theo [Security Rules](../../rules/security.md).
   - **Phòng chống lỗ hổng:** Triệt tiêu các lỗ hổng OWASP Top 10: chống SQL Injection qua TypeORM Parameterized Queries, chống XSS qua React DOM Sanitization, chống CSRF qua SameSite cookie và custom header.
-- **Tiêu chí nghiệm thu (AC-NFR-SEC-001):** 100% endpoint được bảo vệ bởi Guard xác thực; mật khẩu không bao giờ xuất hiện dưới dạng plain-text trong DB hoặc logs; vượt qua bài quét mã tĩnh (SonarQube/npm audit) không còn lỗ hổng mức High/Critical.
+- **Tiêu chí nghiệm thu (AC-NFR-SEC-001):** Mọi endpoint cần xác thực được bảo vệ bởi Guard; mật khẩu không xuất hiện dưới dạng plain-text trong DB hoặc logs; kiểm tra phụ thuộc bằng `npm audit` không còn lỗ hổng mức High/Critical.
 
 ---
 
@@ -64,7 +64,7 @@ Tài liệu này đặc tả toàn bộ các yêu cầu phi chức năng (NFR) �
   - **Toàn vẹn quan hệ:** Bắt buộc thiết lập ràng buộc khóa ngoại `FOREIGN KEY` với hành vi mặc định `ON DELETE RESTRICT` để chống xóa mất dữ liệu liên đới.
   - **Quản lý giao dịch (ACID):** Bọc trong Database Transaction cho mọi thao tác ghi trải từ 2 bảng trở lên (duyệt đơn nghỉ phép, chốt công, tạo nhân viên kèm tài khoản).
   - **Khử trùng lặp:** Sử dụng Partial Unique Index (`WHERE deleted_at IS NULL`) để chống tạo trùng email, mã nhân viên khi áp dụng xóa mềm.
-- **Tiêu chí nghiệm thu (AC-NFR-INT-001):** Không để lọt bất kỳ dữ liệu mồ côi (Orphan Records) nào trong cơ sở dữ liệu; rollback 100% nếu có lỗi trong transaction.
+- **Tiêu chí nghiệm thu (AC-NFR-INT-001):** Không để lọt bất kỳ dữ liệu mồ côi (Orphan Records) nào trong cơ sở dữ liệu; rollback 100% nếu có lỗi trong transaction. Từ chối lượt lưu dựa trên bản cũ và yêu cầu tải lại trước khi sửa tiếp.
 
 ---
 
@@ -86,7 +86,7 @@ Tài liệu này đặc tả toàn bộ các yêu cầu phi chức năng (NFR) �
 - **Trạng thái:** Confirmed (PD-037)
 - **Tiêu chuẩn kỹ thuật đã phê duyệt:**
   - **Quy chuẩn mã nguồn:** Tuân thủ tuyệt đối [Clean Code](../../rules/clean-code.md), [Coding Style](../../rules/coding-style.md) và bật `strict: true` trong cấu hình TypeScript cho cả hai phía frontend và backend.
-  - **Kiểm thử tự động:** Viết Unit Test và Integration Test cho các nghiệp vụ tính toán cốt lõi (tính đi muộn, trừ phép, tính công) với độ bao phủ (Coverage) $\ge 80\%$.
+  - **Kiểm thử tự động:** Viết Unit Test và Integration Test cho các nghiệp vụ tính toán cốt lõi (tính đi muộn, trừ phép, tính công); kiểm mọi nhánh quan trọng theo [Testing Rules](../../rules/testing.md), không đặt ngưỡng coverage theo phần trăm.
   - **Tài liệu hóa:** Mọi thay đổi schema hoặc API contract đều phải được cập nhật đồng bộ trong thư mục `docs/`.
 - **Tiêu chí nghiệm thu (AC-NFR-MAI-001):** Code pass 100% linter ESLint, formatter Prettier và toàn bộ test suites trước khi tạo Pull Request.
 
@@ -99,7 +99,7 @@ Tài liệu này đặc tả toàn bộ các yêu cầu phi chức năng (NFR) �
 - **Tiêu chuẩn kỹ thuật đã phê duyệt:**
   - **Nhật ký bảo mật (Audit Log):** Tự động ghi log bất biến cho toàn bộ các hành động nhạy cảm: Đăng nhập/Đăng xuất, Đổi mật khẩu, Thay đổi quyền hạn, Sửa/xóa hồ sơ nhân sự, Phê duyệt đơn nghỉ phép, Chốt bảng công.
   - **Cấu trúc trường log:** Bắt buộc lưu trữ: `id`, `timestamp` (UTC), `actor_id`, `actor_role`, `ip_address`, `action`, `resource`, `status`, `old_value`, `new_value`.
-  - **Bảo mật log:** Cấm ghi log mật khẩu plain-text, token hoặc thông tin nhạy cảm. Lưu trữ log tối thiểu 12 tháng.
+  - **Bảo mật log:** Cấm ghi log mật khẩu plain-text, token hoặc thông tin nhạy cảm. Lưu trữ audit log tối thiểu 2 năm.
 - **Tiêu chí nghiệm thu (AC-NFR-AUD-001):** Bảng `audit_logs` có cơ chế bảo vệ chống xóa hoặc sửa đổi (Append-only); chỉ System Administrator mới có quyền xem audit log.
 
 ---

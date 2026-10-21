@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Đánh Giá Hiệu Suất — Phân Hệ PERF (Screens 47 - 51)
 
 Tài liệu thiết kế chi tiết quy trình đánh giá thành tích hiệu suất (`PERF`) chuẩn 3 bước định kỳ (6 tháng / 1 năm) theo thang điểm 1-5 và xếp loại 5 bậc (A, B, C, D, E).
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-PERF-001 → 008](file:///d:/saved/Project/hrm/docs/prd/function-requirement/performance-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-PERF-001 → 008](../../prd/function-requirement/performance-management.md).
 
 ---
 

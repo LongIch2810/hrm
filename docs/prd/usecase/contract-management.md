@@ -18,10 +18,10 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 | Mã Story | Nội dung User Story | Mã FR | Tiêu chí nghiệm thu (Acceptance Criteria) |
 |---|---|---|---|
 | US-CON-001 | As a HR Staff, I want tạo mới hợp đồng lao động với số hợp đồng duy nhất và đầy đủ các điều khoản cơ bản (lương, vị trí, địa điểm), So that việc thiết lập quan hệ lao động hợp pháp và minh bạch. | FR-CON-001 | Số hợp đồng không trùng lặp; mỗi nhân viên chỉ có duy nhất 1 hợp đồng ở trạng thái `Active` tại một thời điểm. |
-| US-CON-002 | As a HR Staff, I want quản lý 3 loại hợp đồng chuẩn theo Bộ luật Lao động (Thử việc, Xác định thời hạn, Không xác định thời hạn), So that loại hình hợp đồng tuân thủ đúng khung pháp lý Việt Nam. | FR-CON-002 | Hợp đồng thử việc tối đa 60 ngày; hợp đồng có thời hạn từ 12 đến 36 tháng; hợp đồng không thời hạn không bắt buộc ngày kết thúc. |
+| US-CON-002 | As a HR Staff, I want quản lý 3 loại hợp đồng chuẩn theo Bộ luật Lao động (Thử việc, Xác định thời hạn, Không xác định thời hạn), So that loại hình hợp đồng tuân thủ đúng khung pháp lý Việt Nam. | FR-CON-002 | Thử việc tối đa 60 ngày cho vị trí chuyên môn, 30 ngày cho vị trí khác; hợp đồng có thời hạn từ 12 đến 36 tháng; hợp đồng không thời hạn không bắt buộc ngày kết thúc. |
 | US-CON-003 | As a HR Staff, I want theo dõi chính xác ngày bắt đầu và ngày kết thúc hiệu lực của từng hợp đồng, So that quản lý được thời gian làm việc và quyền lợi tương ứng của nhân viên. | FR-CON-003 | Ngày kết thúc phải lớn hơn ngày bắt đầu; hệ thống hiển thị số ngày còn lại đến hạn hết hợp đồng. |
 | US-CON-004 | As a HR Staff, I want tạo phụ lục hợp đồng gắn với hợp đồng gốc khi có thay đổi về mức lương, chức danh hoặc địa điểm làm việc, So that các điều chỉnh đãi ngộ được lưu vết pháp lý chặt chẽ mà không phải ký lại hợp đồng mới. | FR-CON-004 | Phụ lục có số riêng; kế thừa các điều khoản không đổi từ hợp đồng gốc; tự động cập nhật mức lương mới vào hồ sơ nhân sự. |
-| US-CON-005 | As a HR Staff và Department Manager, I want hệ thống tự động gửi cảnh báo qua Email và Dashboard khi hợp đồng sắp hết hạn trước 30 ngày và 45 ngày, So that chúng tôi kịp thời đánh giá và chuẩn bị thủ tục tái ký hoặc bàn giao. | FR-CON-005 | Job tự động chạy quét hàng ngày lúc 00:00; tạo danh sách cảnh báo tập trung trên Dashboard HR. |
+| US-CON-005 | As a HR Staff và Department Manager, I want hệ thống tự động gửi cảnh báo qua Email và Dashboard khi hợp đồng sắp hết hạn trước 30 ngày, So that chúng tôi kịp thời đánh giá và chuẩn bị thủ tục tái ký hoặc bàn giao. | FR-CON-005 | Job tự động chạy quét hàng ngày lúc 00:00; tạo danh sách cảnh báo tập trung trên Dashboard HR. |
 | US-CON-006 | As a HR Staff, I want thực hiện quy trình gia hạn hợp đồng (ký tiếp hợp đồng có thời hạn lần 2 hoặc chuyển sang hợp đồng vô thời hạn), So that nhân viên tiếp tục cống hiến mà không bị gián đoạn quan hệ lao động. | FR-CON-006 | Sau 2 lần ký hợp đồng có thời hạn, hệ thống bắt buộc chuyển sang loại Không xác định thời hạn theo Luật Lao động. |
 | US-CON-007 | As a HR Staff, I want tải lên và lưu trữ an toàn tệp PDF scan hợp đồng đã có đầy đủ chữ ký và con dấu pháp nhân, So that hồ sơ pháp lý số hóa có thể đối chiếu bất cứ lúc nào khi thanh tra. | FR-CON-007 | File PDF dung lượng tối đa 5MB; lưu trữ trong private cloud storage; chỉ HR và chủ hợp đồng có quyền xem/tải. |
 | US-CON-008 | As a HR Staff và Employee, I want xem toàn bộ lịch sử các đời hợp đồng và phụ lục đã từng ký từ ngày đầu vào làm việc, So that quá trình cống hiến và tăng lương của nhân viên được theo dõi xuyên suốt. | FR-CON-008 | Hiển thị dạng Timeline thời gian từ cũ nhất đến mới nhất; đánh dấu trạng thái `Expired`, `Terminated`, `Active`. |
@@ -47,7 +47,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Luồng sự kiện chính (Basic Flow):**
   1. HR Staff mở hồ sơ nhân viên, chọn tab "Hợp đồng" và nhấn "Tạo hợp đồng mới".
   2. HR Staff nhập số hợp đồng và chọn Loại hợp đồng:
-     - Nếu chọn `PROBATION`: Hệ thống giới hạn thời hạn không quá 60 ngày.
+     - Nếu chọn `PROBATION`: Hệ thống giới hạn tối đa 60 ngày cho vị trí chuyên môn, 30 ngày cho vị trí khác.
      - Nếu chọn `DEFINITE`: Hệ thống cho phép chọn thời hạn từ 12 đến 36 tháng.
      - Nếu chọn `INDEFINITE`: Trường ngày hết hạn tự động bị vô hiệu hóa (`null`).
   3. HR Staff nhập các mức đãi ngộ: Lương cơ bản, Phụ cấp, Ngày bắt đầu làm việc.
@@ -95,7 +95,7 @@ Tài liệu này đặc tả chi tiết User Stories và kịch bản Use Cases 
 - **Luồng sự kiện chính (Basic Flow):**
   1. Hàng ngày lúc 00:00, Cron Job hệ thống quét toàn bộ các hợp đồng có trạng thái `Active` và loại `DEFINITE` hoặc `PROBATION`.
   2. Hệ thống tính số ngày còn lại: $\text{Days Remaining} = \text{end\_date} - \text{current\_date}$.
-  3. Nếu $\text{Days Remaining} \in \{45, 30, 15\}$:
+  3. Nếu $\text{Days Remaining} = 30$:
      - Hệ thống phát thông báo cảnh báo In-App và Email tới HR Staff và Department Manager trực tiếp của nhân viên.
      - Đưa nhân viên vào widget "Hợp đồng sắp hết hạn" trên Dashboard HR.
   4. **Quy trình gia hạn:**

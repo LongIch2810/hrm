@@ -34,13 +34,13 @@ Quản lý toàn diện quy trình tiếp nhận nhân sự mới (Onboarding), 
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-ONB-001 | Hệ thống phải hỗ trợ quản lý quy trình tiếp nhận nhân viên mới. | HR Staff | Ứng viên trúng tuyển từ REC | Khởi tạo quy trình Onboarding với ngày bắt đầu làm việc. | BR-ONB-001; BR-AUTH-001 | AC-ONB-001 | Confirmed | Should Have |
+| FR-ONB-001 | Hệ thống phải hỗ trợ quản lý quy trình tiếp nhận nhân viên mới. | HR Staff | Ứng viên trúng tuyển từ REC | Khởi tạo quy trình Onboarding với ngày bắt đầu làm việc. | BR-ONB-001; BR-ONB-AUTH-001 | AC-ONB-001 | Confirmed | Should Have |
 | FR-ONB-002 | Hệ thống phải hỗ trợ tạo checklist tiếp nhận. | HR Staff | Mẫu checklist chuẩn theo vị trí/phòng ban | Checklist gồm 3 nhóm: Hồ sơ HR, Công cụ IT, Hội nhập bộ phận. | BR-ONB-001 | AC-ONB-002 | Confirmed | Should Have |
 | FR-ONB-003 | Hệ thống phải hỗ trợ phân công nhiệm vụ tiếp nhận. | HR Staff | Đầu việc, người phụ trách (HR, IT, Manager), thời hạn | Nhiệm vụ xuất hiện trong danh sách công việc của từng người. | BR-ONB-001 | AC-ONB-003 | Confirmed | Should Have |
 | FR-ONB-004 | Hệ thống phải hỗ trợ theo dõi tiến độ tiếp nhận. | HR Staff; Manager | ID quy trình Onboarding | Thanh tiến độ hiển thị % hoàn thành nhiệm vụ theo thời gian thực. | BR-ONB-001 | AC-ONB-004 | Confirmed | Should Have |
 | FR-ONB-005 | Hệ thống phải hỗ trợ quản lý cấp phát trang thiết bị ban đầu. | IT Admin; Hành chính | Danh mục thiết bị (Laptop, Thẻ, Màn hình), Seri | Bản ghi bàn giao thiết bị được tạo và nhân viên ký nhận. | BR-ONB-001 | AC-ONB-005 | Confirmed | Should Have |
 | FR-ONB-006 | Hệ thống phải hỗ trợ quản lý quy trình nghỉ việc. | HR Staff; Ban Giám Đốc | Đơn xin thôi việc hoặc Quyết định chấm dứt | Khởi tạo quy trình Offboarding, chốt Ngày làm việc cuối cùng. | BR-ONB-002 | AC-ONB-006 | Confirmed | Should Have |
-| FR-ONB-007 | Hệ thống phải hỗ trợ quản lý bàn giao công việc. | Employee; Manager | Danh mục đầu việc, tài liệu, dự án bàn giao | Manager ký điện tử xác nhận hoàn thành bàn giao công việc. | BR-ONB-002; BR-AUTH-001 | AC-ONB-007 | Confirmed | Should Have |
+| FR-ONB-007 | Hệ thống phải hỗ trợ quản lý bàn giao công việc. | Employee; Manager | Danh mục đầu việc, tài liệu, dự án bàn giao | Manager ký điện tử xác nhận hoàn thành bàn giao công việc. | BR-ONB-002; BR-ONB-AUTH-001 | AC-ONB-007 | Confirmed | Should Have |
 | FR-ONB-008 | Hệ thống phải hỗ trợ theo dõi thu hồi tài sản và quyền truy cập. | IT Admin; Hành chính | Danh mục tài sản thu hồi, tình trạng thiết bị | Xác nhận đã thu hồi tài sản; tài khoản khóa lúc 23:59:59. | BR-ONB-002 | AC-ONB-008 | Confirmed | Should Have |
 | FR-ONB-009 | Hệ thống phải hỗ trợ hoàn tất quy trình thôi việc. | HR Staff | Biên bản bàn giao 4 bên đã đủ chữ ký | Chuyển trạng thái hồ sơ sang `Terminated`, lưu trữ an toàn. | BR-ONB-002 | AC-ONB-009 | Confirmed | Should Have |
 
@@ -61,7 +61,7 @@ Quản lý toàn diện quy trình tiếp nhận nhân sự mới (Onboarding), 
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Onboarding & Offboarding](../business-rule/onboarding-offboarding.md):
   - **BR-ONB-001:** Kích hoạt tự động từ `REC`; hoàn tất 100% checklist mới chuyển `Active`; thông báo đánh giá thử việc trước 07 ngày làm việc (`PD-021`).
   - **BR-ONB-002:** Chốt Ngày làm việc cuối cùng; tự động khóa tài khoản lúc 23:59:59 của ngày làm việc cuối; bồi hoàn tài sản mất mát khấu trừ vào bảng lương tháng cuối; lưu trữ an toàn hồ sơ thôi việc (`PD-022, PD-031, PD-038`).
-  - **BR-AUTH-001:** Manager ký bàn giao công việc phòng mình; IT Admin phụ trách thiết bị và tài khoản; HR điều phối chung.
+  - **BR-ONB-AUTH-001:** Manager ký bàn giao công việc phòng mình; IT Admin phụ trách thiết bị và tài khoản; HR điều phối chung.
 
 ## Edge Cases
 

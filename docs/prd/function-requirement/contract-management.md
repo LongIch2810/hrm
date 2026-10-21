@@ -34,14 +34,14 @@ Quản lý toàn diện vòng đời hợp đồng lao động, phụ lục hợ
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-CON-001 | Hệ thống phải hỗ trợ quản lý hợp đồng lao động. | HR Staff | Thông tin HĐLĐ (Số HĐ, Ngày ký, Lương, Vị trí) | Bản ghi hợp đồng được tạo và gắn với hồ sơ nhân viên. | BR-CON-001; BR-AUTH-001 | AC-CON-001 | Confirmed | Should Have |
+| FR-CON-001 | Hệ thống phải hỗ trợ quản lý hợp đồng lao động. | HR Staff | Thông tin HĐLĐ (Số HĐ, Ngày ký, Lương, Vị trí) | Bản ghi hợp đồng được tạo và gắn với hồ sơ nhân viên. | BR-CON-001; BR-CON-AUTH-001 | AC-CON-001 | Confirmed | Should Have |
 | FR-CON-002 | Hệ thống phải hỗ trợ quản lý loại hợp đồng. | HR Staff | 3 loại chuẩn: Thử việc, Có thời hạn, Không thời hạn | Danh mục loại hợp đồng tuân thủ Bộ luật Lao động. | BR-CON-001 | AC-CON-002 | Confirmed | Should Have |
 | FR-CON-003 | Hệ thống phải hỗ trợ quản lý thời hạn hợp đồng. | HR Staff | Ngày bắt đầu, Ngày kết thúc hiệu lực | Thời hạn hợp đồng được ghi nhận và theo dõi chính xác. | BR-CON-001 | AC-CON-003 | Confirmed | Should Have |
 | FR-CON-004 | Hệ thống phải hỗ trợ quản lý phụ lục hợp đồng. | HR Staff | Số phụ lục, Ngày hiệu lực, Nội dung điều chỉnh | Phụ lục được liên kết chặt chẽ với hợp đồng chính. | BR-CON-001 | AC-CON-004 | Confirmed | Should Have |
 | FR-CON-005 | Hệ thống phải hỗ trợ cảnh báo hợp đồng sắp hết hạn. | Hệ thống tự động | Hợp đồng còn hiệu lực <= 30 ngày | Bắn thông báo cảnh báo In-App và Email cho HR và Manager. | BR-CON-002 | AC-CON-005 | Confirmed | Should Have |
 | FR-CON-006 | Hệ thống phải hỗ trợ gia hạn hợp đồng. | HR Staff | Hợp đồng mới hoặc quyết định gia hạn | Tạo hợp đồng mới tiếp nối, hợp đồng cũ chuyển `Expired`. | BR-CON-002 | AC-CON-006 | Confirmed | Should Have |
 | FR-CON-007 | Hệ thống phải hỗ trợ lưu trữ tài liệu hợp đồng. | HR Staff | File scan PDF hợp đồng có chữ ký/dấu (<= 5MB) | Tài liệu lưu an toàn trong private storage. | BR-CON-002 | AC-CON-007 | Confirmed | Should Have |
-| FR-CON-008 | Hệ thống phải hỗ trợ xem lịch sử hợp đồng. | HR Staff; Employee (cá nhân) | ID nhân viên | Hiển thị toàn bộ các đời hợp đồng từ khi vào làm việc. | BR-AUTH-001 | AC-CON-008 | Confirmed | Should Have |
+| FR-CON-008 | Hệ thống phải hỗ trợ xem lịch sử hợp đồng. | HR Staff; Employee (cá nhân) | ID nhân viên | Hiển thị toàn bộ các đời hợp đồng từ khi vào làm việc. | BR-CON-AUTH-001 | AC-CON-008 | Confirmed | Should Have |
 | FR-CON-009 | Hệ thống phải hỗ trợ quản lý trạng thái hợp đồng. | HR Staff | Trạng thái (`Draft`, `Active`, `Expired`, `Terminated`) | Trạng thái hợp đồng phản ánh chính xác hiệu lực pháp lý. | BR-CON-001; BR-CON-002 | AC-CON-009 | Confirmed | Should Have |
 
 ## Inputs & Outputs
@@ -62,7 +62,7 @@ Quản lý toàn diện vòng đời hợp đồng lao động, phụ lục hợ
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Contract Management](../business-rule/contract-management.md):
   - **BR-CON-001:** 3 loại hợp đồng chuẩn; chỉ 1 hợp đồng `Active` tại một thời điểm; không giới hạn số lượng phụ lục nhưng phụ lục không được làm đổi loại hợp đồng trái luật (`PD-025`).
   - **BR-CON-002:** Tự động cảnh báo trước 30 ngày; lưu trữ file scan PDF có chữ ký/dấu; không dùng USB token ký số phần cứng (`PD-006, PD-025`).
-  - **BR-AUTH-001:** Employee xem hợp đồng cá nhân; HR Staff toàn quyền quản trị (`PD-008`).
+  - **BR-CON-AUTH-001:** Employee xem hợp đồng cá nhân; HR Staff toàn quyền quản trị (`PD-008`).
 
 ## Edge Cases
 

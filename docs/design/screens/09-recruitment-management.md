@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Tuyển Dụng Nhân Sự — Phân Hệ REC (Screens 38 - 42)
 
 Tài liệu thiết kế chi tiết phân hệ Tuyển dụng (`REC`), quy trình 5 bước tuyển dụng chuẩn hóa từ đăng tin đến sàng lọc, phỏng vấn, offer và bàn giao Onboarding.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-REC-001 → 009](file:///d:/saved/Project/hrm/docs/prd/function-requirement/recruitment-management.md).
+Tuân thủ [Design System](../design-system.md) và [FR-REC-001 → 009](../../prd/function-requirement/recruitment-management.md).
 
 ---
 
@@ -20,7 +20,7 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 
 - **Actor:** Tất cả nhân viên trong công ty.
 - **Mục tiêu:** Tra cứu các cơ hội thăng tiến hoặc giới thiệu bạn bè/ứng viên cho công ty (Employee Referral Program).
-- **Giao diện:** Lưới các thẻ Card vị trí tuyển dụng thiết kế thanh lịch, kèm mức thưởng giới thiệu nhân tài, nút "Xem chi tiết JD" và nút "Giới thiệu ứng viên" (mở modal tải CV bạn bè).
+- **Giao diện:** Lưới các thẻ Card vị trí tuyển dụng thiết kế thanh lịch, kèm mức thưởng giới thiệu nhân tài, nút "Xem chi tiết JD" và hướng dẫn gửi CV qua email/kênh ngoài để HR nhập hồ sơ.
 
 ---
 
@@ -31,8 +31,8 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 2. **Sàng lọc (Screening):** HR rà soát hồ sơ, kiểm tra độ phù hợp yêu cầu.
 3. **Phỏng vấn (Interview):** Lên lịch phỏng vấn Vòng 1 (HR) hoặc Vòng 2 (Chuyên môn / Manager).
 4. **Đề xuất nhận việc (Offer):** Đang soạn thảo hoặc đã gửi thư mời nhận việc.
-5. **Trúng tuyển (Hired):** Ứng viên chấp thuận Offer $\rightarrow$ Kích hoạt nút **"Chuyển sang Onboarding"**.
-6. **Không phù hợp (Rejected):** Lưu trữ hồ sơ tài năng để liên hệ cho các đợt sau.
+5. **Trúng tuyển (Hired):** Ứng viên chấp thuận Offer $\rightarrow$ Hệ thống tự động tạo hồ sơ Onboarding.
+6. **Không phù hợp (Rejected):** Gồm cả ứng viên từ chối offer hoặc có offer bị thu hồi; lưu lý do. Gian lận không nằm trong danh sách Talent Pool tái liên hệ.
 
 ### 3.2. Thẻ Ứng Viên (Candidate Card)
 - Họ và tên ứng viên, Email, SĐT, Vị trí ứng tuyển, Đánh giá trung bình (1-5 sao), File CV đính kèm (icon PDF), Ngày nộp.
@@ -58,5 +58,5 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 ## 5. Quản Lý Thư Mời Nhận Việc (Offer) & Chuyển Onboarding (`/recruitment/offers` — Screen 42)
 
 - Bảng danh sách Offer đã phát hành: Họ tên ứng viên, Vị trí, Mức lương đề xuất, Ngày bắt đầu làm việc dự kiến, Hạn phản hồi, Trạng thái (`Chờ duyệt`, `Đã gửi ứng viên`, `Đã chấp thuận / Hired`, `Từ chối`).
-- **Nút "Chuyển Ứng Viên Trúng Tuyển Sang Onboarding" (FR-REC-009):**
-  - Tự động tạo bản ghi tiếp nhận nhân sự sơ bộ trong phân hệ Onboarding (`ONB`), đồng bộ thông tin Họ tên, Email, Vị trí, Mức lương thỏa thuận và Ngày bắt đầu làm việc.
+- **Chuyển giao tự động (FR-REC-009):** Khi ứng viên chuyển sang `Hired`, hệ thống tạo bản ghi tiếp nhận nhân sự sơ bộ trong phân hệ Onboarding (`ONB`), đồng bộ Họ tên, Email, Vị trí, Mức lương thỏa thuận và Ngày bắt đầu làm việc.
+- Khi offer bị thu hồi sau `Hired`, hiển thị quy trình Onboarding chưa hoàn tất là đã hủy, kèm lý do và lịch sử.

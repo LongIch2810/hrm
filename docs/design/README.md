@@ -1,7 +1,7 @@
 # HRM UI/UX Design Documentation — Index & Directory
 
 Hệ thống tài liệu thiết kế UI/UX hoàn chỉnh cho dự án Quản trị Nhân sự (HRM).
-Được xây dựng dựa trên [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md), [PRD.md](file:///d:/saved/Project/hrm/docs/PRD.md), [UI Rules](file:///d:/saved/Project/hrm/docs/rules/ui.md) và [Auth Spec](file:///d:/saved/Project/hrm/docs/architecture/auth.md).
+Được xây dựng dựa trên [frontend/DESIGN.md](../../frontend/DESIGN.md), [PRD.md](../PRD.md), [UI Rules](../rules/ui.md) và [Auth Spec](../architecture/auth.md).
 
 ---
 
@@ -9,7 +9,9 @@ Hệ thống tài liệu thiết kế UI/UX hoàn chỉnh cho dự án Quản tr
 
 1. **[Design System Specification](design-system.md):** Quy chuẩn toàn diện về triết lý biên tập, bảng màu, phông chữ EB Garamond 300 / Inter, kích thước, bo góc viên thuốc, quy chuẩn thành phần (Button, Input, Table, Card, Modal, Badges) và khả năng tiếp cận (Accessibility WCAG AA).
 2. **[Design Tokens CSS (globals)](design-tokens.css):** Toàn bộ biến CSS và các lớp tiện ích sẵn sàng để import và áp dụng trong ứng dụng frontend.
-3. **Interactive Design Showcase & Responsive Prototype:** **Status:** TBD (To Be Determined). Bản preview chưa có trong repository; cần xác nhận đường dẫn project OpenDesign và kết quả kiểm tra responsive.
+3. **Interactive Design Showcase & Responsive Prototype:** **Status:** TBD (To Be Determined). Product Owner xác nhận chưa có preview và chưa có kết quả kiểm tra responsive.
+   - Khi có bản preview, đường dẫn project và người duyệt là gì?
+   - Kết quả kiểm tra ở các kích thước màn hình được lưu ở đâu?
 
 ---
 
@@ -37,12 +39,12 @@ Hệ thống tài liệu thiết kế UI/UX hoàn chỉnh cho dự án Quản tr
 
 ## 3. Độ Phủ & Mức Độ Tuân Thủ
 
-- **Độ phủ chức năng (PRD Coverage):** 100% bao phủ toàn bộ 109 yêu cầu chức năng (FR-EMP-001 đến FR-SYS-010) và 11 quy trình cốt lõi xuyên suốt.
-- **Độ phủ màn hình:** 68/68 màn hình chi tiết, không thiếu bất kỳ trang nghiệp vụ, trang lỗi hoặc cổng tự phục vụ nào.
+- **Phạm vi đặc tả:** Tài liệu dự kiến bao phủ 109 yêu cầu chức năng và 11 quy trình; chưa kiểm chứng độ phủ của frontend đã triển khai.
+- **Danh mục màn hình:** Liệt kê 68 màn hình thiết kế; chưa xác nhận cả 68 màn hình đã được xây dựng hoặc kiểm thử.
 - **Tuân thủ DESIGN.md:**
   - Ink Primary `#292524` và viên thuốc `rounded.pill` cho toàn bộ nút hành động chính.
   - Sàn trang off-white `#f5f5f5` và thẻ trắng tinh khôi `#ffffff` với viền tóc mảnh 1px `#e7e5e4`.
   - Phông hiển thị EB Garamond 300 thanh lịch biên tập, kết hợp Inter cho toàn bộ bảng biểu và form.
   - Atmospheric gradient orbs làm điểm nhấn không gian dịu nhẹ.
   - Bổ sung 3 token trạng thái nghiệp vụ chuẩn B2B SaaS: Warning (`#d97706`), Info (`#2563eb`), Neutral (`#71717a`).
-- **Responsive chuẩn mực:** Kiểm chứng layout tại 3 mốc kích thước: **375px (Mobile Phone)**, **768px (Tablet)** và **1440px (Desktop)** với chuyển đổi Table sang Stacked Cards và Bottom Navigation Bar tiện lợi.
+- **Mốc cần kiểm chứng responsive:** 375px (Mobile), 768px (Tablet) và 1440px (Desktop), gồm bảng dạng stacked cards và bottom navigation khi phù hợp.

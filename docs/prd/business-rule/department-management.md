@@ -28,7 +28,7 @@
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-012`).
 - **Quy tắc đã chốt:** Phòng ban cho phép tối đa 1 Trưởng phòng và 2 Phó phòng; Trưởng phòng có thẩm quyền duyệt đơn chấm công/nghỉ phép cho nhân viên thuộc phòng ban mình.
 
-### BR-AUTH-001: Phân quyền quản trị cơ cấu tổ chức
+### BR-DEPT-AUTH-001: Phân quyền quản trị cơ cấu tổ chức
 
 - **Department Manager:** Chỉ được xem sơ đồ phòng ban của mình và các phòng ban cấp dưới trực thuộc.
 - **HR Staff / System Admin:** Được phép tạo mới, đổi tên hoặc tái cấu trúc phòng ban.

@@ -32,14 +32,14 @@ Quản lý mục tiêu (KPI / OKR), thiết lập trọng số, tổ chức các
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-PERF-001 | Hệ thống phải hỗ trợ quản lý tiêu chí đánh giá. | HR Staff | Danh mục tiêu chí (chuyên môn, thái độ, tiến độ) | Bộ tiêu chí đánh giá chuẩn hóa theo chức vụ/phòng ban. | BR-PERF-001; BR-AUTH-001 | AC-PERF-001 | Confirmed | Could Have |
+| FR-PERF-001 | Hệ thống phải hỗ trợ quản lý tiêu chí đánh giá. | HR Staff | Danh mục tiêu chí (chuyên môn, thái độ, tiến độ) | Bộ tiêu chí đánh giá chuẩn hóa theo chức vụ/phòng ban. | BR-PERF-001; BR-PERF-AUTH-001 | AC-PERF-001 | Confirmed | Could Have |
 | FR-PERF-002 | Hệ thống phải hỗ trợ thiết lập mục tiêu (KPI/OKR). | Employee thiết lập; Manager duyệt | Mục tiêu, chỉ số đo lường, trọng số (%) | Mục tiêu được xác nhận, tổng trọng số chính xác 100%. | BR-PERF-001 | AC-PERF-002 | Confirmed | Could Have |
 | FR-PERF-003 | Hệ thống phải hỗ trợ quản lý kỳ đánh giá. | HR Staff | Tên kỳ (ví dụ: Đánh giá H1/2026), hạn chót các bước | Kỳ đánh giá được mở, gửi thông báo kích hoạt tới nhân sự. | BR-PERF-001; BR-PERF-002 | AC-PERF-003 | Confirmed | Could Have |
 | FR-PERF-004 | Hệ thống phải hỗ trợ tự đánh giá hiệu suất. | Employee | Điểm tự chấm (thang 1-5), minh chứng kết quả | Bản tự đánh giá được lưu và chuyển tiếp cho Quản lý. | BR-PERF-002 | AC-PERF-004 | Confirmed | Could Have |
-| FR-PERF-005 | Hệ thống phải hỗ trợ quản lý đánh giá nhân viên. | Department Manager | Điểm đánh giá của quản lý, nhận xét chi tiết | Đánh giá của quản lý được ghi nhận, phản hồi cho nhân viên. | BR-PERF-002; BR-AUTH-001 | AC-PERF-005 | Confirmed | Could Have |
+| FR-PERF-005 | Hệ thống phải hỗ trợ quản lý đánh giá nhân viên. | Department Manager | Điểm đánh giá của quản lý, nhận xét chi tiết | Đánh giá của quản lý được ghi nhận, phản hồi cho nhân viên. | BR-PERF-002; BR-PERF-AUTH-001 | AC-PERF-005 | Confirmed | Could Have |
 | FR-PERF-006 | Hệ thống phải hỗ trợ tổng hợp kết quả đánh giá. | HR Staff; Hệ thống | Điểm mục tiêu cá nhân và trọng số | Tự động tính điểm tổng kết có trọng số theo công thức chuẩn. | BR-PERF-001; BR-PERF-002 | AC-PERF-006 | Confirmed | Could Have |
 | FR-PERF-007 | Hệ thống phải hỗ trợ xếp loại nhân viên. | Hệ thống tự động; HR Staff | Điểm tổng kết | Xếp loại chuẩn 5 mức: Xuất sắc, Tốt, Đạt, Cần cải thiện, Không đạt. | BR-PERF-001 | AC-PERF-007 | Confirmed | Could Have |
-| FR-PERF-008 | Hệ thống phải hỗ trợ quản lý lịch sử đánh giá. | Employee (cá nhân); HR Staff | ID nhân viên | Hiển thị toàn bộ lịch sử điểm và xếp loại qua các năm. | BR-AUTH-001 | AC-PERF-008 | Confirmed | Could Have |
+| FR-PERF-008 | Hệ thống phải hỗ trợ quản lý lịch sử đánh giá. | Employee (cá nhân); HR Staff | ID nhân viên | Hiển thị toàn bộ lịch sử điểm và xếp loại qua các năm. | BR-PERF-AUTH-001 | AC-PERF-008 | Confirmed | Could Have |
 
 ## Inputs & Outputs
 
@@ -58,7 +58,7 @@ Quản lý mục tiêu (KPI / OKR), thiết lập trọng số, tổ chức các
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Performance Management](../business-rule/performance-management.md):
   - **BR-PERF-001:** Đánh giá định kỳ 6 tháng hoặc 1 năm; thang điểm 1 đến 5 (5: Xuất sắc, 4: Tốt, 3: Đạt, 2: Cần cải thiện, 1: Không đạt); tổng trọng số 100% (`PD-023`).
   - **BR-PERF-002:** Quy trình 3 bước chuẩn hóa: (1) Nhân viên tự chấm $\rightarrow$ (2) Quản lý trực tiếp chấm điểm & phản hồi $\rightarrow$ (3) HR khóa kết quả; khiếu nại trong vòng 5 ngày làm việc (`PD-024`).
-  - **BR-AUTH-001:** Manager chỉ đánh giá nhân viên phòng mình; nhân viên chỉ thấy điểm cá nhân mình (`PD-008`).
+  - **BR-PERF-AUTH-001:** Manager chỉ đánh giá nhân viên phòng mình; nhân viên chỉ thấy điểm cá nhân mình (`PD-008`).
 
 ## Edge Cases
 

@@ -35,10 +35,10 @@ Quản lý hạ tầng định danh, xác thực (Authentication), phân quyền
 |---|---|---|---|---|---|---|---|---|
 | FR-SYS-001 | Hệ thống phải hỗ trợ quản lý tài khoản người dùng. | System Administrator | Email, mật khẩu ban đầu, vai trò | Tạo, kích hoạt, khóa hoặc đặt lại mật khẩu tài khoản. | BR-SYS-001; BR-SYS-002 | AC-SYS-001 | Confirmed | Must Have |
 | FR-SYS-002 | Hệ thống phải hỗ trợ authentication. | Tất cả người dùng | Email, mật khẩu | Đăng nhập thành công, cấp phát JWT & Refresh token cookie. | BR-SYS-001 | AC-SYS-002 | Confirmed | Must Have |
-| FR-SYS-003 | Hệ thống phải hỗ trợ authorization. | Hệ thống; System Administrator | Request, Token, Resource | Kiểm tra quyền và chặn 403 Forbidden nếu vượt quyền. | BR-SYS-002; BR-AUTH-001 | AC-SYS-003 | Confirmed | Must Have |
+| FR-SYS-003 | Hệ thống phải hỗ trợ authorization. | Hệ thống; System Administrator | Request, Token, Resource | Trả 403 khi thiếu quyền thao tác hoặc Manager xem nhân viên ngoài phòng ban; trả 404 với tài nguyên khác ngoài phạm vi. | BR-SYS-002; BR-SYS-AUTH-001 | AC-SYS-003 | Confirmed | Must Have |
 | FR-SYS-004 | Hệ thống phải hỗ trợ role-Based Access Control (RBAC). | System Administrator | 4 vai trò chuẩn (Admin, HR, Manager, Employee) | Áp dụng đúng Authorization Matrix đã phê duyệt. | BR-SYS-002 | AC-SYS-004 | Confirmed | Must Have |
 | FR-SYS-005 | Hệ thống phải hỗ trợ quản lý vai trò. | System Administrator | Danh mục vai trò, mô tả | Danh mục vai trò được duy trì và gán cho người dùng. | BR-SYS-002 | AC-SYS-005 | Confirmed | Must Have |
-| FR-SYS-006 | Hệ thống phải hỗ trợ quản lý quyền truy cập. | System Administrator | Permission key, Module, Thao tác | Gán quyền chi tiết theo vai trò hoặc theo phòng ban. | BR-SYS-002 | AC-SYS-006 | Confirmed | Must Have |
+| FR-SYS-006 | Hệ thống phải hỗ trợ quản lý quyền truy cập. | System Administrator | Permission key, Module, Thao tác | Gán quyền nghiệp vụ theo nhiệm vụ cho tài khoản trong phạm vi tài nguyên được duyệt. | BR-SYS-002 | AC-SYS-006 | Confirmed | Must Have |
 | FR-SYS-007 | Hệ thống phải hỗ trợ cấu hình hệ thống. | System Administrator | Khóa cấu hình, giá trị (Giờ ca, Ngưỡng ân hạn...) | Cấu hình lưu trữ DB, áp dụng ngay trong toàn hệ thống. | BR-SYS-001 | AC-SYS-007 | Confirmed | Must Have |
 | FR-SYS-008 | Hệ thống phải hỗ trợ quản lý thông báo. | Hệ thống; Admin; HR Staff | Tiêu đề, nội dung, đối tượng nhận | Gửi thông báo In-App (chuông) và Email tới đúng đối tượng. | BR-SYS-001 | AC-SYS-008 | Confirmed | Must Have |
 | FR-SYS-009 | Hệ thống phải hỗ trợ quản lý audit logs. | System Administrator | Sự kiện hệ thống (Đăng nhập, Sửa, Xóa, Cấp quyền) | Ghi nhận nhật ký kiểm toán bất biến (Append-only). | BR-SYS-002 | AC-SYS-009 | Confirmed | Must Have |
@@ -48,20 +48,20 @@ Quản lý hạ tầng định danh, xác thực (Authentication), phân quyền
 
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
 
-- **Input:** Email công ty, Mật khẩu (tối thiểu 8 ký tự, đủ chữ hoa, chữ thường, số, ký tự đặc biệt), Mã vai trò, Cấu hình hệ thống key-value.
-- **Output:** JWT Access Token (15 phút), Refresh Token (7 ngày, HttpOnly Secure Cookie), Bản ghi nhật ký kiểm toán (Actor, IP, Action, Timestamp, Status).
+- **Input:** Email công ty, Mật khẩu (tối thiểu 15 ký tự, tối đa 72 byte UTF-8; chấp nhận passphrase và khoảng trắng), Mã vai trò, Cấu hình hệ thống key-value.
+- **Output:** JWT Access Token (15 phút, bộ nhớ ứng dụng), JWT Refresh Token (7 ngày, HttpOnly cookie; `Secure` trên HTTPS), Bản ghi nhật ký kiểm toán (Actor, IP, Action, Timestamp, Status).
 - **Validation:**
   - Khóa tài khoản 15 phút nếu nhập sai mật khẩu 5 lần liên tiếp.
-  - Mật khẩu mã hóa Argon2id/Bcrypt trước khi lưu trữ; không bao giờ trả mật khẩu trong response DTO.
+  - Băm mật khẩu bằng bcrypt trước khi lưu trữ; không bao giờ trả mật khẩu trong response DTO.
 
 ## Business Rules
 
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
 
 - Áp dụng đầy đủ quy tắc tại [Business Rules — System Administration](../business-rule/system-administration.md):
-  - **BR-SYS-001:** Xác thực Email + Mật khẩu an toàn; bắt buộc đổi mật khẩu lần đầu đăng nhập; JWT lưu HttpOnly Secure Cookie; tự động thu hồi session khi tài khoản bị khóa (`PD-029`).
-  - **BR-SYS-002:** RBAC chuẩn 4 vai trò (`Admin`, `HR Staff`, `Manager`, `Employee`); Audit log là bất biến (Append-only), lưu trữ tối thiểu 12 tháng (`PD-031`).
-  - **BR-AUTH-001:** Admin không được xem chi tiết lương hoặc đánh giá nhân viên nếu không có vai trò nghiệp vụ tương ứng (`PD-008`).
+  - **BR-SYS-001:** Xác thực Email + Mật khẩu an toàn; bắt buộc đổi mật khẩu lần đầu đăng nhập; access token JWT lưu trong bộ nhớ ứng dụng, refresh token JWT lưu trong HttpOnly cookie; tự động thu hồi session khi tài khoản bị khóa (`PD-029`).
+  - **BR-SYS-002:** RBAC chuẩn 4 vai trò nền (`Admin`, `HR Staff`, `Manager`, `Employee`) và quyền theo nhiệm vụ; Audit log bất biến (Append-only), lưu trữ tối thiểu 2 năm (`PD-031`).
+  - **BR-SYS-AUTH-001:** Admin không được xem chi tiết lương hoặc đánh giá nhân viên nếu không có quyền nghiệp vụ tương ứng (`PD-008`).
 
 ## Edge Cases
 
@@ -75,7 +75,7 @@ Quản lý hạ tầng định danh, xác thực (Authentication), phân quyền
 
 - **AC-SYS-001 → FR-SYS-001:** Given Admin tạo tài khoản mới; When lưu thành công; Then hệ thống gửi email kích hoạt kèm hướng dẫn đặt mật khẩu lần đầu.
 - **AC-SYS-002 → FR-SYS-002:** Given thông tin đăng nhập đúng; When đăng nhập; Then cấp Cookie an toàn và điều hướng đến Dashboard tương ứng vai trò.
-- **AC-SYS-003 → FR-SYS-003:** Given Employee cố tình gọi API `/api/v1/salaries`; Then hệ thống từ chối và trả về mã lỗi 403 Forbidden.
+- **AC-SYS-003 → FR-SYS-003:** Given Employee cố tình gọi thao tác quản lý lương không có quyền; Then hệ thống từ chối bằng `403 INSUFFICIENT_PERMISSIONS`. URL cụ thể chờ contract module.
 - **AC-SYS-004 → FR-SYS-004:** Given người dùng có vai trò Manager; Then chỉ truy cập được các chức năng duyệt công/phép của phòng ban mình.
 - **AC-SYS-005 → FR-SYS-005:** Given danh mục vai trò; Then hiển thị đầy đủ 4 vai trò chuẩn của hệ thống.
 - **AC-SYS-006 → FR-SYS-006:** Given Admin cấp thêm quyền cho HR Staff; Then quyền có hiệu lực ngay trong phiên làm việc tiếp theo.

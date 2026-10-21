@@ -30,7 +30,7 @@
 - **Status:** Confirmed — Approved by Product Owner (2026-10-21, `PD-022`).
 - **Quy tắc đã chốt:** Trường hợp mất mát hoặc hư hỏng tài sản công ty, Hành chính lập biên bản khấu trừ theo giá trị còn lại; số tiền đền bù được đối trừ vào bảng quyết toán lương tháng cuối sau khi có chữ ký cam kết của nhân viên.
 
-### BR-AUTH-001: Phân quyền điều phối tiếp nhận và nghỉ việc
+### BR-ONB-AUTH-001: Phân quyền điều phối tiếp nhận và nghỉ việc
 
 - **Department Manager:** Ký xác nhận bàn giao công việc của nhân viên trong phòng ban mình.
 - **IT Admin:** Xác nhận thu hồi thiết bị và ngắt quyền truy cập hệ thống.

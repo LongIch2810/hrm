@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Báo Cáo & Phân Tích Nhân Sự — Phân Hệ REP (Screens 59 - 63)
 
 Tài liệu thiết kế chi tiết phân hệ Báo cáo và Phân tích nhân sự (`REP`), cung cấp các biểu đồ trực quan, phân tích tỷ lệ nghỉ việc (Turnover rate) và công cụ trích xuất dữ liệu có che dữ liệu nhạy cảm (Data Masking).
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-REP-001 → 010](file:///d:/saved/Project/hrm/docs/prd/function-requirement/reports-analytics.md).
+Tuân thủ [Design System](../design-system.md) và [FR-REP-001 → 010](../../prd/function-requirement/reports-analytics.md).
 
 ---
 
@@ -59,9 +59,9 @@ Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md
 
 ### 5.1. Công Cụ Trích Xuất Dữ Liệu Đa Chiều (FR-REP-010)
 - Bộ lọc tùy biến: Chọn khoảng thời gian (Từ ngày $\rightarrow$ Đến ngày), Chọn phòng ban, Chọn trạng thái nhân sự.
-- Tùy chọn định dạng tệp: **Excel (.xlsx)**, **PDF báo cáo tổng hợp**, **CSV**.
+- Tùy chọn định dạng tệp cho Admin và HR Staff: **Excel (.xlsx)**, **PDF báo cáo tổng hợp**.
 - **Kỹ thuật Che Dữ Liệu Nhạy Cảm (Data Masking — Bắt buộc theo NFR-004):**
-  - Checkbox *"Che thông tin định danh và tài chính"* (Mặc định bật khi người xuất không phải là Giám Đốc):
+  - Hệ thống tự che trường mà người xuất không có quyền xem; người dùng không thể tắt che dữ liệu cho các trường này:
     - Số CCCD: Hiển thị dạng `001******892`.
     - Số tài khoản ngân hàng: Hiển thị dạng `**** **** 4829`.
     - Mức lương chi tiết: Ẩn cột hoặc làm tròn theo nhóm bậc lương.

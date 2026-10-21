@@ -32,14 +32,14 @@ Quản lý chương trình đào tạo, danh mục khóa học nội bộ/bên n
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-TRAIN-001 | Hệ thống phải hỗ trợ quản lý chương trình đào tạo. | HR Staff | Tên chương trình, lộ trình đào tạo, mục tiêu | Chương trình đào tạo được thiết lập và quản lý. | BR-TRAIN-001; BR-AUTH-001 | AC-TRAIN-001 | Confirmed | Could Have |
+| FR-TRAIN-001 | Hệ thống phải hỗ trợ quản lý chương trình đào tạo. | HR Staff | Tên chương trình, lộ trình đào tạo, mục tiêu | Chương trình đào tạo được thiết lập và quản lý. | BR-TRAIN-001; BR-TRAIN-AUTH-001 | AC-TRAIN-001 | Confirmed | Could Have |
 | FR-TRAIN-002 | Hệ thống phải hỗ trợ quản lý khóa đào tạo. | HR Staff | Tên khóa, thời lượng, giảng viên, sức chứa tối đa | Khóa đào tạo được tạo với trạng thái (`Open`, `In Progress`, `Completed`). | BR-TRAIN-001 | AC-TRAIN-002 | Confirmed | Could Have |
 | FR-TRAIN-003 | Hệ thống phải hỗ trợ lập lịch đào tạo. | HR Staff | Khóa học, thời gian học, địa điểm phòng học | Lịch học được tạo, gửi thông báo và tự động thêm vào lịch cá nhân. | BR-TRAIN-001 | AC-TRAIN-003 | Confirmed | Could Have |
 | FR-TRAIN-004 | Hệ thống phải hỗ trợ phân công nhân viên tham gia. | HR Staff; Manager | Khóa học, danh sách nhân viên phân công | Nhân viên được thêm vào danh sách học viên của lớp học. | BR-TRAIN-001 | AC-TRAIN-004 | Confirmed | Could Have |
 | FR-TRAIN-005 | Hệ thống phải hỗ trợ theo dõi tiến độ đào tạo. | HR Staff; Trainer | Buổi học, điểm danh tham gia (Có mặt / Vắng) | Tỷ lệ chuyên cần của từng học viên được cập nhật tự động. | BR-TRAIN-002 | AC-TRAIN-005 | Confirmed | Could Have |
 | FR-TRAIN-006 | Hệ thống phải hỗ trợ theo dõi kết quả học tập. | Trainer; HR Staff | Điểm kiểm tra kết thúc khóa (thang điểm 10) | Điểm số được ghi nhận; xác định kết quả Đạt hoặc Không đạt. | BR-TRAIN-002 | AC-TRAIN-006 | Confirmed | Could Have |
 | FR-TRAIN-007 | Hệ thống phải hỗ trợ quản lý chứng chỉ. | HR Staff | Mã chứng chỉ, ngày cấp, hạn hiệu lực (nếu có) | Chứng chỉ điện tử được cấp phát và lưu trong hồ sơ học viên. | BR-TRAIN-002 | AC-TRAIN-007 | Confirmed | Could Have |
-| FR-TRAIN-008 | Hệ thống phải hỗ trợ quản lý lịch sử đào tạo. | Employee (cá nhân); HR Staff | ID nhân viên | Hiển thị toàn bộ lịch sử các khóa đã tham gia và chứng chỉ đạt được. | BR-AUTH-001 | AC-TRAIN-008 | Confirmed | Could Have |
+| FR-TRAIN-008 | Hệ thống phải hỗ trợ quản lý lịch sử đào tạo. | Employee (cá nhân); HR Staff | ID nhân viên | Hiển thị toàn bộ lịch sử các khóa đã tham gia và chứng chỉ đạt được. | BR-TRAIN-AUTH-001 | AC-TRAIN-008 | Confirmed | Could Have |
 
 ## Inputs & Outputs
 
@@ -58,7 +58,7 @@ Quản lý chương trình đào tạo, danh mục khóa học nội bộ/bên n
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Training Management](../business-rule/training-management.md):
   - **BR-TRAIN-001:** Khóa học bắt buộc (Compliance) hoặc tự chọn; ký cam kết đào tạo và bồi hoàn chi phí nếu nghỉ việc trước hạn cam kết (`PD-026`).
   - **BR-TRAIN-002:** Tiêu chí Đạt: Chuyên cần $\ge 80\%$ và Điểm kiểm tra $\ge 6.0/10$; cấp chứng chỉ điện tử có mã số duy nhất và đồng bộ vào `EMP`; không tích hợp LMS bên thứ ba (`PD-026`).
-  - **BR-AUTH-001:** Trainer nhập điểm/điểm danh; nhân viên xem thông tin cá nhân mình (`PD-008`).
+  - **BR-TRAIN-AUTH-001:** Trainer nhập điểm/điểm danh; nhân viên xem thông tin cá nhân mình (`PD-008`).
 
 ## Edge Cases
 

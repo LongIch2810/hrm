@@ -31,7 +31,7 @@ Quản lý cơ cấu tổ chức, phòng ban, chức danh chức vụ, cấp b�
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-DEPT-001 | Hệ thống phải hỗ trợ quản lý phòng ban. | HR Staff; Admin | Mã phòng ban, tên phòng ban, phòng ban cha | Phòng ban được lưu trữ, mã và tên duy nhất. | BR-DEPT-001; BR-AUTH-001 | AC-DEPT-001 | Confirmed | Must Have |
+| FR-DEPT-001 | Hệ thống phải hỗ trợ quản lý phòng ban. | HR Staff; Admin | Mã phòng ban, tên phòng ban, phòng ban cha | Phòng ban được lưu trữ, mã và tên duy nhất. | BR-DEPT-001; BR-DEPT-AUTH-001 | AC-DEPT-001 | Confirmed | Must Have |
 | FR-DEPT-002 | Hệ thống phải hỗ trợ quản lý chức vụ. | HR Staff; Admin | Tên chức vụ, mô tả | Danh mục chức vụ được quản lý chuẩn hóa. | BR-DEPT-001 | AC-DEPT-002 | Confirmed | Must Have |
 | FR-DEPT-003 | Hệ thống phải hỗ trợ quản lý cấp bậc. | HR Staff; Admin | Tên cấp bậc, hệ số/mức | Danh mục cấp bậc được quản lý. | BR-DEPT-001 | AC-DEPT-003 | Confirmed | Must Have |
 | FR-DEPT-004 | Hệ thống phải hỗ trợ phân công nhân viên vào phòng ban. | HR Staff | ID nhân viên, ID phòng ban | Nhân viên được gắn vào đúng phòng ban chính. | BR-DEPT-002 | AC-DEPT-004 | Confirmed | Must Have |
@@ -54,7 +54,7 @@ Quản lý cơ cấu tổ chức, phòng ban, chức danh chức vụ, cấp b�
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Department Management](../business-rule/department-management.md):
   - **BR-DEPT-001:** Cây phân cấp đa tầng (Multi-level Tree), cấm quan hệ vòng lặp cha-con; mô hình đơn doanh nghiệp SME (PD-001, PD-012).
   - **BR-DEPT-002:** Mỗi phòng ban có duy nhất 1 Trưởng phòng và tối đa 2 Phó phòng; nhân viên thuộc 1 phòng ban chính; điều chuyển nhân sự trước khi đóng phòng ban.
-  - **BR-AUTH-001:** Manager chỉ xem phòng trực tiếp; HR/Admin toàn quyền quản lý.
+  - **BR-DEPT-AUTH-001:** Manager chỉ xem phòng trực tiếp; HR/Admin toàn quyền quản lý.
 
 ## Edge Cases
 

@@ -34,15 +34,15 @@ Ghi nhận, quản lý và tổng hợp thời gian làm việc, ca làm việc,
 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
-| FR-ATT-001 | Hệ thống phải hỗ trợ check-in. | Employee | Timestamp, IP/thiết bị | Ghi nhận thời gian Check-in thành công. | BR-ATT-001; BR-AUTH-001 | AC-ATT-001 | Confirmed | Must Have |
-| FR-ATT-002 | Hệ thống phải hỗ trợ check-out. | Employee | Timestamp, IP/thiết bị | Ghi nhận thời gian Check-out và tính số giờ làm việc. | BR-ATT-001; BR-AUTH-001 | AC-ATT-002 | Confirmed | Must Have |
+| FR-ATT-001 | Hệ thống phải hỗ trợ check-in. | Employee | Thao tác Check-in, IP/thiết bị; giờ do server ghi nhận | Ghi nhận thời gian Check-in thành công. | BR-ATT-001; BR-ATT-AUTH-001 | AC-ATT-001 | Confirmed | Must Have |
+| FR-ATT-002 | Hệ thống phải hỗ trợ check-out. | Employee | Thao tác Check-out, IP/thiết bị; giờ do server ghi nhận | Ghi nhận thời gian Check-out và tính số giờ làm việc. | BR-ATT-001; BR-ATT-AUTH-001 | AC-ATT-002 | Confirmed | Must Have |
 | FR-ATT-003 | Hệ thống phải hỗ trợ theo dõi lịch sử chấm công. | Employee (cá nhân); HR Staff (toàn bộ) | Khoảng thời gian tra cứu | Hiển thị chi tiết các lần vào/ra và trạng thái ngày công. | BR-ATT-001 | AC-ATT-003 | Confirmed | Must Have |
 | FR-ATT-004 | Hệ thống phải hỗ trợ quản lý ca làm việc. | HR Staff | Giờ bắt đầu, kết thúc, nghỉ trưa | Ca chuẩn 08:00 - 17:30 (8h, nghỉ 12:00 - 13:30, T2-T6). | BR-ATT-001 | AC-ATT-004 | Confirmed | Must Have |
-| FR-ATT-005 | Hệ thống phải hỗ trợ ghi nhận đi muộn. | Hệ thống tự động | Giờ check-in thực tế | Check-in sau 08:15 tính muộn từ mốc 08:00. | BR-ATT-001 | AC-ATT-005 | Confirmed | Must Have |
-| FR-ATT-006 | Hệ thống phải hỗ trợ ghi nhận về sớm. | Hệ thống tự động | Giờ check-out thực tế | Check-out trước 17:30 tính về sớm số phút thực tế. | BR-ATT-001 | AC-ATT-006 | Confirmed | Must Have |
-| FR-ATT-007 | Hệ thống phải hỗ trợ quản lý làm thêm giờ (Overtime). | Employee đăng ký; Manager duyệt | Số giờ OT, lý do, công việc | Đơn OT được duyệt mới tính vào giờ công làm thêm. | BR-ATT-001 | AC-ATT-007 | Confirmed | Must Have |
+| FR-ATT-005 | Hệ thống phải hỗ trợ ghi nhận đi muộn. | Hệ thống tự động | Giờ check-in thực tế | Check-in sau 08:15 tính muộn từ mốc 08:00. | BR-ATT-002 | AC-ATT-005 | Confirmed | Must Have |
+| FR-ATT-006 | Hệ thống phải hỗ trợ ghi nhận về sớm. | Hệ thống tự động | Giờ check-out thực tế | Check-out trước 17:30 tính về sớm số phút thực tế. | BR-ATT-002 | AC-ATT-006 | Confirmed | Must Have |
+| FR-ATT-007 | Hệ thống phải hỗ trợ quản lý làm thêm giờ (Overtime). | Employee đăng ký; Manager duyệt | Số giờ OT, lý do, công việc | Đơn OT được duyệt mới tính vào giờ công làm thêm. | BR-ATT-002 | AC-ATT-007 | Confirmed | Must Have |
 | FR-ATT-008 | Hệ thống phải hỗ trợ xem bảng công cá nhân. | Employee | Tháng cần xem | Hiển thị bảng công tháng, tổng số công, ngày muộn/về sớm. | BR-ATT-001 | AC-ATT-008 | Confirmed | Must Have |
-| FR-ATT-009 | Hệ thống phải hỗ trợ xem bảng công theo phòng ban. | Manager (phòng mình); HR Staff | Phòng ban, tháng cần xem | Bảng công chi tiết nhân viên trong phòng ban quản lý. | BR-AUTH-001 | AC-ATT-009 | Confirmed | Must Have |
+| FR-ATT-009 | Hệ thống phải hỗ trợ xem bảng công theo phòng ban. | Manager (phòng mình); HR Staff | Phòng ban, tháng cần xem | Bảng công chi tiết nhân viên trong phòng ban quản lý. | BR-ATT-AUTH-001 | AC-ATT-009 | Confirmed | Must Have |
 | FR-ATT-010 | Hệ thống phải hỗ trợ tổng hợp dữ liệu chấm công. | HR Staff | Tháng chốt công | Tổng hợp ngày công thực tế, ngày nghỉ phép, giờ OT sang PAY. | BR-ATT-002 | AC-ATT-010 | Confirmed | Must Have |
 
 ## Inputs & Outputs
@@ -52,7 +52,7 @@ Ghi nhận, quản lý và tổng hợp thời gian làm việc, ca làm việc,
 - **Input:** ID nhân viên, Ngày làm việc, Giờ Check-in, Giờ Check-out, File Excel máy chấm công (.xlsx, .csv).
 - **Output:** Bảng dữ liệu chấm công hàng ngày (Daily Attendance), Bảng tổng hợp công tháng (Monthly Timesheet) gồm: Tổng công chuẩn, Công thực tế, Số lần đi muộn/về sớm, Số giờ làm thêm (OT).
 - **Validation:**
-  - Không cho phép Check-in 2 lần liên tiếp mà chưa Check-out (hoặc tự động lấy lần đầu và lần cuối trong ngày).
+  - Không cho phép check-in hai lần liên tiếp; sau khi hoàn tất check-in/out trong ngày, lần check-in tiếp theo bị từ chối và cần gửi giải trình.
   - Giờ Check-out phải sau giờ Check-in.
 
 ## Business Rules
@@ -60,16 +60,16 @@ Ghi nhận, quản lý và tổng hợp thời gian làm việc, ca làm việc,
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
 
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Attendance Management](../business-rule/attendance-management.md):
-  - **BR-ATT-001:** Khung giờ ca chuẩn 08:00 - 17:30; ân hạn đi muộn 15 phút (sau 08:15 tính muộn từ 08:00); OT làm tròn block 30 phút và bắt buộc Manager duyệt trước.
-  - **BR-ATT-002:** Phương thức ghi nhận kết hợp Web và Import Excel từ máy chấm công vân tay; chốt công ngày 01 hàng tháng.
-  - **BR-AUTH-001:** Manager chỉ xem và duyệt công cho nhân viên thuộc phòng ban mình trực tiếp quản lý.
+  - **BR-ATT-001:** Ghi nhận bằng Web và file máy; từ chối chấm thêm sau khi hoàn tất ngày công, HR đối soát nếu hai nguồn lệch giờ.
+  - **BR-ATT-002:** Ca chuẩn 08:00 - 17:30; ân hạn muộn 15 phút; OT cần duyệt trước và làm tròn lên theo block 30 phút.
+  - **BR-ATT-AUTH-001:** Manager chỉ xem và duyệt công cho nhân viên thuộc phòng ban mình trực tiếp quản lý.
 
 ## Edge Cases
 
 **Status:** Confirmed — Approved by Product Owner (2026-10-21)
 
 1. **Quên Check-out:** Hệ thống đánh dấu cờ `MISSING_CHECKOUT`; nhân viên phải tạo đơn giải trình bổ sung công có Manager xác nhận.
-2. **Import trùng lặp dữ liệu từ máy chấm công:** Hệ thống sử dụng cặp khóa `(employee_id, work_date)` để cập nhật dữ liệu mới nhất (Upsert), không tạo bản ghi trùng lặp.
+2. **Import trùng lặp dữ liệu từ máy chấm công:** Không tạo ngày công trùng cho `(employee_id, work_date)`; nếu giờ Web và file máy khác nhau, HR đối soát và chọn giờ có hiệu lực.
 3. **Làm thêm giờ không có đơn duyệt trước:** Hệ thống không tự động tính công OT nếu thiếu đơn duyệt hợp lệ.
 
 ## Acceptance Criteria
@@ -97,6 +97,6 @@ Ghi nhận, quản lý và tổng hợp thời gian làm việc, ca làm việc,
 
 ## Open Questions
 
-**Status:** Confirmed / Resolved — All Questions Closed (2026-10-21)
+**Status:** TBD (To Be Determined)
 
-Toàn bộ các quy tắc chấm công đã được chốt tại PD-013, PD-014.
+- Endpoint/DTO và mã lỗi cho các thao tác ATT là gì? Cần xác nhận trong contract module trước khi triển khai API.

@@ -34,14 +34,14 @@ Quản lý toàn diện quy trình xin nghỉ phép, phê duyệt đơn nghỉ, 
 | Requirement ID | Chức năng bắt buộc | Actor | Input | Expected result | Business Rules | Acceptance Criteria | Status | Priority |
 |---|---|---|---|---|---|---|---|---|
 | FR-LEAVE-001 | Hệ thống phải hỗ trợ tạo đơn xin nghỉ phép. | Employee | Loại phép, ngày bắt đầu/kết thúc, lý do | Đơn tạo thành công ở trạng thái `Pending`, gửi thông báo Manager. | BR-LEAVE-001; BR-LEAVE-002 | AC-LEAVE-001 | Confirmed | Must Have |
-| FR-LEAVE-002 | Hệ thống phải hỗ trợ xem lịch sử đơn nghỉ phép. | Employee (cá nhân); HR Staff (toàn bộ) | Khoảng thời gian tra cứu | Danh sách đơn nghỉ phép hiển thị chi tiết theo thẩm quyền. | BR-AUTH-001 | AC-LEAVE-002 | Confirmed | Must Have |
+| FR-LEAVE-002 | Hệ thống phải hỗ trợ xem lịch sử đơn nghỉ phép. | Employee (cá nhân); HR Staff (toàn bộ) | Khoảng thời gian tra cứu | Danh sách đơn nghỉ phép hiển thị chi tiết theo thẩm quyền. | BR-LEAVE-AUTH-001 | AC-LEAVE-002 | Confirmed | Must Have |
 | FR-LEAVE-003 | Hệ thống phải hỗ trợ theo dõi trạng thái đơn. | Employee | ID đơn nghỉ phép | Hiển thị trạng thái thời gian thực (`Pending`, `Approved`, `Rejected`). | BR-LEAVE-002 | AC-LEAVE-003 | Confirmed | Must Have |
-| FR-LEAVE-004 | Hệ thống phải hỗ trợ phê duyệt đơn. | Department Manager | ID đơn, ghi chú duyệt | Trạng thái chuyển `Approved`, trừ quỹ phép, đồng bộ bảng công. | BR-LEAVE-002; BR-AUTH-001 | AC-LEAVE-004 | Confirmed | Must Have |
-| FR-LEAVE-005 | Hệ thống phải hỗ trợ từ chối đơn. | Department Manager | ID đơn, lý do từ chối | Trạng thái chuyển `Rejected`, thông báo lý do tới nhân viên. | BR-LEAVE-002; BR-AUTH-001 | AC-LEAVE-005 | Confirmed | Must Have |
+| FR-LEAVE-004 | Hệ thống phải hỗ trợ phê duyệt đơn. | Department Manager | ID đơn, ghi chú duyệt | Trạng thái chuyển `Approved`, trừ quỹ phép, đồng bộ bảng công. | BR-LEAVE-002; BR-LEAVE-AUTH-001 | AC-LEAVE-004 | Confirmed | Must Have |
+| FR-LEAVE-005 | Hệ thống phải hỗ trợ từ chối đơn. | Department Manager | ID đơn, lý do từ chối | Trạng thái chuyển `Rejected`, thông báo lý do tới nhân viên. | BR-LEAVE-002; BR-LEAVE-AUTH-001 | AC-LEAVE-005 | Confirmed | Must Have |
 | FR-LEAVE-006 | Hệ thống phải hỗ trợ quản lý các loại nghỉ phép. | HR Staff | Tên loại, hưởng lương (Y/N), trừ quỹ | Danh mục loại phép (Phép năm, Ốm đau, Thai sản, Không lương). | BR-LEAVE-001 | AC-LEAVE-006 | Confirmed | Must Have |
 | FR-LEAVE-007 | Hệ thống phải hỗ trợ quản lý số ngày phép còn lại. | Tất cả vai trò theo quyền | ID nhân viên | Hiển thị chính xác: Phép tiêu chuẩn, Phép thâm niên, Đã dùng, Còn lại. | BR-LEAVE-001 | AC-LEAVE-007 | Confirmed | Must Have |
-| FR-LEAVE-008 | Hệ thống phải hỗ trợ xem lịch nghỉ phép. | Tất cả vai trò | Tháng, phòng ban | Calendar hiển thị lịch nghỉ của phòng ban trực thuộc. | BR-AUTH-001 | AC-LEAVE-008 | Confirmed | Must Have |
-| FR-LEAVE-009 | Hệ thống phải hỗ trợ thống kê nghỉ phép. | HR Staff; Manager (phòng mình) | Kỳ báo cáo | Thống kê tỷ lệ nghỉ phép, tổng ngày nghỉ theo loại và bộ phận. | BR-LEAVE-001; BR-AUTH-001 | AC-LEAVE-009 | Confirmed | Must Have |
+| FR-LEAVE-008 | Hệ thống phải hỗ trợ xem lịch nghỉ phép. | Tất cả vai trò | Tháng, phòng ban | Calendar hiển thị lịch nghỉ của phòng ban trực thuộc. | BR-LEAVE-AUTH-001 | AC-LEAVE-008 | Confirmed | Must Have |
+| FR-LEAVE-009 | Hệ thống phải hỗ trợ thống kê nghỉ phép. | HR Staff; Manager (phòng mình) | Kỳ báo cáo | Thống kê tỷ lệ nghỉ phép, tổng ngày nghỉ theo loại và bộ phận. | BR-LEAVE-001; BR-LEAVE-AUTH-001 | AC-LEAVE-009 | Confirmed | Must Have |
 
 ## Inputs & Outputs
 
@@ -61,7 +61,7 @@ Quản lý toàn diện quy trình xin nghỉ phép, phê duyệt đơn nghỉ, 
 - Áp dụng đầy đủ quy tắc tại [Business Rules — Leave Management](../business-rule/leave-management.md):
   - **BR-LEAVE-001:** Cấp 12 ngày phép năm/năm (+1 ngày mỗi 5 năm thâm niên), tích lũy 1 ngày/tháng; chuyển tối đa 5 ngày sang năm sau (hạn dùng 31/03); nghỉ tối thiểu 0.5 ngày (nửa ngày).
   - **BR-LEAVE-002:** Quy trình phê duyệt 1 cấp trực tiếp bởi Department Manager; trừ quỹ phép và đồng bộ bảng công ngay khi duyệt; hoàn phép nguyên vẹn nếu hủy đơn trước ngày nghỉ.
-  - **BR-AUTH-001:** Manager chỉ duyệt đơn nhân viên phòng ban mình; HR Staff giám sát toàn quyền.
+  - **BR-LEAVE-AUTH-001:** Manager chỉ duyệt đơn nhân viên phòng ban mình; HR Staff giám sát toàn quyền.
 
 ## Edge Cases
 

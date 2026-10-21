@@ -1,7 +1,7 @@
 # Thiết Kế Chi Tiết: Quản Lý Hợp Đồng Lao Động — Phân Hệ CON (Screens 52 - 54)
 
-Tài liệu thiết kế chi tiết phân hệ Hợp đồng lao động (`CON`), cảnh báo thời hạn tự động trước 45 & 30 ngày và quản lý phụ lục điều chỉnh.
-Tuân thủ [frontend/DESIGN.md](file:///d:/saved/Project/hrm/frontend/DESIGN.md) và [FR-CON-001 → 009](file:///d:/saved/Project/hrm/docs/prd/function-requirement/contract-management.md).
+Tài liệu thiết kế chi tiết phân hệ Hợp đồng lao động (`CON`), cảnh báo thời hạn tự động trước 30 ngày và quản lý phụ lục điều chỉnh.
+Tuân thủ [Design System](../design-system.md) và [FR-CON-001 → 009](../../prd/function-requirement/contract-management.md).
 
 ---
 
