@@ -6,7 +6,7 @@ Tra trách nhiệm và hướng gọi phía frontend React trước khi thêm co
 
 Áp dụng các quy tắc đã được Product Owner xác nhận khi bổ sung code frontend.
 
-- `frontend/` hiện rỗng; tài liệu quy định cách phân lớp, chưa mô tả code đang chạy.
+- `frontend/` có prototype React dùng dữ liệu giả lập; tài liệu quy định cách phân lớp mục tiêu và phần tích hợp API chưa triển khai.
 - Tra công nghệ và phiên bản tại [Tech Stack](../tech-stack.md); không chọn thêm thư viện từ sơ đồ phân lớp.
 - Trước khi viết hoặc sửa giao diện, đọc [UI Rules](../../rules/ui.md) về HeroUI, Tailwind CSS, token và theme.
 
@@ -31,6 +31,7 @@ Tách hiển thị, logic dùng lại và giao tiếp HTTP.
 - UI hoặc hook ngăn kết quả request cũ ghi đè dữ liệu của request hiện tại.
 - Cleanup khi Effect không còn hiệu lực để kết quả request lỗi thời không cập nhật trạng thái giao diện.
 - UI hoặc hook xử lý lỗi API; Error Boundary xử lý lỗi render trong cây con, không thay thế xử lý lỗi request hoặc event handler.
+- Khi server từ chối lượt lưu dựa trên bản cũ, UI yêu cầu tải lại dữ liệu trước khi sửa tiếp; không tự gửi lại thay đổi trên bản cũ.
 
 ### Cấu hình Error Boundary
 

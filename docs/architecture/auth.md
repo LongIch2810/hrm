@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: thiết kế đã xác nhận; backend xác thực chưa triển khai, frontend hiện là prototype dùng mock.
 
 # Xác thực và phân quyền
 
@@ -24,15 +24,16 @@ Dùng JWT bearer cho bốn nhóm người dùng nội bộ; đăng nhập bằng
 | Thuật toán | HS256 | HS256 |
 
 - Cookie refresh token dùng `HttpOnly`, `SameSite=Lax`; bật `Secure` trên HTTPS, bỏ `Secure` khi chạy local qua HTTP.
-- Xoay refresh token mỗi lần dùng; lưu trạng thái phía server để thu hồi khi đăng xuất hoặc đổi mật khẩu.
+- Xoay refresh token mỗi lần dùng; lưu hash và trạng thái thu hồi trong bảng `user_sessions` để thu hồi khi đăng xuất hoặc đổi mật khẩu.
 - Nếu refresh token đã dùng bị dùng lại, thu hồi cả chuỗi token của lần đăng nhập đó.
 
 ## Phân quyền
 
-Dùng RBAC với một vai trò cho mỗi tài khoản; kiểm tra quyền tại backend theo [PRD](../PRD.md#43-roles--permissions-matrix).
+Dùng RBAC với một vai trò nền cho mỗi tài khoản và quyền nghiệp vụ theo nhiệm vụ; kiểm tra quyền tại backend theo [PRD](../PRD.md#43-roles--permissions-matrix).
 
 - Vai trò: System Administrator, HR Staff, Department Manager, Employee.
-- Chỉ cấp quyền theo đúng ma trận RBAC đã xác nhận trong PRD.
+- Gán vai trò nền theo chức vụ thực tế; System Administrator cấp quyền nghiệp vụ theo nhiệm vụ và phạm vi tài nguyên được duyệt.
+- HR Manager, Giám đốc, Kế toán, Interviewer, Trainer và IT là chức danh hoặc nhiệm vụ, không phải vai trò đăng nhập mới.
 
 **Status:** Confirmed
 
@@ -44,8 +45,9 @@ Dùng RBAC với một vai trò cho mỗi tài khoản; kiểm tra quyền tại
 
 ## Thư viện và Mã lỗi
 
-Dùng `@nestjs/jwt` 12.0.3 cho JWT, `crypto.scrypt` của Node.js để băm mật khẩu và Guard NestJS cho quyền; tra [Tech Stack](tech-stack.md) và [Security](../rules/security.md) cho quy tắc dùng trong code.
+Dùng `@nestjs/jwt` 12.0.3 cho JWT, `bcrypt` 6.0.0 với work factor 12 để băm mật khẩu và Guard NestJS cho quyền; tra [Tech Stack](tech-stack.md) và [Security](../rules/security.md).
 
 - **Mã lỗi chuẩn hóa:**
   - `401 Unauthorized`: `AUTH_UNAUTHORIZED` (chưa đăng nhập hoặc token không hợp lệ), `AUTH_TOKEN_EXPIRED` (access token hết hạn).
-  - `403 Forbidden`: `FORBIDDEN_RESOURCE` (truy cập tài nguyên ngoài phạm vi phòng ban), `INSUFFICIENT_PERMISSIONS` (vai trò không đủ quyền thực hiện thao tác).
+  - `403 Forbidden`: `INSUFFICIENT_PERMISSIONS` (vai trò không đủ quyền thực hiện thao tác hoặc Manager xem nhân viên ngoài phòng ban).
+  - `404 Not Found`: `RESOURCE_NOT_FOUND` (không tìm thấy tài nguyên hoặc tài nguyên khác ngoài phạm vi truy cập; không tiết lộ sự tồn tại).

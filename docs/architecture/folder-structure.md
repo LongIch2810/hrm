@@ -17,6 +17,8 @@ hrm/
 ├── frontend/                   # Ứng dụng React với dữ liệu giả lập
 ├── docs/
 │   ├── PRD.md
+│   ├── api-spec.md               # Tóm tắt và mục lục API
+│   ├── openapi.yaml              # Nguồn contract API chung và các module
 │   ├── prd/
 │   │   ├── index.md
 │   │   ├── business-rule/        # Chi tiết quy tắc nghiệp vụ 12 module (có index.md)
@@ -34,7 +36,8 @@ hrm/
 │   │   │   └── frontend-react.md
 │   │   └── overview.md
 │   ├── design/                   # UI/UX Design System, tokens và 68 đặc tả màn hình
-│   │   ├── README.md
+│   │   ├── index.md              # Mục lục thiết kế cho Agent
+│   │   ├── README.md             # Tổng quan cho người đọc
 │   │   ├── design-system.md
 │   │   ├── design-tokens.css
 │   │   └── screens/              # 15 file đặc tả 68 màn hình
@@ -59,9 +62,11 @@ hrm/
 ├── plans/
 │   ├── active/
 │   └── completed/
+├── sprints/                    # Kế hoạch và đặc tả chi tiết từng Sprint (index.md, sprint-00-core-backend.md)
 ├── tasks/
 │   ├── active/
 │   └── completed/
+├── templates/                  # Biểu mẫu chuẩn cho Sprint và Task (index.md, sprint-template.md)
 ├── AGENTS.md
 └── README.md                   # Rỗng (cho git repository)
 ```
@@ -79,13 +84,16 @@ hrm/
 | `frontend/` | Ứng dụng React với mock store; độ phủ màn hình chưa được kiểm chứng. |
 | `backend/` | Ứng dụng NestJS; hiện rỗng. |
 | `docs/` | Tài liệu dự án, gồm PRD, kiến trúc, quy trình và quy tắc. |
+| `docs/openapi.yaml` | Nguồn contract OpenAPI 3.1.0; endpoint/DTO module chỉ thêm sau khi duyệt. |
+| `docs/api-spec.md` | Tóm tắt và mục lục quy ước REST API chung. |
+| `docs/api-spec/` | Tóm tắt nghiệp vụ theo module; chỉ tạo khi module đó được đặc tả API. |
 | `docs/prd/function-requirement/` | Chi tiết yêu cầu của 12 module; tra mục 6 trong [PRD](../PRD.md). |
 | `docs/prd/business-rule/` | Quy tắc nghiệp vụ chi tiết của 12 module; tra mục 8 trong [PRD](../PRD.md). |
 | `docs/prd/index.md` | Mục lục các đặc tả chi tiết; tra [PRD](../PRD.md) cho tổng quan và nghiệm thu. |
 | `docs/prd/details/` | Quy tắc nghiệp vụ, NFR, giả định/rủi ro và dữ liệu khái quát theo từng file. |
 | `docs/prd/usecase/` | User stories, use cases và các luồng liên quan; tra mục 7 trong [PRD](../PRD.md). |
 | `docs/prd/workflow/` | Các workflow đã biết; tra mục 9 trong [PRD](../PRD.md). |
-| `docs/design/` | Hệ thống thiết kế UI/UX, tokens và 68 tài liệu màn hình. |
+| `docs/design/` | Hệ thống thiết kế UI/UX, tokens và 68 tài liệu màn hình; tra `index.md`. |
 | `docs/process/` | Đề xuất quy trình Agile Scrum và lộ trình Sprint đang chờ duyệt. |
 | `docs/architecture/index.md` | Mục lục tài liệu kiến trúc kỹ thuật của hệ thống. |
 | `docs/architecture/` | Công nghệ, cấu trúc thư mục, phân lớp và bức tranh tổng thể. |
@@ -93,8 +101,10 @@ hrm/
 | `docs/rules/` | Quy tắc kỹ thuật cho lập trình viên và agent (clean code, coding style, naming, API, security, UI, test, git; có index.md). |
 | `plans/active/` | Kế hoạch đang thực hiện. |
 | `plans/completed/` | Kế hoạch đã hoàn tất. |
+| `sprints/` | Kế hoạch và đặc tả chi tiết từng Sprint; tra `index.md`. |
 | `tasks/active/` | Công việc kỹ thuật đang thực hiện. |
 | `tasks/completed/` | Công việc kỹ thuật đã hoàn tất. |
+| `templates/` | Biểu mẫu chuẩn cho Sprint và Task; tra `index.md`. |
 | `history/` | Lưu ghi chép lỗi tại `history/error/` để agent sau tra cứu. |
 | `.agents/skills/` | Các skill cục bộ của dự án. |
 | `.codex/agents/` | Thư mục dành cho cấu hình agent Codex; hiện rỗng. |
@@ -142,6 +152,9 @@ hrm/
 | Biến môi trường và file mẫu frontend | `frontend/.env`, `frontend/.env.example`. |
 | Biến môi trường và file mẫu backend | `backend/.env`, `backend/.env.example`. |
 | Tài liệu kiến trúc | `docs/architecture/` |
+| Nguồn contract REST API chung và module | `docs/openapi.yaml` |
+| Tóm tắt API chung | `docs/api-spec.md` |
+| Tóm tắt API theo module | `docs/api-spec/<module>.md`; tạo khi đặc tả module |
 | Chi tiết module PRD | `docs/prd/function-requirement/` |
 | Tài liệu quy tắc | `docs/rules/` |
 | Ghi chép lỗi và cách đã sửa | `history/error/` khi bổ sung. |

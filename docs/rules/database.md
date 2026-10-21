@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy tắc cơ sở dữ liệu (Database Rules)
 
@@ -94,6 +94,7 @@ Bảo đảm tính toàn vẹn dữ liệu nghiệp vụ theo nguyên tắc ACID
   - TUYỆT ĐỐI KHÔNG gọi HTTP API bên ngoài, gửi email, đọc ghi file dung lượng lớn hoặc thực hiện tác vụ nặng bên trong transaction.
 - **Kiểm soát tranh chấp (Concurrency & Locking):**
   - Mặc định dùng mức cô lập `READ COMMITTED` của PostgreSQL.
+  - Bảo đảm việc xác định bản cũ và ghi dữ liệu là nguyên tử để từ chối lượt lưu từ bản cũ theo [API spec](../api-spec.md).
   - Khi cập nhật dữ liệu tài chính hoặc số dư có nguy cơ Race Condition (như hai đơn nghỉ phép cùng nộp một lúc): Dùng Pessimistic Write Lock (`manager.findOne(LeaveBalance, { where: { id }, lock: { mode: 'pessimistic_write' } })`).
 
 ---

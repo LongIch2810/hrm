@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy ước coding style
 

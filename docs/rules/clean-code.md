@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy tắc clean code
 
@@ -138,14 +138,15 @@ Kiểm tra phần đã sửa trước khi báo hoàn thành; tra lệnh và tr�
 
 **Status:** Confirmed
 
-- Error contract chuẩn hóa toàn hệ thống theo RFC 7807 / NestJS Exception Filter format:
+- Error contract chuẩn hóa toàn hệ thống theo [API spec](../api-spec.md#5-response-thành-công-và-lỗi):
   ```json
   {
-    "statusCode": 400,
-    "error": "BAD_REQUEST",
-    "message": "Thông điệp lỗi chi tiết cho người dùng",
-    "timestamp": "2026-10-21T10:00:00.000Z",
-    "path": "/api/v1/employees"
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Dữ liệu không hợp lệ",
+      "details": [{"field": "pageSize", "code": "INVALID_VALUE", "message": "pageSize phải từ 1 đến 100"}]
+    },
+    "meta": {"requestId": "request-id", "timestamp": "21/10/2026 15:30:00"}
   }
   ```
 - Tra [Security](security.md) cho quy tắc bảo mật và [Testing](testing.md) cho quy tắc test.

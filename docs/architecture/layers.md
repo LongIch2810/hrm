@@ -6,7 +6,7 @@ Tra trách nhiệm từng lớp và hướng gọi được phép trước khi p
 
 Áp dụng cách phân lớp đã được Product Owner xác nhận khi bổ sung code.
 
-- `frontend/` và `backend/` hiện rỗng; tài liệu quy định cách phân lớp, chưa mô tả code đang chạy.
+- `frontend/` có prototype React dùng dữ liệu giả lập; `backend/` hiện rỗng. Tài liệu quy định cách phân lớp mục tiêu.
 - Tra kết nối giữa các thành phần tại [Overview](overview.md); tra công nghệ tại [Tech Stack](tech-stack.md).
 
 ## 2. Tài liệu theo app

@@ -4,14 +4,14 @@ Giao diện React dùng dữ liệu giả lập để xem các màn hình HRM. B
 
 ## Chạy cục bộ
 
-Yêu cầu Node.js 20 LTS và npm.
+Phiên bản Node.js mục tiêu đã xác nhận là 22.22.2; dùng npm theo [Tech Stack](../docs/architecture/tech-stack.md).
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Mở địa chỉ do Vite in ra, mặc định `http://localhost:5173`. Dùng DevToolbar để đổi vai trò và xem màn hình.
+Mở địa chỉ do Vite in ra, mặc định `http://127.0.0.1:5173`. Dùng DevToolbar để đổi vai trò và xem màn hình.
 
 ## Kiểm tra bản dựng
 

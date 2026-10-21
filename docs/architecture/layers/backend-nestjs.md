@@ -29,8 +29,9 @@ Tách kiểm tra request, xử lý HTTP, nghiệp vụ và truy cập dữ liệ
 - Đặt Entity trong module sở hữu dữ liệu; tra vị trí Entity, DataSource và migration tại [Folder Structure](../folder-structure.md).
 - Không để Controller gọi trực tiếp Repository hoặc truy vấn PostgreSQL.
 - Không coi việc Guard cho phép gọi operation là thay thế cho kiểm tra quyền trên dữ liệu cụ thể trong Service.
+- Service từ chối lượt lưu dựa trên bản cũ; kiểm tra quyền và trạng thái nghiệp vụ tại thời điểm lưu trước khi ghi.
 - Controller không tự tạo format lỗi riêng; Exception Filter chung tuân thủ contract được xác nhận.
-- Không tự chốt logging, cache hoặc response envelope cho Interceptor khi chưa được xác nhận.
+- Không tự chốt logging hoặc cache; dùng response envelope đã xác nhận tại [API spec](../../api-spec.md#5-response-thành-công-và-lỗi).
 - Tuân thủ [REST API Rules](../../rules/rest-api.md) khi kiểm tra input, quyền truy cập, response và lỗi.
 
 ### Validation đã xác nhận
@@ -116,7 +117,7 @@ Minh họa một request đọc; không định nghĩa endpoint, schema hoặc q
 
 - **DTO & Validation:** Sử dụng `class-validator` và `class-transformer` thông qua `ValidationPipe` toàn cục với cấu hình `whitelist: true`, `forbidNonWhitelisted: true`, `transform: true`.
 - **Authentication & RBAC Guard:** Sử dụng `JwtAuthGuard` để giải mã và xác thực access token; `RolesGuard` đối chiếu decorator `@Roles(...)` với vai trò của người dùng theo ma trận 4 vai trò đã chốt tại [Auth](../auth.md).
-- **Global Exception Filter:** Chuẩn hóa toàn bộ phản hồi lỗi theo format RFC 7807 nhất quán (`statusCode`, `error`, `message`, `timestamp`, `path`).
+- **Global Exception Filter:** Chuẩn hóa lỗi theo `{error:{code,message,details},meta}` trong [API contract](../../api-spec.md#5-response-thành-công-và-lỗi).
 - Tra yêu cầu nghiệp vụ chi tiết tại [đặc tả yêu cầu](../../prd/index.md) và quy tắc triển khai tại [REST API Rules](../../rules/rest-api.md).
 
 ## 7. Tài liệu liên quan

@@ -7,7 +7,7 @@ Tra các thành phần chính, vai trò và cách kết nối của HRM trước
 Phân biệt kiến trúc đã xác nhận với hệ thống đang chạy.
 
 - Product Owner đã xác nhận các vai trò và kết nối trong tài liệu này.
-- `frontend/` và `backend/` hiện rỗng; sơ đồ chưa phản ánh một hệ thống đã triển khai.
+- `frontend/` có prototype React dùng dữ liệu giả lập; `backend/` hiện rỗng. Sơ đồ mô tả kiến trúc mục tiêu, chưa phản ánh một hệ thống tích hợp.
 - Tra phiên bản và trạng thái cấu hình tại [Tech Stack](tech-stack.md).
 - Giữ overview ở mức thành phần hệ thống; không liệt kê module nghiệp vụ hoặc lớp kỹ thuật của backend.
 
@@ -53,13 +53,13 @@ flowchart LR
 
 ## 5. Tích hợp bên ngoài
 
-Áp dụng các tích hợp hệ thống bên ngoài đã được Product Owner phê duyệt theo quyết định `PD-036`.
+Theo [PRD](../PRD.md), hệ thống cần gửi email, lưu tệp riêng tư và nhập dữ liệu máy chấm công. Nhà cung cấp và giao thức tích hợp cụ thể chưa được xác nhận.
 
-**Status:** Confirmed
+**Status:** TBD (To Be Determined)
 
-- **Mail Service:** SMTP Server (SendGrid / AWS SES / Postfix nội bộ) phục vụ gửi email kích hoạt, reset mật khẩu, thông báo phê duyệt đơn từ, và gửi offer tuyển dụng.
-- **File & Object Storage:** S3-compatible Storage (AWS S3 hoặc MinIO container on-premise) lưu trữ tài liệu hợp đồng, CV ứng viên và chứng chỉ số.
-- **Máy chấm công:** Hỗ trợ nhập tệp định dạng Excel / CSV xuất từ thiết bị chấm công ở Phase 1; Phase 2 cung cấp API / Service đồng bộ tự động từ máy chấm công vân tay/khuôn mặt.
+- Chọn dịch vụ gửi email và cách cấu hình nào?
+- Chọn dịch vụ lưu trữ tệp riêng tư và giao thức truy cập nào?
+- Phase 1 nhập Excel/CSV theo `PD-013`; phương án đồng bộ tự động từ máy chấm công ở Phase 2 cần được xác nhận trước khi đặc tả.
 
 ## 6. Tài liệu liên quan
 

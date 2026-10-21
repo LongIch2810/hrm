@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy tắc bảo mật
 
@@ -33,11 +33,15 @@ Phân loại theo mức bảo vệ; loại dữ liệu công khai chỉ tồn t�
 
 | Quy tắc | Làm | Không làm |
 |---|---|---|
-| Băm mật khẩu | Dùng `crypto.scrypt` với `N=2^17, r=8, p=1`, salt ngẫu nhiên ≥16 byte, output 64 byte, `maxmem` ≥256 MiB; lưu salt và tham số cùng hash. | Lưu mật khẩu bản rõ hoặc hash không salt. |
-| Độ mạnh | Nhận 15–128 ký tự, cả passphrase và khoảng trắng; chặn mật khẩu phổ biến/bị lộ khi có nguồn đã duyệt. | Ép ký tự đặc biệt hoặc đổi định kỳ mặc định. |
+| Băm mật khẩu | Dùng `bcrypt` 6.0.0 với work factor 12; lưu hash có salt và tham số đi kèm. | Lưu mật khẩu bản rõ hoặc hash không salt. |
+| Độ mạnh | Nhận tối thiểu 15 ký tự và tối đa 72 byte UTF-8, cả passphrase và khoảng trắng; chặn mật khẩu phổ biến/bị lộ khi có nguồn đã duyệt. | Ép ký tự đặc biệt hoặc đổi định kỳ mặc định. |
 | Secret local | Đọc từ `.env` không commit và `.env.example` không có secret thật theo [Tech Stack](../architecture/tech-stack.md). | Hard-code key trong code, image hoặc file mẫu. |
 | Secret staging/prod | Lấy từ kho secret của nền tảng triển khai và inject vào backend; giữ secret khỏi repo/image. | Đưa secret vào `VITE_*` hoặc bundle frontend. |
 | Xoay khóa ký | Khi xoay, thay khóa một lần và vô hiệu mọi token cũ; yêu cầu đăng nhập lại. | Tiếp tục chấp nhận token ký bằng khóa cũ. |
+
+**Status:** Confirmed — Product Owner chốt `bcrypt` 6.0.0, work factor 12 và giới hạn mật khẩu tối đa 72 byte UTF-8; đo hiệu năng khi triển khai Auth.
+
+- Khi tăng work factor sau này, băm lại sau lần đăng nhập thành công và lưu hash mới.
 
 ## 4. Validate và chống tấn công
 
@@ -117,7 +121,7 @@ Tra tài liệu chính thức khi triển khai; không coi ví dụ trong nguồ
 
 - [OWASP Top 10:2025](https://top10.owasp.org/2025/0x00_2025-Introduction/) và [OWASP ASVS](https://owasp.org/projects/asvs): đối chiếu nhóm rủi ro và kiểm chứng bảo mật.
 - [NestJS Security Headers](https://docs.nestjs.com/techniques/security/cors), [CSRF](https://docs.nestjs.com/security/csrf), [Validation](https://docs.nestjs.com/techniques/validation): đối chiếu API của NestJS 12.1.
-- [Node.js 22 crypto.scrypt](https://nodejs.org/docs/latest-v22.x/api/crypto.html) và [OWASP Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html): đối chiếu tham số băm.
+- [OWASP Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html): đối chiếu cách dùng bcrypt sau khi chốt thư viện và work factor.
 - [TypeORM QueryBuilder](https://typeorm.io/docs/query-builder/select-query-builder/) và [npm audit v10](https://docs.npmjs.com/cli/v10/commands/npm-audit/): đối chiếu truy vấn và kiểm dependency.
 - [OWASP Logging](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) và [Secrets Management](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html): đối chiếu audit và ứng phó.
 
@@ -128,6 +132,6 @@ Tra tài liệu chính thức khi triển khai; không coi ví dụ trong nguồ
 - Địa bàn pháp lý & tuân thủ: Áp dụng cho doanh nghiệp SME tại Việt Nam, tuân thủ nghiêm ngặt Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân (PDPD).
 - Mã hóa dữ liệu: Bắt buộc mã hóa lưu trữ ở mức ổ đĩa (AES-256) và bản sao lưu (GPG encryption); bảo vệ đường truyền HTTPS TLS 1.3 cho toàn bộ môi trường Staging và Production.
 - Quản lý Secret: Phân tách rõ `.env` local không commit vào Git; Staging/Prod sử dụng Docker Secrets / Cloud KMS Secret Manager inject trực tiếp vào runtime của container.
-- Upload tệp: Giới hạn tối đa 10 MB/tệp; whitelist định dạng tài liệu (PDF, PNG, JPG, DOCX); kiểm tra MIME-type và magic bytes tại server; đổi tên tệp ngẫu nhiên UUID để chống Path Traversal.
-- Rate limiting: Sử dụng `@nestjs/throttler` v5.x; áp dụng mức 100 req/phút cho API thông thường và 5 req/phút cho các endpoint đăng nhập/xác thực.
+- Upload tệp: Giới hạn tối đa 5 MB/tệp cho các luồng hiện có; chỉ nhận định dạng được module cho phép (CV chỉ PDF); kiểm tra MIME-type và magic bytes tại server; đổi tên tệp ngẫu nhiên UUID để chống Path Traversal.
+- Rate limiting: Dùng `@nestjs/throttler` v6.4.0; API thường 120 request/phút/IP, login 5 lần/15 phút/email+IP, refresh 30 request/phút/IP theo [API spec](../api-spec.md#7-rate-limit-timeout-retry-và-idempotency).
 - Audit logging: Lưu trữ bất biến (Append-only) trong bảng `audit_logs` tối thiểu 2 năm; phân quyền chặt chẽ chỉ System Administrator có quyền tra cứu.

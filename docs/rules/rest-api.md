@@ -4,19 +4,19 @@
 
 - **Version:** 1.0
 - **Last Updated:** 2026-10-21
-- **Hiệu lực:** Bắt buộc khi code; contract tuân thủ chặt chẽ đặc tả API trong [api-spec.md](../api-spec.md).
+- **Hiệu lực:** Quy tắc kỹ thuật bắt buộc khi code; quy ước chung trong [API contract](../api-spec.md) đã duyệt, contract endpoint từng module còn TBD.
 - **Căn cứ:** Hướng dẫn kỹ thuật từ [Microsoft Azure REST API Guidelines](#16-references); yêu cầu sản phẩm từ [PRD](../PRD.md).
 
 ## 1. Purpose & Scope
 
-Giữ implementation nhất quán với contract đã được xác nhận.
+Giữ implementation nhất quán với contract sau khi được xác nhận.
 
 ### REST-001: Implement the approved contract
 
-- Đọc global contract trong [api-spec.md](../api-spec.md) và đặc tả module liên quan trước khi code.
+- Đọc nguồn [openapi.yaml](../openapi.yaml), bản tóm tắt [api-spec.md](../api-spec.md) và file `docs/api-spec/<module>.md` tương ứng trước khi code API module.
 - Không tự tạo endpoint, quyền, schema hoặc giá trị mặc định chưa được xác nhận.
 - Khi thiếu quyết định ảnh hưởng implementation, áp dụng [quy tắc TBD](../../AGENTS.md#rule-undefined-requirements--decisions-tbd).
-- Tra các lựa chọn chưa chốt tại [Các mục cần xác nhận](../api-spec.md#1-tổng-quan); không định nghĩa lại trong file này.
+- Tra các lựa chọn chưa chốt tại [API spec](../api-spec.md); không định nghĩa lại trong file này.
 
 ## 2. Resource Design
 
@@ -63,7 +63,7 @@ Trả status phản ánh kết quả xử lý thực tế.
 
 ### REST-006: Return meaningful HTTP status
 
-- Dùng mapping đã xác nhận tại [Shared HTTP Status Codes](../api-spec.md#6-mã-lỗi-chung).
+- Dùng mapping đã xác nhận tại [Mã lỗi chung](../api-spec.md#6-mã-lỗi-chung).
 - Không trả `200` kèm cờ lỗi để thay thế HTTP error status.
 - Không trả `202` như xác nhận công việc đã hoàn tất.
 - Không gửi response body khi trả `204`.
@@ -74,7 +74,7 @@ Trả status phản ánh kết quả xử lý thực tế.
 - Phân biệt lỗi input, truy cập, trạng thái resource và lỗi server theo mapping chung.
 - Không chuyển lỗi precondition thành thành công hoặc tiếp tục ghi khi điều kiện bắt buộc không đạt.
 - Chỉ trả tín hiệu throttling, retry và precondition khi cơ chế tương ứng đã được đặc tả.
-- Không tự chọn giữa `403` và `404` khi policy che giấu sự tồn tại resource chưa rõ.
+- Dùng `403` cho vai trò không được thao tác hoặc Manager xem nhân viên ngoài phòng ban; dùng `404` cho tài nguyên khác ngoài phạm vi theo [API spec](../api-spec.md#6-mã-lỗi-chung).
 
 ## 5. Request Design
 
@@ -84,7 +84,7 @@ Nhận dữ liệu đúng định dạng, vị trí và kiểu được công b�
 
 - Xử lý headers và media types theo [Common Request Headers](../api-spec.md#4-quy-ước-requestresponse-chung).
 - Giữ `Content-Type` của response khớp representation thực tế.
-- Không tự mặc định JSON, Bearer token hoặc custom header khi contract chưa chọn.
+- Dùng JSON, Bearer token và `X-Request-Id` theo [API spec](../api-spec.md); không tự thêm custom header.
 - Không xử lý tên HTTP header như giá trị phân biệt chữ hoa, chữ thường.
 
 ### REST-009: Enforce the request contract
@@ -136,7 +136,7 @@ Thực hiện truy vấn collection theo khả năng và giới hạn đã công
 - Dùng [Pagination Contract](../api-spec.md#4-quy-ước-requestresponse-chung); không tự đặt strategy, parameter hoặc page size.
 - Giữ filter và sort nhất quán khi chuyển trang.
 - Áp dụng phạm vi quyền dữ liệu cho mọi trang; không dùng continuation token để bỏ qua kiểm tra quyền.
-- Trả tín hiệu kết thúc và xử lý token sai theo contract.
+- Trang vượt quá trang cuối trả mảng rỗng và giữ tổng thực theo [API spec](../api-spec.md#4-quy-ước-requestresponse-chung).
 
 ### REST-014: Bound supported queries
 
@@ -180,7 +180,7 @@ Giữ client đang được hỗ trợ hoạt động theo contract đã công b
 ### REST-018: Follow the selected versioning strategy
 
 - Dùng base URL và version selector tại [API Base URL & Versioning](../api-spec.md#2-base-url-và-versioning).
-- Không tự thêm `/v1`, query version hoặc version header.
+- Dùng `/api/v1`; không thêm query version hoặc version header.
 - Xử lý version thiếu, sai hoặc hết hỗ trợ theo contract chung.
 
 ### REST-019: Review observable compatibility
@@ -198,9 +198,10 @@ Giữ tác động của retry và cập nhật đồng thời đúng với cont
 
 - Giữ hiệu ứng idempotent của PUT và DELETE; response giữa các lần gọi có thể khác nhau.
 - Không mặc định POST hoặc PATCH chống trùng khi retry.
-- Chỉ dùng idempotency key, ETag hoặc conditional headers theo cơ chế đã được xác nhận.
-- Khi hỗ trợ precondition, kiểm tra trước khi ghi; không âm thầm bỏ qua.
-- Không tự đặt key expiry, retry count hoặc chính sách giải quyết xung đột.
+- Chỉ dùng `Idempotency-Key` cho POST được contract module chỉ rõ; giữ kết quả 24 giờ theo [API spec](../api-spec.md).
+- Từ chối mọi lượt lưu dựa trên bản cũ; kiểm tra quyền và trạng thái nghiệp vụ tại thời điểm lưu.
+- Chỉ dùng `ETag`/`If-Match` hoặc trường phiên bản sau khi contract module xác nhận; kiểm tra phiên bản trước khi ghi.
+- Không tự đặt số lần retry, HTTP status hoặc `error.code` cho lỗi bản cũ.
 
 ## 14. Contract Documentation
 
@@ -208,13 +209,13 @@ Giữ đặc tả và implementation thống nhất khi sửa API.
 
 ### REST-021: Reuse shared definitions
 
-- Tham chiếu schema và quy ước chung từ [api-spec.md](../api-spec.md); không sao chép sang từng module.
-- Dùng định dạng và phiên bản công cụ đặc tả đã được xác nhận.
-- Không tự chọn OpenAPI version hoặc tạo shared field chưa được duyệt.
+- Tham chiếu schema và quy ước chung từ [openapi.yaml](../openapi.yaml); ghi giải thích nghiệp vụ trong `docs/api-spec/<module>.md` khi module được đặc tả.
+- Dùng [OpenAPI 3.1.0](../openapi.yaml) làm nguồn chính thức; giữ Markdown cùng nội dung.
+- Không tự tạo shared field chưa được duyệt.
 
 ### REST-022: Keep module contracts traceable
 
-- Khi được giao sửa API module, cập nhật đúng đặc tả của module và liên kết requirement liên quan.
+- Khi được giao sửa API module, cập nhật file `docs/api-spec/<module>.md` và liên kết FR/BR/AC liên quan.
 - Ghi đúng method, input, output, permission và lỗi đã được xác nhận.
 - Đồng bộ đặc tả khi implementation thay đổi contract; không để tài liệu mô tả hành vi khác code.
 

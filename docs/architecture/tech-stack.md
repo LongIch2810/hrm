@@ -7,9 +7,9 @@ Tra công nghệ đã xác nhận và trạng thái cấu hình trước khi ph�
 Phân biệt stack đã chọn với công nghệ đang được triển khai trong repo.
 
 - Product Owner đã xác nhận các công nghệ trong mục 2.
-- `frontend/` và `backend/` hiện rỗng; chưa có mã ứng dụng hoặc entry point.
-- Chưa có dependency manifest, lockfile, Dockerfile hoặc cấu hình build, lint, format và test.
-- Không coi stack đã chọn là bằng chứng ứng dụng đã chạy hoặc các dependency đã tương thích.
+- `frontend/` có prototype React, manifest, lockfile và lệnh build; `backend/` hiện rỗng.
+- Chưa có Dockerfile, Docker Compose hoặc cấu hình lint, format và test; frontend chưa có API client.
+- Phiên bản đã xác nhận là mục tiêu cấu hình; prototype frontend hiện dùng các phiên bản khác trong `frontend/package.json`.
 
 ## 2. Công nghệ đã xác nhận
 
@@ -17,12 +17,12 @@ Dùng các phiên bản đã được Product Owner xác nhận làm căn cứ c
 
 | Thành phần | Công nghệ | Phiên bản đã xác nhận | Trạng thái trong repo |
 |---|---|---|---|
-| Ngôn ngữ frontend | TypeScript | 6.0.3 | Chưa cấu hình |
-| Framework frontend | React | 19.3.1 | Chưa cài đặt |
-| Thư viện component UI frontend | HeroUI (@heroui/react) | 3.2.6 | Chưa cài đặt |
-| Styles và design token HeroUI | @heroui/styles | 3.2.6 | Chưa cài đặt |
-| Icon frontend | lucide-react | 1.57.0 | Chưa cài đặt |
-| CSS utility frontend | Tailwind CSS | 4.3.3 | Chưa cài đặt |
+| Ngôn ngữ frontend | TypeScript | 6.0.3 | Prototype dùng `^5.7.3` |
+| Framework frontend | React | 19.3.1 | Prototype dùng `^19.0.0` |
+| Thư viện component UI frontend | HeroUI (@heroui/react) | 3.2.6 | Prototype dùng `3.2.6` |
+| Styles và design token HeroUI | @heroui/styles | 3.2.6 | Prototype dùng `3.2.6` |
+| Icon frontend | lucide-react | 1.57.0 | Prototype dùng `^1.16.0` |
+| CSS utility frontend | Tailwind CSS | 4.3.3 | Prototype dùng `^4.0.0` |
 | Ngôn ngữ backend | TypeScript | 6.0.3 | Chưa cấu hình |
 | Framework backend | NestJS | 12.1.3 | Chưa cài đặt |
 | HTTP adapter backend | Express qua @nestjs/platform-express | 12.1.3 | Chưa cài đặt |
@@ -45,12 +45,12 @@ Dùng các phiên bản đã được Product Owner xác nhận làm căn cứ c
 
 | Hạng mục | Công cụ | Phiên bản | Trạng thái trong repo |
 |---|---|---|---|
-| Package manager | npm cho frontend và backend | 10.9.7 | Chưa có manifest hoặc lockfile |
-| Build frontend | Vite với React và TypeScript | 8.3.4 | Chưa cấu hình |
-| Tích hợp Tailwind với Vite | @tailwindcss/vite | 4.3.3 | Chưa cấu hình |
+| Package manager | npm cho frontend và backend | 10.9.7 | Frontend có manifest và lockfile; backend chưa có |
+| Build frontend | Vite với React và TypeScript | 8.3.4 | Prototype dùng `^6.2.0` |
+| Tích hợp Tailwind với Vite | @tailwindcss/vite | 4.3.3 | Prototype dùng `^4.0.0` |
 | Linter | ESLint + typescript-eslint cho cả hai phía | 10.12.0 + 8.71.2 | Chưa cấu hình |
 | Formatter | Prettier cho cả hai phía | 3.9.10 | Chưa cấu hình |
-| Kiểm tra lỗ hổng phụ thuộc | npm audit, có sẵn trong npm | 10.9.7 | Chưa có manifest hoặc lockfile |
+| Kiểm tra lỗ hổng phụ thuộc | npm audit, có sẵn trong npm | 10.9.7 | Frontend có manifest và lockfile |
 | Test runner | Vitest cho cả hai phía | 5.0.4 | Chưa cấu hình |
 | NestJS test module | @nestjs/testing cho backend | 12.1.3 | Chưa cài đặt |
 | React component test | @testing-library/react cho frontend | 16.3.2 | Chưa cài đặt |
@@ -59,12 +59,16 @@ Dùng các phiên bản đã được Product Owner xác nhận làm căn cứ c
 | Browser E2E test | @playwright/test cho frontend | 1.52.0 | Chưa cài đặt |
 | Validation backend | class-validator + class-transformer | 0.14.1 + 0.5.1 | Chưa cài đặt |
 | Xác thực JWT | @nestjs/jwt; tra [Auth](auth.md) | 12.0.3 | Chưa cài đặt |
-| Băm mật khẩu và phân quyền | crypto.scrypt của Node.js; Guard NestJS | Node.js 22.22.2; NestJS 12.1.3 | Chưa triển khai |
+| Băm mật khẩu và phân quyền | bcrypt; Guard NestJS | bcrypt 6.0.0, work factor 12; NestJS 12.1.3 | Chưa triển khai |
 | Rate limit backend | @nestjs/throttler; tra [Security](../rules/security.md) | 6.4.0 | Chưa cài đặt |
 | Chạy Docker local | Docker Compose | 5.1.3 | Chưa có cấu hình |
 
 - Đặt manifest và lockfile riêng trong `frontend/` và `backend/`.
 - Đặt `compose.yaml` ở root với ba service `frontend`, `backend` và `postgres`.
+
+**Status:** Confirmed — Product Owner chốt `bcrypt` 6.0.0 và work factor 12. Đo hiệu năng băm/xác minh khi triển khai Auth.
+
+**Status:** Confirmed — Khi tăng work factor sau này, băm lại mật khẩu có hash cũ sau lần đăng nhập thành công và lưu hash mới.
 
 ### Cấu hình local đã xác nhận
 
@@ -96,7 +100,7 @@ Dùng các phiên bản đã được Product Owner xác nhận làm căn cứ c
 | HTTP adapter | `@nestjs/platform-express` v12.1.3 tương thích với NestJS 12.1.3. |
 | Validation backend | `class-validator` v0.14.1 và `class-transformer` v0.5.1 cho validation DTOs. |
 | Công cụ test | `@nestjs/testing` v12.1.3, `@testing-library/react` v16.3.2, `@testing-library/dom` v10.4.1, `jsdom` v26.1.1, `@playwright/test` v1.52.0. |
-| Rate limiting backend | `@nestjs/throttler` v6.4.0 (100 req/min cho public, 5 req/min cho login). |
+| Rate limiting backend | `@nestjs/throttler` v6.4.0; API thường 120 request/phút/IP, login 5 lần/15 phút/email+IP, refresh 30 request/phút/IP theo [API spec](../api-spec.md#7-rate-limit-timeout-retry-và-idempotency). |
 | Danh mục biến môi trường | Đã chuẩn hóa qua `.env.example` tại root (`POSTGRES_*`), `backend/` (`PORT`, `DATABASE_URL`, `JWT_*`, `CORS_ORIGIN`) và `frontend/` (`VITE_API_BASE_URL`). |
 
 ## 4. Lệnh phát triển

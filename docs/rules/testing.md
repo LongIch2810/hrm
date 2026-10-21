@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy tắc viết test
 
@@ -13,6 +13,7 @@ Kiểm hành vi đã được xác nhận theo đặc tả; không biến suy di
 - Với lỗi tự động tái hiện được, viết test thất bại trước khi sửa; sau khi sửa, cho test đó chạy đạt.
 - Không đặt ngưỡng độ phủ % toàn dự án; kiểm mọi nhánh cho phép/từ chối và quy tắc đã xác nhận của phần sửa.
 - Tra [tiêu chí nghiệm thu trong PRD](../PRD.md#11-acceptance-criteria) cho expected result và [Auth](../architecture/auth.md) cho quyết định quyền đã chốt.
+- Với cập nhật dữ liệu, kiểm tra lượt lưu từ bản cũ bị từ chối và người dùng được yêu cầu tải lại; không giả định mã lỗi API khi contract còn TBD.
 
 ## 2. Loại test
 
@@ -63,7 +64,7 @@ Dùng môi trường test cô lập để kiểm dữ liệu và quyền.
 
 ## 6. Điều kiện hoàn thành và lệnh chạy
 
-Dùng lệnh theo [Tech Stack](../architecture/tech-stack.md) khi script được tạo; hiện chưa có manifest hoặc script chạy được.
+Dùng lệnh theo [Tech Stack](../architecture/tech-stack.md) khi script tương ứng được tạo; frontend hiện có manifest và script `dev`, `build`, `preview`, nhưng chưa có script test/lint/format.
 
 - [ ] Khi tạo code, cấu hình `test:unit`, `test:integration`, `test:e2e`, `test:all` cho từng app; giữ `npm test` chạy Vitest một lượt theo [Tech Stack](../architecture/tech-stack.md).
 - [ ] Chạy test liên quan, lint và build thành công; chạy format và rà diff trước khi báo xong.
@@ -76,6 +77,6 @@ Dùng lệnh theo [Tech Stack](../architecture/tech-stack.md) khi script đượ
 
 **Status:** Confirmed
 
-- Đã xác nhận phiên bản tương thích Node.js 20 LTS: `@nestjs/testing` v10.x cho backend, `@testing-library/react` v16.x, `@testing-library/dom` v10.x, `jsdom` v25.x cho frontend component test và `@playwright/test` v1.48.x cho E2E test.
+- Dùng Node.js 22.22.2, `@nestjs/testing` v12.1.3, `@testing-library/react` v16.3.2, `@testing-library/dom` v10.4.1, `jsdom` v26.1.1 và `@playwright/test` v1.52.0 theo [Tech Stack](../architecture/tech-stack.md).
 - Expected result bám sát 100% theo các quy tắc nghiệp vụ đã chốt trong [tiêu chí nghiệm thu](../PRD.md#11-acceptance-criteria) và [Auth](../architecture/auth.md).
 - Toàn bộ dịch vụ bên ngoài (SMTP gửi mail, Cloud Storage S3/MinIO) được giả lập (mock/stub) hoàn toàn trong automated test suite, đảm bảo test chạy độc lập và ổn định.

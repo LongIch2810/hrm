@@ -1,4 +1,4 @@
-Trạng thái: thiết kế dự kiến, chưa có code
+Trạng thái: quy tắc kỹ thuật; frontend có prototype, backend chưa triển khai.
 
 # Quy tắc UI — HeroUI và Tailwind CSS
 
@@ -159,6 +159,7 @@ Dùng component HeroUI theo yêu cầu và contract đã được xác nhận.
 - Chỉ đặt `required`, giới hạn và thông báo validation theo yêu cầu đã chốt; không tự suy ra quy tắc nghiệp vụ.
 - Giữ label và thông báo lỗi gắn với trường tương ứng; không dùng placeholder thay label.
 - Ánh xạ lỗi backend theo contract được xác nhận; không tự tạo schema lỗi frontend khác.
+- Khi lượt lưu bị từ chối vì bản đang sửa đã cũ, thông báo người dùng tải lại dữ liệu trước khi sửa tiếp.
 - Dùng HeroUI `Table`; chưa thêm TanStack Table hoặc thư viện data grid khác.
 - Chỉ triển khai sort, filter, pagination hoặc tính năng bảng nâng cao khi có yêu cầu được xác nhận.
 

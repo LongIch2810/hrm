@@ -12,6 +12,8 @@ Distinguish approved design from files already implemented in the repository.
 - `docs/rules/` contains engineering rules. Use its [index](docs/rules/index.md) for task-specific rules; `docs/DATABASE.md` is currently empty.
 - `docs/design/` contains UI/UX system design, tokens, and 68 screen specifications in [docs/design/screens/](docs/design/screens/).
 - `docs/process/` contains the Agile Scrum framework ([agile-scrum.md](docs/process/agile-scrum.md)) and Sprint roadmap ([sprint-roadmap.md](docs/process/sprint-roadmap.md)).
+- `sprints/` contains detailed technical specifications for each Sprint (e.g. [sprint-00-core-backend.md](sprints/sprint-00-core-backend.md)).
+- `templates/` contains standard templates for Sprint specifications ([sprint-template.md](templates/sprint-template.md)) and tasks.
 - `frontend/` contains the React 19 SPA with Vite, Tailwind CSS v4, HeroUI v3, 15 feature modules, and mock data; `backend/` is empty.
 - `plans/` and `tasks/` contain `active/` and `completed/` directories for Sprint plans and tasks. `history/error/` records prior documentation mistakes.
 - Follow [Folder Structure](docs/architecture/folder-structure.md) for approved file locations.
@@ -68,7 +70,8 @@ Pull requests should describe the change, its purpose, and validation performed.
 
 Read the rule that governs the files and behavior being changed.
 
-- Trước khi viết hoặc sửa giao diện, đọc docs/rules/ui.md, docs/design/design-system.md và đặc tả màn hình tại docs/design/screens/.
+- Điểm truy cập và mục lục tài liệu của Agent trong mỗi thư mục bắt buộc là file `index.md`; không dùng `README.md` (chỉ dành cho người dùng).
+- Trước khi viết hoặc sửa giao diện, đọc docs/rules/ui.md, docs/design/index.md và đặc tả màn hình tại docs/design/screens/.
 - Sử dụng các UI component wrapper tại `frontend/src/shared/components/ui/` (tiền tố `App*`), không gọi trực tiếp component thô.
 - Quản lý dữ liệu giả lập qua MockContext tại `frontend/src/mock/MockContext.tsx`; dùng `DevToolbar` để đổi vai trò và kiểm thử màn hình.
 - Trước khi viết hoặc sửa test, và trước khi báo hoàn thành một tác vụ, đọc docs/rules/testing.md.
@@ -78,6 +81,7 @@ Read the rule that governs the files and behavior being changed.
 - Trước khi viết code xác thực, xử lý dữ liệu nhạy cảm, nhận input từ ngoài hoặc cấu hình môi trường, đọc docs/rules/security.md.
 - Trước khi viết migration, entity TypeORM, index hoặc truy vấn database, đọc docs/rules/database.md.
 - Xem đề xuất quy trình Agile Scrum tại [docs/process/agile-scrum.md](docs/process/agile-scrum.md); không áp dụng các quyết định TBD khi chưa được Product Owner duyệt.
+- Khi tạo kế hoạch Sprint mới trong `sprints/`, tra cứu `sprints/index.md` và bắt buộc dùng template mẫu tại [templates/sprint-template.md](templates/sprint-template.md).
 - Khi quy trình Sprint được duyệt, cập nhật kế hoạch tại `plans/active/` và nhiệm vụ tại `tasks/active/`; chuyển sang `completed/` theo DoD đã xác nhận.
 
 Prefer codebase-memory-mcp for code discovery. Index an unindexed project first, then use `search_graph`, `trace_path`, `get_code_snippet`, and `query_graph`. Use filesystem searches for documentation, configuration, string literals, or insufficient graph results.
@@ -108,4 +112,5 @@ Apply these writing rules to all agent-facing documentation: `AGENTS.md`, `PRD.m
 - Prefer tables or code blocks for structured data, including APIs, fields, enums, and commands.
 - Start each major section with one purpose statement, then provide bullets.
 - Use one consistent term for each concept throughout the documentation.
+- Use `index.md` as the entry point and index for agents in each folder; reserve `README.md` for human readers.
 - Follow these rules whenever adding or editing content in an existing file.
