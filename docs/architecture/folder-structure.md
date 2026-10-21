@@ -14,7 +14,7 @@ hrm/
 │   └── agents/
 ├── .git/
 ├── backend/                    # Rỗng
-├── frontend/                   # Rỗng
+├── frontend/                   # Ứng dụng React với dữ liệu giả lập
 ├── docs/
 │   ├── PRD.md
 │   ├── prd/
@@ -33,6 +33,14 @@ hrm/
 │   │   │   ├── backend-nestjs.md
 │   │   │   └── frontend-react.md
 │   │   └── overview.md
+│   ├── design/                   # UI/UX Design System, tokens và 68 đặc tả màn hình
+│   │   ├── README.md
+│   │   ├── design-system.md
+│   │   ├── design-tokens.css
+│   │   └── screens/              # 15 file đặc tả 68 màn hình
+│   ├── process/                  # Đề xuất quy trình, chờ Product Owner duyệt
+│   │   ├── agile-scrum.md        # Đề xuất Scrum, vai trò, DoR, DoD
+│   │   └── sprint-roadmap.md     # Đề xuất lộ trình Sprint
 │   └── rules/
 │       ├── index.md
 │       ├── clean-code.md
@@ -58,7 +66,8 @@ hrm/
 └── README.md                   # Rỗng (cho git repository)
 ```
 
-- Chưa có manifest, lockfile, `compose.yaml`, code ứng dụng hoặc test.
+- Frontend có prototype dùng dữ liệu giả lập tại `frontend/`; độ phủ 68 màn hình chưa được kiểm chứng.
+- Backend NestJS và Docker Compose chưa được khởi tạo.
 - Index kiến trúc đã sẵn sàng tại [docs/architecture/index.md](index.md).
 
 ## 2. Vai trò thư mục
@@ -67,23 +76,25 @@ hrm/
 
 | Thư mục | Nội dung |
 |---|---|
-| `frontend/` | Ứng dụng React; hiện rỗng. |
+| `frontend/` | Ứng dụng React với mock store; độ phủ màn hình chưa được kiểm chứng. |
 | `backend/` | Ứng dụng NestJS; hiện rỗng. |
-| `docs/` | Tài liệu dự án, gồm PRD, kiến trúc và quy tắc. |
+| `docs/` | Tài liệu dự án, gồm PRD, kiến trúc, quy trình và quy tắc. |
 | `docs/prd/function-requirement/` | Chi tiết yêu cầu của 12 module; tra mục 6 trong [PRD](../PRD.md). |
 | `docs/prd/business-rule/` | Quy tắc nghiệp vụ chi tiết của 12 module; tra mục 8 trong [PRD](../PRD.md). |
 | `docs/prd/index.md` | Mục lục các đặc tả chi tiết; tra [PRD](../PRD.md) cho tổng quan và nghiệm thu. |
 | `docs/prd/details/` | Quy tắc nghiệp vụ, NFR, giả định/rủi ro và dữ liệu khái quát theo từng file. |
 | `docs/prd/usecase/` | User stories, use cases và các luồng liên quan; tra mục 7 trong [PRD](../PRD.md). |
 | `docs/prd/workflow/` | Các workflow đã biết; tra mục 9 trong [PRD](../PRD.md). |
+| `docs/design/` | Hệ thống thiết kế UI/UX, tokens và 68 tài liệu màn hình. |
+| `docs/process/` | Đề xuất quy trình Agile Scrum và lộ trình Sprint đang chờ duyệt. |
 | `docs/architecture/index.md` | Mục lục tài liệu kiến trúc kỹ thuật của hệ thống. |
 | `docs/architecture/` | Công nghệ, cấu trúc thư mục, phân lớp và bức tranh tổng thể. |
 | `docs/architecture/layers/` | Tài liệu phân lớp riêng cho frontend React và backend NestJS. |
 | `docs/rules/` | Quy tắc kỹ thuật cho lập trình viên và agent (clean code, coding style, naming, API, security, UI, test, git; có index.md). |
 | `plans/active/` | Kế hoạch đang thực hiện. |
 | `plans/completed/` | Kế hoạch đã hoàn tất. |
-| `tasks/active/` | Công việc đang thực hiện. |
-| `tasks/completed/` | Công việc đã hoàn tất. |
+| `tasks/active/` | Công việc kỹ thuật đang thực hiện. |
+| `tasks/completed/` | Công việc kỹ thuật đã hoàn tất. |
 | `history/` | Lưu ghi chép lỗi tại `history/error/` để agent sau tra cứu. |
 | `.agents/skills/` | Các skill cục bộ của dự án. |
 | `.codex/agents/` | Thư mục dành cho cấu hình agent Codex; hiện rỗng. |

@@ -34,6 +34,7 @@ Use the approved document for each decision and verify its confirmation status.
 - Read [Auth](docs/architecture/auth.md) before authentication or authorization work. Read [REST API Rules](docs/rules/rest-api.md) before API contract work.
 - Read [Frontend React](docs/architecture/layers/frontend-react.md) and [Backend NestJS](docs/architecture/layers/backend-nestjs.md) before changing their request or error flows.
 - Read [UI Rules](docs/rules/ui.md), [Design System](docs/design/design-system.md), and screen specifications in [docs/design/screens/](docs/design/screens/) before interface work.
+- Read [Agile Scrum](docs/process/agile-scrum.md) and [Sprint Roadmap](docs/process/sprint-roadmap.md) as proposals when planning a Sprint; confirm pending decisions with the Product Owner.
 - `frontend/DESIGN.md` analyzes ElevenLabs; use [Design System](docs/design/design-system.md) as the approved design reference.
 - Read relevant entries in `history/error/` when editing the corresponding architecture documents.
 - Keep confirmed decisions aligned across affected documents. Apply the TBD rule below to details that remain undefined.
@@ -76,8 +77,8 @@ Read the rule that governs the files and behavior being changed.
 - Trước khi viết hoặc sửa code, đọc docs/rules/coding-style.md.
 - Trước khi viết code xác thực, xử lý dữ liệu nhạy cảm, nhận input từ ngoài hoặc cấu hình môi trường, đọc docs/rules/security.md.
 - Trước khi viết migration, entity TypeORM, index hoặc truy vấn database, đọc docs/rules/database.md.
-- Tuân thủ quy trình Agile Scrum tại [docs/process/agile-scrum.md](docs/process/agile-scrum.md); chỉ nhận việc khi đạt DoR và nghiệm thu theo DoD.
-- Cập nhật kế hoạch Sprint tại `plans/active/` và nhiệm vụ chi tiết tại `tasks/active/`.
+- Xem đề xuất quy trình Agile Scrum tại [docs/process/agile-scrum.md](docs/process/agile-scrum.md); không áp dụng các quyết định TBD khi chưa được Product Owner duyệt.
+- Khi quy trình Sprint được duyệt, cập nhật kế hoạch tại `plans/active/` và nhiệm vụ tại `tasks/active/`; chuyển sang `completed/` theo DoD đã xác nhận.
 
 Prefer codebase-memory-mcp for code discovery. Index an unindexed project first, then use `search_graph`, `trace_path`, `get_code_snippet`, and `query_graph`. Use filesystem searches for documentation, configuration, string literals, or insufficient graph results.
 
