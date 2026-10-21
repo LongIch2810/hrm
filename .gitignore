@@ -1,0 +1,106 @@
+# ==========================================
+# HRM Project - Root .gitignore
+# Stack: NestJS (Backend), React / Vite (Frontend), Node.js, TypeScript
+# ==========================================
+
+# 1. Dependencies
+node_modules/
+*/node_modules/
+.pnp
+.pnp.js
+.pnpm-store/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 2. Build Outputs & Compilations
+dist/
+*/dist/
+build/
+*/build/
+out/
+*/out/
+*.tsbuildinfo
+.turbo/
+
+# 3. Environment variables & Secrets (Never commit secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+!*.env.example
+!*.env.template
+
+# Private keys and certificates
+*.pem
+*.key
+*.cert
+*.crt
+
+# Local agent connections with credentials
+.agents/mcp_config.json
+.codex/config.toml
+
+# 4. Testing & Code Coverage
+coverage/
+*/coverage/
+.nyc_output/
+reports/
+test-results/
+playwright-report/
+blob-report/
+*.lcov
+
+# 5. Logs & Runtime data
+logs/
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Local SQLite / file storage / uploads
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+storage/
+temp/
+tmp/
+scratch/
+
+# 6. IDEs & Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 7. Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# 8. Caches
+.cache/
+.eslintcache
+.stylelintcache
+.prettiercache
